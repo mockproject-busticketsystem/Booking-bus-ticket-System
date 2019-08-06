@@ -28,6 +28,9 @@ public class TaiKhoan {
 		this.pass = pass;
 		this.role = role;
 	}
-	
+	public TaiKhoan()
+	{
+		
+	}
 	
 }

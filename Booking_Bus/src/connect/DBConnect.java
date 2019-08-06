@@ -24,17 +24,17 @@ public class DBConnect {
 	             password);
 	     return conn;
 	 }
-//		 public static void main (String[] args) throws SQLException,
-//		    ClassNotFoundException {
-//			 
-//				System.out.println("Get connection ... ");
-//
-//				// Lấy ra đối tượng Connection kết nối vào database.
-//				Connection conn = getMySQLConnection();
-//
-//				System.out.println("Get connection " + conn);
-//
-//				System.out.println("Done!");
-//		 }
+		/* public static void main (String[] args) throws SQLException,
+		    ClassNotFoundException {
+			 
+				System.out.println("Get connection ... ");
+
+				// Lấy ra đối tượng Connection kết nối vào database.
+				Connection conn = getMySQLConnection();
+
+				System.out.println("Get connection " + conn);
+
+				System.out.println("Done!");
+		 }*/
 
 }

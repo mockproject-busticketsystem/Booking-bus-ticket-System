@@ -28,6 +28,9 @@ public class TuyenDi {
 		this.diaDiemDi = diaDiemDi;
 		this.diaDiemDen = diaDiemDen;
 	}
-	
+	public TuyenDi()
+	{
+		
+	}
 
 }

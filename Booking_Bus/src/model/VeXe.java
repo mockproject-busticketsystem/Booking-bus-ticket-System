@@ -6,14 +6,8 @@ public class VeXe {
 	private String cMND;
 	private int iDChuyen;
 	private String maTuyen;
-	private BigDecimal donGia;
-	public VeXe(String cMND, int iDChuyen, String maTuyen, BigDecimal donGia) {
-		super();
-		this.cMND = cMND;
-		this.iDChuyen = iDChuyen;
-		this.maTuyen = maTuyen;
-		this.donGia = donGia;
-	}
+	private boolean status;
+	
 	public String getcMND() {
 		return cMND;
 	}
@@ -32,12 +26,20 @@ public class VeXe {
 	public void setMaTuyen(String maTuyen) {
 		this.maTuyen = maTuyen;
 	}
-	public BigDecimal getDonGia() {
-		return donGia;
+	public VeXe(String cMND, int iDChuyen, String maTuyen, boolean status) {
+		super();
+		this.cMND = cMND;
+		this.iDChuyen = iDChuyen;
+		this.maTuyen = maTuyen;
+		this.status = status;
 	}
-	public void setDonGia(BigDecimal donGia) {
-		this.donGia = donGia;
+	public boolean isStatus() {
+		return status;
 	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
 	
 
 }

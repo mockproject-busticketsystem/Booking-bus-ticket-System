@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 02, 2019 lúc 12:21 PM
+-- Thời gian đã tạo: Th8 06, 2019 lúc 09:12 AM
 -- Phiên bản máy phục vụ: 10.1.37-MariaDB
 -- Phiên bản PHP: 7.3.1
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `bookingbusticketsystem`
+-- Cơ sở dữ liệu: `bookbus`
 --
 
 -- --------------------------------------------------------
@@ -31,23 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `chuyendi` (
   `id` int(10) NOT NULL,
   `MaTuyen` varchar(20) NOT NULL,
-  `NgayDi` date NOT NULL,
   `Gio` time NOT NULL,
-  `DonGia` decimal(10,0) DEFAULT NULL,
-  `BienSoXe` varchar(10) DEFAULT NULL,
-  `SoGheTrong` int(11) DEFAULT NULL,
-  `SoGheDat` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `ghe`
---
-
-CREATE TABLE `ghe` (
-  `Maghe` varchar(5) NOT NULL,
-  `MaXe` varchar(10) NOT NULL
+  `DonGia` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -96,20 +81,6 @@ INSERT INTO `nhanvien` (`Id`, `HoTen`, `NgaySinh`, `SDT`, `Email`, `Chucvu`) VAL
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `phieudatcho`
---
-
-CREATE TABLE `phieudatcho` (
-  `CMND` varchar(11) NOT NULL,
-  `MaTuyen` varchar(20) NOT NULL,
-  `NgayDi` date NOT NULL,
-  `Gio` time NOT NULL,
-  `Maghe` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `taikhoan`
 --
 
@@ -148,21 +119,8 @@ CREATE TABLE `tuyendi` (
 CREATE TABLE `vexe` (
   `CMND` varchar(11) NOT NULL,
   `IdChuyen` int(10) NOT NULL,
-  `MaGhe` varchar(5) NOT NULL,
-  `DonGia` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `xe`
---
-
-CREATE TABLE `xe` (
-  `BienSo` varchar(10) NOT NULL,
-  `TaiXe1` int(10) NOT NULL,
-  `TaiXe2` int(10) NOT NULL,
-  `SoGhe` int(11) NOT NULL
+  `HangDoi` varchar(5) NOT NULL,
+  `MaGhe` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -174,15 +132,7 @@ CREATE TABLE `xe` (
 --
 ALTER TABLE `chuyendi`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `MaTuyen` (`MaTuyen`),
-  ADD KEY `BienSoXe` (`BienSoXe`);
-
---
--- Chỉ mục cho bảng `ghe`
---
-ALTER TABLE `ghe`
-  ADD PRIMARY KEY (`Maghe`,`MaXe`),
-  ADD KEY `MaXe` (`MaXe`);
+  ADD KEY `MaTuyen` (`MaTuyen`);
 
 --
 -- Chỉ mục cho bảng `khachhang`
@@ -197,15 +147,6 @@ ALTER TABLE `khachhang`
 ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`Id`),
   ADD UNIQUE KEY `Email` (`Email`);
-
---
--- Chỉ mục cho bảng `phieudatcho`
---
-ALTER TABLE `phieudatcho`
-  ADD PRIMARY KEY (`CMND`,`MaTuyen`,`NgayDi`,`Gio`,`Maghe`),
-  ADD KEY `CMND` (`CMND`),
-  ADD KEY `MaTuyen` (`MaTuyen`),
-  ADD KEY `Maghe` (`Maghe`);
 
 --
 -- Chỉ mục cho bảng `taikhoan`
@@ -224,18 +165,9 @@ ALTER TABLE `tuyendi`
 -- Chỉ mục cho bảng `vexe`
 --
 ALTER TABLE `vexe`
-  ADD PRIMARY KEY (`CMND`,`IdChuyen`,`MaGhe`),
+  ADD PRIMARY KEY (`CMND`,`IdChuyen`,`HangDoi`,`MaGhe`),
   ADD KEY `CMND` (`CMND`),
-  ADD KEY `IdChuyen` (`IdChuyen`),
-  ADD KEY `MaGhe` (`MaGhe`);
-
---
--- Chỉ mục cho bảng `xe`
---
-ALTER TABLE `xe`
-  ADD PRIMARY KEY (`BienSo`),
-  ADD KEY `TaiXe1` (`TaiXe1`),
-  ADD KEY `TaiXe2` (`TaiXe2`);
+  ADD KEY `IdChuyen` (`IdChuyen`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -251,7 +183,7 @@ ALTER TABLE `chuyendi`
 -- AUTO_INCREMENT cho bảng `nhanvien`
 --
 ALTER TABLE `nhanvien`
-  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -261,37 +193,14 @@ ALTER TABLE `nhanvien`
 -- Các ràng buộc cho bảng `chuyendi`
 --
 ALTER TABLE `chuyendi`
-  ADD CONSTRAINT `Foreign_key_CD_TD` FOREIGN KEY (`MaTuyen`) REFERENCES `tuyendi` (`Id`),
-  ADD CONSTRAINT `Foreign_key_CD_Xe` FOREIGN KEY (`BienSoXe`) REFERENCES `xe` (`BienSo`);
-
---
--- Các ràng buộc cho bảng `ghe`
---
-ALTER TABLE `ghe`
-  ADD CONSTRAINT `Foreign_key_Ghe_Xe` FOREIGN KEY (`MaXe`) REFERENCES `xe` (`BienSo`);
-
---
--- Các ràng buộc cho bảng `phieudatcho`
---
-ALTER TABLE `phieudatcho`
-  ADD CONSTRAINT `Foreign_key_PDC_Ghe` FOREIGN KEY (`Maghe`) REFERENCES `ghe` (`Maghe`),
-  ADD CONSTRAINT `Foreign_key_PDC_KH` FOREIGN KEY (`CMND`) REFERENCES `khachhang` (`CMND`),
-  ADD CONSTRAINT `Foreign_key_PDC_TD` FOREIGN KEY (`MaTuyen`) REFERENCES `tuyendi` (`Id`);
+  ADD CONSTRAINT `Foreign_key_CD_TD` FOREIGN KEY (`MaTuyen`) REFERENCES `tuyendi` (`Id`);
 
 --
 -- Các ràng buộc cho bảng `vexe`
 --
 ALTER TABLE `vexe`
-  ADD CONSTRAINT `Foreign_key_CD_Ghe` FOREIGN KEY (`MaGhe`) REFERENCES `ghe` (`Maghe`),
   ADD CONSTRAINT `Foreign_key_VX_CD` FOREIGN KEY (`IdChuyen`) REFERENCES `chuyendi` (`id`),
   ADD CONSTRAINT `Foreign_key_VX_KH` FOREIGN KEY (`CMND`) REFERENCES `khachhang` (`CMND`);
-
---
--- Các ràng buộc cho bảng `xe`
---
-ALTER TABLE `xe`
-  ADD CONSTRAINT `Foreign_key_X_NV` FOREIGN KEY (`TaiXe1`) REFERENCES `nhanvien` (`Id`),
-  ADD CONSTRAINT `Foreign_key_X_NV_2` FOREIGN KEY (`TaiXe2`) REFERENCES `nhanvien` (`Id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

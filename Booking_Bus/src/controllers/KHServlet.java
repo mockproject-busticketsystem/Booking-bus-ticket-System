@@ -33,7 +33,7 @@ public class KHServlet extends HttpServlet {
 	        cus = khDao.getKH(email);
 	        request.setAttribute("customer", cus);
 	        RequestDispatcher dispatcher = request.getServletContext()
-	                .getRequestDispatcher("/pageUser.jsp");
+	                .getRequestDispatcher("/views/pageUser.jsp");
 	        dispatcher.forward(request, response);
 		}
 		/**
