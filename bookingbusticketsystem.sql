@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 06, 2019 lúc 09:12 AM
+-- Thời gian đã tạo: Th8 06, 2019 lúc 09:35 AM
 -- Phiên bản máy phục vụ: 10.1.37-MariaDB
 -- Phiên bản PHP: 7.3.1
 
@@ -120,7 +120,8 @@ CREATE TABLE `vexe` (
   `CMND` varchar(11) NOT NULL,
   `IdChuyen` int(10) NOT NULL,
   `HangDoi` varchar(5) NOT NULL,
-  `MaGhe` varchar(5) NOT NULL
+  `MaGhe` varchar(5) NOT NULL,
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
