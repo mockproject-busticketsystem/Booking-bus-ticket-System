@@ -4,7 +4,6 @@ import java.time.LocalDate;
 public class NhanVien {
 	private int iD;
 	private String hoTen;
-	private LocalDate ngaySinh;
 	private String sDT;
 	private String email;
 	private String chucVu;
@@ -19,12 +18,6 @@ public class NhanVien {
 	}
 	public void setHoTen(String hoTen) {
 		this.hoTen = hoTen;
-	}
-	public LocalDate getNgaySinh() {
-		return ngaySinh;
-	}
-	public void setNgaySinh(LocalDate ngaySinh) {
-		this.ngaySinh = ngaySinh;
 	}
 	public String getsDT() {
 		return sDT;
@@ -44,11 +37,10 @@ public class NhanVien {
 	public void setChucVu(String chucVu) {
 		this.chucVu = chucVu;
 	}
-	public NhanVien(int iD, String hoTen, LocalDate ngaySinh, String sDT, String email, String chucVu) {
+	public NhanVien(int iD, String hoTen,  String sDT, String email, String chucVu) {
 		super();
 		this.iD = iD;
 		this.hoTen = hoTen;
-		this.ngaySinh = ngaySinh;
 		this.sDT = sDT;
 		this.email = email;
 		this.chucVu = chucVu;

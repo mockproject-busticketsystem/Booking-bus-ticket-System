@@ -100,54 +100,11 @@
 							</form>
 						</div>
 						<!-- Bat dau regester -->
+						
 
 					</div>
 					<!-- Ket thuc right -->
 					<!-- for register popup -->
-					<div id="small-dialog1" class="mfp-hide">
-						<div class="contact-form1">
-							<div class="contact-w3-agileits">
-								<h3>Register Form</h3>
-								<form action="#" method="post">
-									<div class="form-sub-w3ls">
-										<input placeholder="User Name" type="text" required="">
-										<div class="icon-agile">
-											<i class="fa fa-user" aria-hidden="true"></i>
-										</div>
-									</div>
-									<div class="form-sub-w3ls">
-										<input placeholder="Email" class="mail" type="email"
-											required="">
-										<div class="icon-agile">
-											<i class="fa fa-envelope-o" aria-hidden="true"></i>
-										</div>
-									</div>
-									<div class="form-sub-w3ls">
-										<input placeholder="Password" type="password" required="">
-										<div class="icon-agile">
-											<i class="fa fa-unlock-alt" aria-hidden="true"></i>
-										</div>
-									</div>
-									<div class="form-sub-w3ls">
-										<input placeholder="Confirm Password" type="password"
-											required="">
-										<div class="icon-agile">
-											<i class="fa fa-unlock-alt" aria-hidden="true"></i>
-										</div>
-									</div>
-									<div class="login-check">
-										<label class="checkbox"><input type="checkbox"
-											name="checkbox" checked="">I Accept Terms &
-											Conditions</label>
-									</div>
-									<div class="submit-w3l">
-										<input type="submit" value="Register">
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<!-- //for register popup -->
 				</div>
 			</div>
 		</div>

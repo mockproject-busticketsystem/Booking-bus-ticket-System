@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 06, 2019 lúc 09:35 AM
+-- Thời gian đã tạo: Th8 06, 2019 lúc 12:24 PM
 -- Phiên bản máy phục vụ: 10.1.37-MariaDB
 -- Phiên bản PHP: 7.3.1
 
@@ -32,6 +32,7 @@ CREATE TABLE `chuyendi` (
   `id` int(10) NOT NULL,
   `MaTuyen` varchar(20) NOT NULL,
   `Gio` time NOT NULL,
+  `NgayDi` date NOT NULL,
   `DonGia` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -44,7 +45,6 @@ CREATE TABLE `chuyendi` (
 CREATE TABLE `khachhang` (
   `CMND` varchar(11) NOT NULL,
   `HoTen` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `NgaySinh` date NOT NULL,
   `SDT` varchar(11) NOT NULL,
   `Email` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -53,8 +53,8 @@ CREATE TABLE `khachhang` (
 -- Đang đổ dữ liệu cho bảng `khachhang`
 --
 
-INSERT INTO `khachhang` (`CMND`, `HoTen`, `NgaySinh`, `SDT`, `Email`) VALUES
-('221462795', 'Nguyen Trinh', '1998-02-14', '012345689', 'trinhnguyen@email.com');
+INSERT INTO `khachhang` (`CMND`, `HoTen`, `SDT`, `Email`) VALUES
+('221462795', 'Nguyen Trinh', '012345689', 'trinhnguyen@email.com');
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,6 @@ INSERT INTO `khachhang` (`CMND`, `HoTen`, `NgaySinh`, `SDT`, `Email`) VALUES
 CREATE TABLE `nhanvien` (
   `Id` int(10) NOT NULL,
   `HoTen` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `NgaySinh` date NOT NULL,
   `SDT` varchar(11) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `Chucvu` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
@@ -75,8 +74,8 @@ CREATE TABLE `nhanvien` (
 -- Đang đổ dữ liệu cho bảng `nhanvien`
 --
 
-INSERT INTO `nhanvien` (`Id`, `HoTen`, `NgaySinh`, `SDT`, `Email`, `Chucvu`) VALUES
-(1, 'Nguyen Huyen', '1998-11-07', '0123456789', 'nguyenthidieuhuyenpy@gmail.com', 'Ticketseller');
+INSERT INTO `nhanvien` (`Id`, `HoTen`, `SDT`, `Email`, `Chucvu`) VALUES
+(1, 'Nguyen Huyen', '0123456789', 'nguyenthidieuhuyenpy@gmail.com', 'Ticketseller');
 
 -- --------------------------------------------------------
 
@@ -119,8 +118,11 @@ CREATE TABLE `tuyendi` (
 CREATE TABLE `vexe` (
   `CMND` varchar(11) NOT NULL,
   `IdChuyen` int(10) NOT NULL,
+  `NgayDi` date NOT NULL,
+  `GioDi` time NOT NULL,
   `HangDoi` varchar(5) NOT NULL,
   `MaGhe` varchar(5) NOT NULL,
+  `DonGia` decimal(10,0) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
