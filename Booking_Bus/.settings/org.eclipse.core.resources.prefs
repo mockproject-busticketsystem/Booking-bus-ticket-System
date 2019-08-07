@@ -1,7 +1,0 @@
-eclipse.preferences.version=1
-encoding//src/connect/DBConnect.java=UTF-8
-encoding//src/controllers/InfoUserLogin.java=UTF-8
-encoding//src/controllers/JDBCFilter.java=UTF-8
-encoding//src/controllers/Login.java=UTF-8
-encoding//src/controllers/LoginCookieFilter.java=UTF-8
-encoding//src/dao/MyConnect.java=UTF-8
