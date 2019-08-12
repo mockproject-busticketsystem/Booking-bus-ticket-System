@@ -84,43 +84,21 @@
 							vào form để đặt vé xem online. Xin cảm ơn</p>
 
 
-						<form id="frmDatVe" class="frmDatVe" method="POST">
+						<form id="frmDatVe" class="frmDatVe" method="POST"action="${pageContext.request.contextPath}/khachhang">
 							<div class="item_dv">
 								<label>Điểm đi</label> <select name="diemdi" class="txtFrm"
 									id="diemdi" required="required" data-measuring="true"
 									onchange="this.form.submit();">
 									<option value="0">Chọn điểm đi</option>
-									<%
-									try
-									{
-										String Query="SELECT DISTINCT DiaDiemDi FROM tuyendi";
-										Class.forName("com.mysql.jdbc.Driver").newInstance();
-										Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/booking_bus?autoReconnect=true&useSSL=false","root","123456789");
-										PreparedStatement ps = conn.prepareStatement(Query);
-										ResultSet rs = ps.executeQuery();
-										while(rs.next())
-										{
-											%>
-									<option value="<%=rs.getString("DiaDiemDi")%>"
-										<%
-									if(request.getParameter("diemdi")!=null){
-										if(rs.getString("DiaDiemDi").equals(request.getParameter("diemdi"))==true)
-										{	
-											out.print("selected");
-									
-										}
-									}
-									%>><%=rs.getString("DiaDiemDi")%></option>
-									<% 
-										}
-										
-									}
-									catch(Exception ex)
-									{
-										ex.printStackTrace();
-									}
-									%>
+									 <c:forEach items="${diaDiemDi}" var="listItem">
+									<option value="${listItem.diaDiemDi}" 
+									<c:if test="${chonDiemDi!=null && listItem.diaDiemDi.equals(chonDiemDi)==true}">
+											selected
+									</c:if>
 
+
+									>${listItem.diaDiemDi}</option>
+									</c:forEach>
 								</select>
 							</div>
 							<div class="item_dv">
@@ -128,36 +106,13 @@
 									id="diemden" required="required "
 									onchange="this.form.submit();">
 									<option value="0">Chọn điểm đến</option>
-									<%
-									try
-									{
-										String query="SELECT * FROM tuyendi where DiaDiemDi=?";
-										Class.forName("com.mysql.jdbc.Driver").newInstance();
-										Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/booking_bus?autoReconnect=true&useSSL=false","root","123456789");
-										PreparedStatement ps = conn.prepareStatement(query);
-										ps.setString(1, request.getParameter("diemdi"));
-										ResultSet rs = ps.executeQuery();
-										while(rs.next())
-										{
-											%>
-									<option value="<%=rs.getString("DiaDiemDen")%>"
-										<%
-									if(request.getParameter("diemden")!=null){
-										if(rs.getString("DiaDiemDen").equals(request.getParameter("diemden"))==true)
-										{	
-											out.print("selected");
-										}
-									}
-									%>><%=rs.getString("DiaDiemDen")%></option>
-									<% 
-										}
-										
-									}
-									catch(Exception ex)
-									{
-										ex.printStackTrace();
-									}
-									%>
+										 <c:forEach items="${diaDiemDen}" var="listItem">
+									<option value="${listItem.diaDiemDen}"
+										<c:if test="${chonDiemDen!=null && listItem.diaDiemDen.equals(chonDiemDen)==true}">
+											selected
+									</c:if>
+									>${listItem.diaDiemDen}</option>
+									</c:forEach>
 
 								</select>
 
@@ -169,13 +124,6 @@
 
 
 						</form>
-
-
-
-
-
-
-
 
 						</br>
 						</br> </br>
@@ -219,43 +167,14 @@
 							</br>
 							</br>
 							</br>
-							</br>  <input type="hidden" required="required" name="di"
+							</br>  <input type="text" required name="di"
 								value="<%= request.getParameter("diemdi")%>"> </br>
-							<input type="hidden" required="required" name="den"
+							<input type="text" required name="den"
 								value="<%=request.getParameter("diemden")%>"> </br>
 							<div class="item_dv">
 								Gia : <input type="text" required name="gia" id="gia" disabled
-									value=<%
-									try
-									{
-										String query="SELECT * FROM tuyendi where DiaDiemDi=? and DiaDiemDen=?";
-										Class.forName("com.mysql.jdbc.Driver").newInstance();
-										Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/booking_bus?autoReconnect=true&useSSL=false","root","123456789");
-										PreparedStatement ps = conn.prepareStatement(query);
-										ps.setString(1, request.getParameter("diemdi"));
-										ps.setString(2, request.getParameter("diemden"));
-										ResultSet rs = ps.executeQuery();
-										if(rs.next())
-										{
-											%>
-									"<%= rs.getBigDecimal("DonGia") %>" >
-									
-								<%
-								
-										}else {
-											%>
-											"" >
-										<%
-									
-										}
-										
-									}
-									catch(Exception ex)
-									{
-										ex.printStackTrace();
-									}
-									%>
-
+									value=<%=request.getAttribute("dongia")%>>
+							
 
 
 							</div>

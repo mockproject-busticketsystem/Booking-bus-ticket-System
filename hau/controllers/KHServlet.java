@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -38,11 +39,18 @@ public class KHServlet extends HttpServlet{
 	        request.setAttribute("customer", cus);
 			List<TuyenDi> diaDiemDi = null;
 			diaDiemDi = tdDao.getDiaDiemDi();
-			List<TuyenDi> diaDiemDen = null;
+			
+			String chondiemdi = request.getParameter("diemdi");
+			String chondiemden = request.getParameter("diemden");
+			BigDecimal donGia = tdDao.getDonGia(chondiemdi, chondiemden);
+			List<TuyenDi> diaDiemDen = null;	
 //			String diemden = request.getParameter("diemDen");
-			diaDiemDen = tdDao.getDiaDiemDen();
+			diaDiemDen = tdDao.getDiaDiemDenFill(chondiemdi);
+			request.setAttribute("chonDiemDi", chondiemdi);
+			request.setAttribute("chonDiemDen", chondiemden);
 			request.setAttribute("diaDiemDi", diaDiemDi);
 	        request.setAttribute("diaDiemDen", diaDiemDen);
+	        request.setAttribute("dongia", donGia);
 	    	request.getRequestDispatcher("/views/pageUser.jsp").forward(request, response);//forwarding the request
 		}
 		/**

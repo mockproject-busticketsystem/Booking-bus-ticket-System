@@ -19,7 +19,7 @@ public class tuyendiDAOImplement implements tuyendiDAO {
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		} catch (SQLException e1) {
+		} catch (SQLException e1) { 
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
@@ -93,6 +93,39 @@ public class tuyendiDAOImplement implements tuyendiDAO {
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 		
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				TuyenDi tuyendi = new TuyenDi();
+				tuyendi.setDiaDiemDen(rs.getString("DiaDiemDen"));
+				arr.add(tuyendi);
+			}
+			connection.close();
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return arr;
+	}
+	@Override
+	public ArrayList<TuyenDi> getDiaDiemDenFill(String DiemDi) {
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		try {
+			connection = DBConnect.getMySQLConnection();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String sql = "SELECT DISTINCT DiaDiemDen FROM tuyendi where DiaDiemDi=?";
+	
+		ArrayList<TuyenDi> arr = new ArrayList<>();
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, DiemDi);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
