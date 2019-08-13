@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//WebContent/css/main1.css=UTF-8
+encoding//WebContent/views/ThongTinKhach.jsp=UTF-8
+encoding//WebContent/views/ViewTicketCustom.jsp=UTF-8
+encoding//WebContent/views/showDiemDen.jsp=UTF-8
+encoding//src/controllers/ChangePass.java=UTF-8
+encoding//src/controllers/InfoCustom.java=UTF-8
+encoding//src/controllers/LoadDiemDen.java=UTF-8
+encoding//src/controllers/Login.java=UTF-8
+encoding//src/controllers/LoginCookieFilter.java=UTF-8
+encoding//src/controllers/Register.java=UTF-8
