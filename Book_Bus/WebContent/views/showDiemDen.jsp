@@ -21,13 +21,22 @@
 <body onload="showAlert();">
 	<script type="text/javascript">
 		function showAlert() {
-			var list = '${arrayChuyenDi}';
+			/* var list = '${arrayChuyenDi}';
 			alert(typeof (list));
 			alert(list);
 			list.forEach(function(element) {
 				console.log(element);
-			});
+			}); */
+			/* var d = new Date();
+			var pices = "18:19:02".split(':') ; // using ES6 destructuring
+			// var time = "18:19:02".split(':'); // "old" ES5 version
+
+			d.setHours(pices[0]); // set the hours, using implicit type coercion
+			d.setMinutes(pices[1]); // you can pass Number or String, it doesn't really matter
+			d.setSeconds(pices[2]);
+			alert(d); */
 		}
+		
 	</script>
 	<%-- <select name="diemden" class="txtFrm" id="diemden" required="required ">
 		<option value="0">Chọn điểm đến</option>

@@ -27,7 +27,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- Mở dòng này thì show datepicker mà ko load dữ liệu, đóng thì ko sử dụng được datepicker @@ -->
-	<script
+<script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 
 <link rel="stylesheet"
@@ -40,7 +40,7 @@ jQuery.noConflict();
 jQuery(document).ready(function ($) {
 	$("#datepicker").datepicker({ 
 		minDate:0,
-		 dateFormat: 'dd-mm-yy'
+		 dateFormat: 'yy-mm-dd'
 	});
 });
 </script>
@@ -99,7 +99,7 @@ jQuery(document).ready(function ($) {
 						<p class="slogan_dv">Quý khách vui lòng điền đầy đủ thông tin
 							vào form để đặt vé xem online. Xin cảm ơn.</p>
 
-						<form id="frmDatVe" class="frmDatVe" method="POST"
+						<form id="frmDatVe" class="frmDatVe" method="POST" onsubmit="return checkonsubmit(this);"
 							action="${pageContext.request.contextPath}/idtuyen">
 							<!-- Code diem di: Huyen -->
 							<div class="item_dv">
@@ -437,7 +437,7 @@ jQuery(document).ready(function ($) {
 			</footer>
 		</div>
 	</div>
-<script type="text/javascript">
+	<script type="text/javascript">
 $(document).ready(function () {
     $("#diemden").on("change", function () {
     	var diemdi = $("#diemdi").val();// lay diem di
@@ -474,6 +474,111 @@ $(document).ready(function () {
             });
     });
 });
+/* $(document).ready(function () {
+    $("#btnDatVe").on("click",function () {
+    	var diemdi = $("#diemdi").val();// lay diem di
+        var diemden = $("#diemden").val();//id of country select box of index.jsp page;
+        var ngaydi = $("#datepicker").val();
+        var gio = $("#giodi").val();
+        
+        if (diemdi === ""||diemdi===null||diemden === ""||diemden===null||ngaydi === ""||ngaydi===null||gio === ""||gio===null)
+        {
+            $("#error").html("All fields are mandatory.");//this message will display in error div.
+        }
+        else{
+        	var dayBook = new Date(ngaydi);
+        	var curent = new Date();
+        	curent.setDate(curent.getDate()+1);
+        	var pices =  gio.split(':');
+        	if((dayBook.getDate() == curent.getDate())&& (curent.getHours()>=pices[0]))
+        			{
+        			alert("Đặt vé trước 24h xe chạy bạn nhé!! Mời bạn nhập lại ngày và giờ cho phù hợp!!!");
+        			$.ajax({
+                        url: "LoadThoiGian",//your jsp page name
+                        data: {diemdi : diemdi,
+            				diemden : diemden
+            				},//sending request to state.jsp page.
+                        method: "POST",//HTTP method.
+                        success: function (data)
+                        {
+                            $("#giodi").html(data);//output or response will display in state select box.
+                            $("#frmDatVe").trigger("reset");
+                        },
+                        error : function(jqXHR, exception) {
+            				console.log('Error occured!!');
+            			}
+                    });
+        			
+        			}
+        	else
+        		{
+        		$.ajax({
+                    url: "idtuyen",//your jsp page name
+                    data: {diemdi : diemdi,
+        				diemden : diemden,
+        				gio : gio,
+        				ngaydi : ngaydi},//sending request to state.jsp page.
+                    method: "POST",//HTTP method.
+                    success: function()
+                    {
+                    	
+                    }
+                });
+        		}
+        	
+        	
+        }
+    });
+}); */
+function checkonsubmit()
+{
+	var diemdi = $("#diemdi").val();// lay diem di
+    var diemden = $("#diemden").val();//id of country select box of index.jsp page;
+    var ngaydi = $("#datepicker").val();
+    var gio = $("#giodi").val();
+    
+    if (diemdi === ""||diemdi===null||diemden === ""||diemden===null||ngaydi === ""||ngaydi===null||gio === ""||gio===null)
+    {
+       /*  $("#error").html("All fields are mandatory."); *///this message will display in error div.
+       alert("Mời bạn nhập đầy đủ thông tin");
+    }
+    else
+    {
+    	var dayBook = new Date(ngaydi);
+    	var curent = new Date();
+    	curent.setDate(curent.getDate()+1);
+    	var pices =  gio.split(':');
+    	if((dayBook.getDate() == curent.getDate())&& (curent.getHours()>=pices[0]))
+    	{
+    			alert("Đặt vé trước 24h xe chạy bạn nhé!! Mời bạn nhập lại ngày và giờ cho phù hợp!!!");
+    			$.ajax({
+                    url: "LoadThoiGian",//your jsp page name
+                    data: {diemdi : diemdi,
+        				diemden : diemden
+        				},//sending request to state.jsp page.
+                    method: "POST",//HTTP method.
+                    success: function (data)
+                    {
+                        $("#giodi").html(data);//output or response will display in state select box.
+                        $("#frmDatVe").trigger("reset");
+                    },
+                    error : function(jqXHR, exception) {
+        				console.log('Error occured!!');
+        			}
+                });
+    			return false;
+    			
+    	}
+    	else
+    		{
+    		return true;
+    		}
+    	
+    	
+    }
+	
+	}
+
 </script>
 
 </body>

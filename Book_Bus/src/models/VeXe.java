@@ -2,6 +2,7 @@ package models;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class VeXe {
 	private String cMND;
@@ -12,6 +13,46 @@ public class VeXe {
 	private BigDecimal donGia;
 	private Boolean status;
 	private ChuyenDi chuyenDi;
+	private LocalDateTime ngayGioDat;
+	public VeXe(String cMND, int iDChuyen, LocalDate ngayDi, String hangDoi, String maGhe, BigDecimal donGia,
+			Boolean status, LocalDateTime ngayGioDat) {
+		super();
+		this.cMND = cMND;
+		this.iDChuyen = iDChuyen;
+		this.ngayDi = ngayDi;
+		this.hangDoi = hangDoi;
+		this.maGhe = maGhe;
+		this.donGia = donGia;
+		this.status = status;
+		this.ngayGioDat = ngayGioDat;
+	}
+	public VeXe(String cMND, LocalDate ngayDi, String hangDoi, String maGhe, BigDecimal donGia, Boolean status,
+			ChuyenDi chuyenDi, LocalDateTime ngayGioDat) {
+		super();
+		this.cMND = cMND;
+		this.ngayDi = ngayDi;
+		this.hangDoi = hangDoi;
+		this.maGhe = maGhe;
+		this.donGia = donGia;
+		this.status = status;
+		this.chuyenDi = chuyenDi;
+		this.ngayGioDat = ngayGioDat;
+	}
+	public VeXe(String cMND, int iDChuyen, LocalDate ngayDi, String hangDoi, String maGhe,Boolean status) {
+		super();
+		this.cMND = cMND;
+		this.iDChuyen = iDChuyen;
+		this.ngayDi = ngayDi;
+		this.hangDoi = hangDoi;
+		this.maGhe = maGhe;
+		this.status = status;
+	}
+	public LocalDateTime getNgayGioDat() {
+		return ngayGioDat;
+	}
+	public void setNgayGioDat(LocalDateTime ngayGioDat) {
+		this.ngayGioDat = ngayGioDat;
+	}
 	public String getcMND() {
 		return cMND;
 	}
@@ -59,28 +100,6 @@ public class VeXe {
 	}
 	public void setStatus(Boolean status) {
 		this.status = status;
-	}
-	public VeXe(String cMND, int iDChuyen, LocalDate ngayDi, String hangDoi, String maGhe, BigDecimal donGia,
-			Boolean status) {
-		super();
-		this.cMND = cMND;
-		this.iDChuyen = iDChuyen;
-		this.ngayDi = ngayDi;
-		this.hangDoi = hangDoi;
-		this.maGhe = maGhe;
-		this.donGia = donGia;
-		this.status = status;
-	}
-	public VeXe(String cMND, LocalDate ngayDi, String hangDoi, String maGhe, BigDecimal donGia,
-			Boolean status, ChuyenDi chuyenDi) {
-		super();
-		this.cMND = cMND;
-		this.ngayDi = ngayDi;
-		this.hangDoi = hangDoi;
-		this.maGhe = maGhe;
-		this.donGia = donGia;
-		this.status = status;
-		this.chuyenDi = chuyenDi;
 	}
 	
 }

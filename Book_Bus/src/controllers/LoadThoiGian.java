@@ -47,10 +47,10 @@ public class LoadThoiGian extends HttpServlet {
 		request.setAttribute("arrayChuyenDi", arr);
 		/*RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/views/showDiemDen.jsp");
 		dispatcher.forward(request, response);*/
-		out.println("<select name=\"giodi\" id=\"giodi\" class=\"txtFrm\" required=\"required\" data-date-format=\"hh:ii\">");
+		out.println("<select name=\"giodi\" id=\"giodi\" class=\"txtFrm\" required=\"required\" > data-date-format=\"hh:ii\"");
 		for(int i=0;i<arr.size();i++)
 		{
-			out.println("<option value='"+arr.get(i).getiD()+"'>"+ arr.get(i).getGioiDi()+"</option>");
+			out.println("<option value='"+arr.get(i).getGioiDi()+"'>"+ arr.get(i).getGioiDi()+"</option>");
 		}
 		out.println("</select> <span><i class=\"glyphicon glyphicon-time\"style=\"font-size: 30px; margin-top: 4px; margin-right: 15px;\"></i></span>");
 	}

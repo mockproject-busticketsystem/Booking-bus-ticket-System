@@ -103,5 +103,33 @@ public class TuyenDiDAOImplement implements TuyenDiDAO {
 		
 		return arrayTuyen;
 	}
+
+	@Override
+	public TuyenDi getTuyenDi(String maTuyen) {
+		// TODO Auto-generated method stub
+		TuyenDi tuyenDi = null;
+		Connection conn= null;
+		try {
+			conn = ConnectionUtils.getConnection();
+			String sql = "Select * from tuyendi where id= ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, maTuyen);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				String DiaDiemDi = rs.getString("DiaDiemDi");
+				String DiaDiemDen = rs.getString("DiaDiemDen");
+				tuyenDi = new TuyenDi(maTuyen,DiaDiemDi,DiaDiemDen);
+				
+			}
+			conn.close();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tuyenDi;
+		
+	}
 	
 }

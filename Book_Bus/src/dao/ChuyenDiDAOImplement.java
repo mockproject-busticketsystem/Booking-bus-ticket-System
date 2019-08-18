@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import connect.ConnectionUtils;
@@ -14,6 +13,33 @@ import connect.DBConnect;
 import models.ChuyenDi;
 
 public class ChuyenDiDAOImplement implements ChuyenDiDAO{
+
+	@Override
+	public ChuyenDi findChuyenDi(String idTuyen, LocalTime gioDi) {
+		// TODO Auto-generated method stub
+		ChuyenDi chuyenDi = null;
+		Connection connection = null;
+		try {
+			connection = ConnectionUtils.getConnection();
+			String sql = "SELECT * FROM chuyendi where MaTuyen = ? and Gio = ?";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1,idTuyen);
+			ps.setTime(2,java.sql.Time.valueOf(gioDi));
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				int id = rs.getInt("id");
+				BigDecimal donGia = rs.getBigDecimal("DonGia");
+				LocalTime gioDen = LocalTime.parse(rs.getString("GioDen"));
+				chuyenDi = new ChuyenDi(id,idTuyen,gioDi,gioDen,donGia);
+			}
+			connection.close();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return chuyenDi;
+	}
 
 	@Override
 	public ArrayList<ChuyenDi> loadGioiDi(String tuyenDi) {
@@ -31,7 +57,8 @@ public class ChuyenDiDAOImplement implements ChuyenDiDAO{
 				int id = rs.getInt("id");
 				LocalTime gio = LocalTime.parse(rs.getString("Gio"));
 				BigDecimal donGia = rs.getBigDecimal("DonGia");
-				ChuyenDi chuyenDi = new ChuyenDi(id,tuyenDi,gio,donGia);
+				LocalTime gioDen = LocalTime.parse(rs.getString("GioDen"));
+				ChuyenDi chuyenDi = new ChuyenDi(id,tuyenDi,gio,gioDen,donGia);
 				arr.add(chuyenDi);
 			}
 			connection.close();

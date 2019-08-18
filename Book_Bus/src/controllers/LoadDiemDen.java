@@ -33,6 +33,7 @@ public class LoadDiemDen extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println(request.getParameter("diemdi"));
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		TuyenDiDAOImplement tuyenDiDao = new TuyenDiDAOImplement();
@@ -43,8 +44,8 @@ public class LoadDiemDen extends HttpServlet {
 		/*request.setAttribute("arrayDiemDen", arrayDiemDen);
 		RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/views/showDiemDen.jsp");
 				dispatcher.forward(request, response);*/
-		out.println("<select name=\"diemden\" class=\"txtFrm\" id=\"diemden\" required=\"required \">\r\n"); 
-				/*"		<option value=\"0\">Chọn điểm đến</option>\r\n");*/
+		out.println("<select name=\"diemden\" class=\"txtFrm\" id=\"diemden\" required=\"required \">\r\n" + 
+				"		<option value=\"0\">Chọn điểm đến</option>\r\n");
 				for(int i=0;i<arrayDiemDen.size();i++)
 				{
 					out.println("<option value='"+arrayDiemDen.get(i)+"'>"+arrayDiemDen.get(i)+"</option>");

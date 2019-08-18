@@ -11,4 +11,5 @@ public interface TuyenDiDAO {
 	public ArrayList<String> getDiaDiemDen();
 	public String getIdTuyen(String DiemDi, String DiemDen);
 	public ArrayList<String> getDiaDiemDenTheoDDD(String diaDiemDi);
+	public TuyenDi getTuyenDi(String maTuyen);
 }

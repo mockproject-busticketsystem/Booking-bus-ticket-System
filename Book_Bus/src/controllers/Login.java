@@ -38,9 +38,19 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(request.getContextPath()+"/views/loginView.jsp");
-		dispatcher.forward(request, response);
-		//request.getRequestDispatcher("/views/loginView.jsp").forward(request, response);//forwarding the request
+	/*	RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/loginView.jsp");
+		dispatcher.forward(request, response);*/
+		
+		String user = MyConnect.getUserNameInCookie(request);
+		if(user!=null)
+		{
+			request.getRequestDispatcher("/info-user").forward(request, response);
+		}
+		else
+		{
+			request.getRequestDispatcher("/views/loginView.jsp").forward(request, response);//forwarding the request
+		}
+		
 	}
 
 	/**

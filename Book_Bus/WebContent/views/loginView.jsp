@@ -4,11 +4,11 @@
 <html>
 <head>
 <title>Booking Bus</title>
-<link rel="stylesheet" href="../css/css.css">
-<link rel="stylesheet" href="../css/footer.css">
-<link rel="stylesheet" href="../css/style.css" type="text/css"
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css"
 	media="all">
-<link rel="icon" type="image/png" href="../pictures/baner-bus.png" />
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/pictures/baner-bus.png" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,7 +21,7 @@
 	type="text/css" />
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></script>
-<script type="text/javascript" src="../js/script.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/script.js"></script>
 <link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700"
 	rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -72,7 +72,7 @@
 							</p>
 						</div>
 						<div class="img_about">
-							<img class="w100" src="../img/bookbus.jpg" alt="BookBus">
+							<img class="w100" src="${pageContext.request.contextPath}/img/bookbus.jpg" alt="BookBus">
 						</div>
 					</div>
 					<!-- Code right o day -->
