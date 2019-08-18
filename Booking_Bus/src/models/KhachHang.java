@@ -1,22 +1,20 @@
 package models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class KhachHang {
 	private String cMND;
 	private String hoTen;
-	private Date ngaySinh;
 	private String sDT;
 	private String email;
 	public KhachHang()
 	{
 		
 	}
-	public KhachHang(String cMND, String hoTen, Date ngaySinh, String sDT, String emai) {
+	public KhachHang(String cMND, String hoTen, String sDT, String emai) {
 		super();
 		this.cMND = cMND;
 		this.hoTen = hoTen;
-		this.ngaySinh = ngaySinh;
 		this.sDT = sDT;
 		this.email = emai;
 	}
@@ -32,12 +30,7 @@ public class KhachHang {
 	public void setHoTen(String hoTen) {
 		this.hoTen = hoTen;
 	}
-	public Date getNgaySinh() {
-		return ngaySinh;
-	}
-	public void setNgaySinh(Date ngaySinh) {
-		this.ngaySinh = ngaySinh;
-	}
+	
 	public String getsDT() {
 		return sDT;
 	}
@@ -50,5 +43,4 @@ public class KhachHang {
 	public void setEmail(String emai) {
 		this.email = emai;
 	}
-	
 }

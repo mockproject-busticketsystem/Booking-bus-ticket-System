@@ -15,7 +15,7 @@
   #head{
    border: 1px solid #CDCDCD;
     height: 430px;
-    background:url("../img/back.jpg");
+    background:url("${pageContext.request.contextPath}/img/back.jpg");
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -24,7 +24,7 @@
       -moz-transform: rotate(-1deg);
       -webkit-transform: rotate(-2deg);
       -o-transform: rotate(-5deg);
-      margin-left: -80px;
+   
     }
   #content{
        width: 100%;
@@ -68,17 +68,6 @@ text-align: center;
 .container figure:hover img {
   -webkit-transform: scale(1.3);
   transform: scale(1.3);
-}
-.animate {
-    margin-bottom: -20px;
-    width: 250px;
-    height: 100px;
-    bottom: -2px;
-    background:url("https://storage.googleapis.com/fe-production/images/Route/mascot-vxr.png") no-repeat 0 0;
-    background-size: 80%;
-     position: absolute;
-    animation: moveImage 10s linear infinite;
-    margin-bottom: -80px;
 }
 
 @keyframes moveImage {

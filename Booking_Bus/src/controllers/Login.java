@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.MyConnect;
+import connect.MyConnect;
+import dao.KhachHangDAOImplement;
 import dao.TaiKhoanDAOImplement;
+import models.KhachHang;
 import models.TaiKhoan;
 
 
@@ -23,6 +25,7 @@ import models.TaiKhoan;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	TaiKhoanDAOImplement tkDao = new TaiKhoanDAOImplement();
+	KhachHangDAOImplement khDao = new KhachHangDAOImplement();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -116,12 +119,32 @@ public class Login extends HttpServlet {
 				MyConnect.deleteUserCookie(response);
 			}
 				String role = user.getRole();
-		      session.setAttribute("role",role);
-				String hoTen = "";
-				hoTen = tkDao.getHoten(role, userName);
-				request.setAttribute("hoTen", hoTen);
+				String email = user.getEmail();
+				session.setAttribute("role",role);	
+				session.setAttribute("email",email);
+				
 			// Redirect (Chuyá»ƒn hÆ°á»›ng) sang trang /userInfo.
-			request.getRequestDispatcher("/views/pageUser.jsp").forward(request, response);
+				if(role.equals("khachhang")) {
+					String hoTen = "";
+					hoTen = tkDao.getHoten(role, userName);
+					session.setAttribute("hoTen", hoTen);
+					KhachHang khachHang = null;
+					khachHang = khDao.showInfor(user);
+					String CMND = khachHang.getcMND();
+					session.setAttribute("CMND",CMND);
+					request.getRequestDispatcher("/pageUser").forward(request, response);
+				}
+				else if(role.equals("admin")) {
+					
+					request.getRequestDispatcher("/DashboardAdmin").forward(request, response);
+				}
+				else if(role.equals("nhanvien")) {
+					String hoTen = "";
+					hoTen = tkDao.getHoten(role, userName);
+					request.setAttribute("hoTen", hoTen);
+					request.getRequestDispatcher("/DashboardNhanVien").forward(request, response);
+				}
+		
 		}
 	}
 }

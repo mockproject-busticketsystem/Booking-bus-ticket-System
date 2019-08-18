@@ -1,15 +1,38 @@
 package models;
 import java.math.BigDecimal;
+import java.time.LocalTime;
 
 public class ChuyenDi {
+	public ChuyenDi() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	private int iD;
 	private String maTuyen;
-	private String ngayDi;
-	private String gio;
+	private LocalTime gioDi;
+	private LocalTime gioDen;
+	public LocalTime getGioDen() {
+		return gioDen;
+	}
+	public void setGioDen(LocalTime gioDen) {
+		this.gioDen = gioDen;
+	}
 	private BigDecimal donGia;
-	private String bienSoXe;
-	private int soGheTrong;
-	private int soGheDat;
+	private TuyenDi tuyenDi;
+
+	/*public ChuyenDi(int iD, LocalTime gioiDi, BigDecimal donGia, TuyenDi tuyenDi) {
+		super();
+		this.iD = iD;
+		this.gioiDi = gioiDi;
+		this.donGia = donGia;
+		this.tuyenDi = tuyenDi;
+	}*/
+	public TuyenDi getTuyenDi() {
+		return tuyenDi;
+	}
+	public void setTuyenDi(TuyenDi tuyenDi) {
+		this.tuyenDi = tuyenDi;
+	}
 	public int getiD() {
 		return iD;
 	}
@@ -22,17 +45,11 @@ public class ChuyenDi {
 	public void setMaTuyen(String maTuyen) {
 		this.maTuyen = maTuyen;
 	}
-	public String getNgayDi() {
-		return ngayDi;
+	public LocalTime getGioDi() {
+		return gioDi;
 	}
-	public void setNgayDi(String ngayDi) {
-		this.ngayDi = ngayDi;
-	}
-	public String getGio() {
-		return gio;
-	}
-	public void setGio(String gio) {
-		this.gio = gio;
+	public void setGioDi(LocalTime gioDi) {
+		this.gioDi = gioDi;
 	}
 	public BigDecimal getDonGia() {
 		return donGia;
@@ -40,36 +57,32 @@ public class ChuyenDi {
 	public void setDonGia(BigDecimal donGia) {
 		this.donGia = donGia;
 	}
-	public String getBienSoXe() {
-		return bienSoXe;
-	}
-	public void setBienSoXe(String bienSoXe) {
-		this.bienSoXe = bienSoXe;
-	}
-	public int getSoGheTrong() {
-		return soGheTrong;
-	}
-	public void setSoGheTrong(int soGheTrong) {
-		this.soGheTrong = soGheTrong;
-	}
-	public int getSoGheDat() {
-		return soGheDat;
-	}
-	public void setSoGheDat(int soGheDat) {
-		this.soGheDat = soGheDat;
-	}
-	public ChuyenDi(int iD, String maTuyen, String ngayDi, String gio, BigDecimal donGia, String bienSoXe,
-			int soGheTrong, int soGheDat) {
+	public ChuyenDi(int iD, String maTuyen, LocalTime gioDi, LocalTime gioDen, BigDecimal donGia, TuyenDi tuyenDi) {
 		super();
 		this.iD = iD;
 		this.maTuyen = maTuyen;
-		this.ngayDi = ngayDi;
-		this.gio = gio;
+		this.gioDi = gioDi;
+		this.gioDen = gioDen;
 		this.donGia = donGia;
-		this.bienSoXe = bienSoXe;
-		this.soGheTrong = soGheTrong;
-		this.soGheDat = soGheDat;
+		this.tuyenDi = tuyenDi;
 	}
+	public ChuyenDi(int iD, String maTuyen, LocalTime gioDi, LocalTime gioDen, BigDecimal donGia) {
+		super();
+		this.iD = iD;
+		this.maTuyen = maTuyen;
+		this.gioDi = gioDi;
+		this.gioDen = gioDen;
+		this.donGia = donGia;
+	}
+	public ChuyenDi(int iD, LocalTime gioDi, LocalTime gioDen, BigDecimal donGia, TuyenDi tuyenDi) {
+		super();
+		this.iD = iD;
+		this.gioDi = gioDi;
+		this.gioDen = gioDen;
+		this.donGia = donGia;
+		this.tuyenDi = tuyenDi;
+	}
+	
 
 
 }

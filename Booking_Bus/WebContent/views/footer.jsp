@@ -54,7 +54,7 @@
                             </li>
                         </ul>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="copyright_footer display_flex justify-content-spbetween">
+                    <div class="copyright_footer display_flex justify-content-spbetween" style="text-align: center;">
                         <div class="copyright_text copyright_col">Copyright © 2019 BookBus. All rights reserved.</div>
                         <div class="copyright_menu copyright_col">
                         <ul>

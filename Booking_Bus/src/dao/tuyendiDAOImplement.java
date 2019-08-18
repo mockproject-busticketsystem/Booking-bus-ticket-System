@@ -1,45 +1,69 @@
 package dao;
 
+import java.math.BigDecimal;
+import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
+import connect.ConnectionUtils;
 import connect.DBConnect;
 import models.TuyenDi;
 
-public class tuyendiDAOImplement implements tuyendiDAO {
+public class TuyenDiDAOImplement implements TuyenDiDAO {
 	@Override
-	public ArrayList<TuyenDi> getDiaDiemDi() {
-		Connection connection = null;
+	public TuyenDi getTuyenDi(String maTuyen) {
+		// TODO Auto-generated method stub
+		TuyenDi tuyenDi = null;
+		Connection conn= null;
 		try {
-			connection = DBConnect.getMySQLConnection();
-		} catch (ClassNotFoundException e1) {
+			conn = ConnectionUtils.getConnection();
+			String sql = "Select * from tuyendi where id= ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, maTuyen);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				tuyenDi = new TuyenDi();
+				tuyenDi.setDiaDiemDi(rs.getString("DiaDiemDi"));
+				tuyenDi.setDiaDiemDen(rs.getString("DiaDiemDen"));
+			}
+			conn.close();
+			
+		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e.printStackTrace();
 		}
-		String sql = "SELECT DISTINCT DiaDiemDi FROM tuyendi";
-		ArrayList<TuyenDi> arr = new ArrayList<>();
+		return tuyenDi;
+		
+	}
+	@Override
+	public ArrayList<String> getDiaDiemDi() {
+		Connection connection = null;
+		ArrayList<String> arr = null;
 		try {
+			connection = ConnectionUtils.getConnection();
+			String sql = "SELECT DISTINCT DiaDiemDi FROM tuyendi";
+			arr = new ArrayList<>();
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
-				TuyenDi tuyendi = new TuyenDi();
-				tuyendi.setDiaDiemDi(rs.getString("DiaDiemDi"));
-				arr.add(tuyendi);
+				arr.add(rs.getString("DiaDiemDi"));
 			}
 			connection.close();
-		}catch (Exception e)
-		{
-			e.printStackTrace();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		return arr;
 	}
+
+
 
 	@Override
 	public String getIdTuyen(String DiemDi, String DiemDen) {
@@ -72,8 +96,64 @@ public class tuyendiDAOImplement implements tuyendiDAO {
 		}
 		return idTuyen;
 	}
+	@Override
+	public ArrayList<String> getDiaDiemDen() {
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		ArrayList<String> arr = null;
+		try {
+			connection = ConnectionUtils.getConnection();
+			String sql = "SELECT DISTINCT DiaDiemDen FROM tuyendi";
+			arr = new ArrayList<>();
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				arr.add(rs.getString("DiaDiemDi"));
+			}
+			connection.close();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return arr;
+	}
 
 	@Override
+	public BigDecimal getDonGia(String idTuyen,String giodi) {
+		BigDecimal donGia =  new BigDecimal(0.00); 
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		try {
+			connection = DBConnect.getMySQLConnection();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String sql = "SELECT DonGia FROM chuyendi where MaTuyen = ? and GioDi = ?";
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, idTuyen);
+			
+			ps.setString(2, giodi);
+//			System.out.println(Time.valueOf(giodi));
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				donGia = rs.getBigDecimal("DonGia");
+			}
+			connection.close();
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return donGia;
+	}
+
+	/*@Override
 	public ArrayList<TuyenDi> getDiaDiemDen() {
 		// TODO Auto-generated method stub
 		Connection connection = null;
@@ -105,6 +185,96 @@ public class tuyendiDAOImplement implements tuyendiDAO {
 			e.printStackTrace();
 		}
 		return arr;
-	}
+	}*/
+	@Override
+	public ArrayList<TuyenDi> getDiaDiemDenFill(String DiemDi) {
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		try {
+			connection = DBConnect.getMySQLConnection();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String sql = "SELECT DISTINCT DiaDiemDen FROM tuyendi where DiaDiemDi=?";
 	
+		ArrayList<TuyenDi> arr = new ArrayList<>();
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, DiemDi);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				TuyenDi tuyendi = new TuyenDi();
+				tuyendi.setDiaDiemDen(rs.getString("DiaDiemDen"));
+				arr.add(tuyendi);
+			}
+			connection.close();
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return arr;
+	}
+	@Override
+	public ArrayList<String> getDiaDiemDenTheoDDD(String diaDiemDi)
+	{
+		ArrayList<String> arrayTuyen = new ArrayList<>();
+		Connection conn= null;
+		try {
+			conn = ConnectionUtils.getConnection();
+			String sql = "Select DISTINCT DiaDiemDen from tuyendi where diadiemdi= ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, diaDiemDi);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				arrayTuyen.add(rs.getString("DiaDiemDen"));
+			}
+			conn.close();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return arrayTuyen;
+	}
+
+
+	@Override
+	public String getHangdoi(String DiemDi, String DiemDen) {
+		// TODO Auto-generated method stub
+		String HangDoi = "";
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		try {
+			connection = DBConnect.getMySQLConnection();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String sql = "SELECT HangDoi FROM tuyendi where DiaDiemDi = ? and DiaDiemDen = ?";
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, DiemDi);
+			ps.setString(2, DiemDen);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				HangDoi = rs.getString("HangDoi");
+			}
+			connection.close();
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return HangDoi;
+	}
 }

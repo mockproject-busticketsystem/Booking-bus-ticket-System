@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import dao.MyConnect;
+import connect.MyConnect;
 import dao.TaiKhoanDAOImplement;
 import models.TaiKhoan;
 

@@ -20,7 +20,7 @@ public class DBConnect {
 	         String userName, String password) throws SQLException,
 	         ClassNotFoundException {
 	     Class.forName("com.mysql.jdbc.Driver");
-	     String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
+	     String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName+"?useUnicode=true&characterEncoding=UTF-8";
 	     Connection conn = DriverManager.getConnection(connectionURL, userName,
 	             password);
 	     return conn;

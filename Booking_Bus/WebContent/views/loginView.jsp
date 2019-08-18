@@ -82,10 +82,13 @@
 									placeholder="EMAIL" required="" /> <input type="password"
 									Name="Password" value="${user.pass}" placeholder="PASSWORD"
 									required="" />
+										<p style="color: yellow;">${errorString}</p>
 								<ul class="agileinfotickwthree">
 									<!-- <ul style="display: inline-block;width: 100%;margin-bottom: 40px;text-align: left;padding-left: 10px;"> -->
 									<li><input type="checkbox" name="checkRemember" checked=""
-										value="Y" /> <label for="brand1">Rememberme</label> <a
+										value="Y" /> 
+									
+										<label for="brand1">Rememberme</label> <a
 										href="#">Forgot password?</a></li>
 								</ul>
 								<div class="aitssendbuttonw3ls">

@@ -1,13 +1,21 @@
 package dao;
 
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import models.TuyenDi;
 
-public interface tuyendiDAO {
-	public ArrayList<TuyenDi> getDiaDiemDi();
-	public ArrayList<TuyenDi> getDiaDiemDen();
+public interface TuyenDiDAO {
+	public ArrayList<String> getDiaDiemDi();
+//	public ArrayList<TuyenDi> getDiaDiemDen(String diaDiemDi);
+	public ArrayList<String> getDiaDiemDen();
+	public ArrayList<TuyenDi> getDiaDiemDenFill(String DiemDi);
+	public BigDecimal getDonGia(String idTuyen,String giodi);
 	public String getIdTuyen(String DiemDi, String DiemDen);
+	public ArrayList<String> getDiaDiemDenTheoDDD(String diaDiemDi);
+	public String getHangdoi(String DiemDi, String DiemDen);
+	public TuyenDi getTuyenDi(String maTuyen);
 }

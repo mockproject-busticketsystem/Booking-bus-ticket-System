@@ -84,7 +84,7 @@
 			</div>
 			<jsp:include page="footer.jsp"></jsp:include>
 		</div>
-
+</div>
 		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 
 		<!-- pop-up-box-js-file -->

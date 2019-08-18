@@ -46,7 +46,7 @@
   #hoten{
     float: right;
     color: white;
-     width: 250px;
+     width: 200px;
        display: inline-block;
     height: 40px;
     line-height: 40px;
@@ -58,15 +58,28 @@
       margin-top: 15px;
    
 }
+#dangxuat{
+	  float: right;
+    color: white;
+   	margin-right:20px;
+       display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    font-family: Britannic Bold;
+    font-weight: bold;
+    font-size: 18px;
+    /*background-color: blue;  */
+      margin-top: 15px;
+}
  </style>
      <div id="menu">  
+      <a href="${pageContext.request.contextPath}/pageUser">
                 <img src="${pageContext.request.contextPath}/img/logo_bus.png">    
-
+</a>
                         <ul style="list-style-type: none;">
-                            <li class="left"><a href="">Thông tin cá nhân</a></li>
-                            <li class="left"><a href="">Lịch sử booking</a></li>
-                            <li class="left"><a href="">Giới thiệu</a></li>  
-                            <li class="left"><a href="">Đăng xuất</a></li>                     
+                         <li class="left"><a href="<%=request.getContextPath()%>/ThongTinKhachHang">Thông tin cá nhân</a></li>
+                            <li class="left"><a href="${pageContext.request.contextPath}/ViewAllTicketCustom">Lịch sử booking</a></li>
+                            <li id = "dangxuat"><a href="http://localhost:8080/Booking_Bus/views/loginView.jsp">Đăng xuất</a></li>                     
                            <li id = "hoten"><a>Welcome ${hoTen}</a></li>  
                         </ul>  
 

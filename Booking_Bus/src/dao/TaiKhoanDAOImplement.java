@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import connect.ConnectionUtils;
 import connect.DBConnect;
 import models.KhachHang;
+import models.NhanVien;
 import models.TaiKhoan;
 
 public class TaiKhoanDAOImplement implements TaiKhoanDAO{
@@ -85,7 +86,7 @@ public class TaiKhoanDAOImplement implements TaiKhoanDAO{
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, email);
-			
+
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
@@ -108,7 +109,7 @@ public class TaiKhoanDAOImplement implements TaiKhoanDAO{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String sql = "select * from taikhoan";
+		String sql = "select * from taikhoan where Role = 'nhanvien' or Role = 'khachhang'";
 		ArrayList<TaiKhoan> arrTK = new ArrayList<>();
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -116,7 +117,185 @@ public class TaiKhoanDAOImplement implements TaiKhoanDAO{
 			while(rs.next()) {
 				TaiKhoan tk = new TaiKhoan();
 				tk.setEmail(rs.getString("Email"));
-				tk.setPass(rs.getString("Pass"));
+				tk.setRole(rs.getString("Role"));
+				arrTK.add(tk);
+			}
+			conn.close();
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return arrTK;
+	}
+	@Override
+	public int UpdateTaiKhoan(TaiKhoan TaiKhoan) {
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		try {
+			connection = DBConnect.getMySQLConnection();
+			String sql = "UPDATE taikhoan SET Role = ? WHERE Email = ?";			
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, TaiKhoan.getRole());
+			ps.setString(2, TaiKhoan.getEmail());
+			System.out.println(ps.executeUpdate());
+			ps.executeUpdate();
+			return 1;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return 0;
+	}
+	@Override
+	public ArrayList<KhachHang> getInfoKhachHang(String email) {
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		try {
+			connection = DBConnect.getMySQLConnection();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String sql = "SELECT * FROM khachhang WHERE Email = ? ";
+		ArrayList<KhachHang> arr = new ArrayList<>();
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				KhachHang cus = new KhachHang();
+				cus.setcMND(rs.getString("CMND"));
+				cus.setHoTen(rs.getString("HoTen"));
+				cus.setsDT(rs.getString("SDT"));
+				cus.setEmail(rs.getString("Email"));
+				arr.add(cus);
+			}
+			connection.close();
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return arr;
+	}
+	@Override
+	public ArrayList<NhanVien> getInfoNhanVien(String email) {
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		try {
+			connection = DBConnect.getMySQLConnection();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String sql = "SELECT * FROM nhanvien where Email = ?";
+		ArrayList<NhanVien> arr = new ArrayList<>();
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				NhanVien nv = new NhanVien();
+				nv.setcMND(rs.getString("CMND"));
+				nv.setHoTen(rs.getString("HoTen"));
+				nv.setsDT(rs.getString("SDT"));
+				nv.setEmail(rs.getString("Email"));
+				nv.setChucVu(rs.getString("Chucvu"));
+				arr.add(nv);
+			}
+			connection.close();
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return arr;
+	}
+	@Override
+	public void themUser_NhanVien(TaiKhoan taikhoan, NhanVien nhanVien) {
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		try {
+			connection = DBConnect.getMySQLConnection();
+			String sql = "Insert into taikhoan values(?, ?, ?)";
+			String sql1 = "Insert into nhanvien values(?, ?, ?, ?, ?)";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			PreparedStatement ps1 = connection.prepareStatement(sql1);
+			ps.setString(1, taikhoan.getEmail());
+			ps.setString(2, taikhoan.getPass());
+			ps.setString(3, taikhoan.getRole());
+			ps1.setString(1, nhanVien.getcMND());
+			ps1.setString(2, nhanVien.getHoTen());
+			ps1.setString(3, nhanVien.getsDT());
+			ps1.setString(4, nhanVien.getEmail());
+			ps1.setString(5, nhanVien.getChucVu());
+			System.out.println(ps.executeUpdate());
+			System.out.println("insert nhân viên: " + ps1.executeUpdate());
+			ps.executeUpdate();
+			ps1.executeUpdate();
+//			return 1;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+//		return 0;
+	}
+	@Override
+	public void themUser_KhachHang(TaiKhoan taikhoan, KhachHang khachHang) {
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		try {
+			connection = DBConnect.getMySQLConnection();
+			String sql = "Insert taikhoan(Email,Pass,Role) values(?, ?, ?)";
+			String sql1 = "Insert into khachhang values(?, ?, ?, ?)";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			PreparedStatement ps1 = connection.prepareStatement(sql1);
+			ps.setString(1, taikhoan.getEmail());
+			ps.setString(2, taikhoan.getPass());
+			ps.setString(3, taikhoan.getRole());
+			ps1.setString(1, khachHang.getcMND());
+			ps1.setString(2, khachHang.getHoTen());
+			ps1.setString(3, khachHang.getsDT());
+			ps1.setString(4, khachHang.getEmail());
+			System.out.println(ps.executeUpdate());
+			System.out.println(ps1.executeUpdate());
+			ps.executeUpdate();
+			ps1.executeUpdate();
+//			retrun 1;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+//		return 0;
+	}
+	@Override
+	public ArrayList<TaiKhoan> getTaiKhoanFilter(String role) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		try {
+			conn = DBConnect.getMySQLConnection();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		String sql = null;
+		if(role.compareTo("nhanvien")==0||role.compareTo("khachhang")==0){
+			sql="select * from taikhoan where Role = ?";
+
+		}else
+		{
+			 sql = "select * from taikhoan ";
+		}
+	
+		ArrayList<TaiKhoan> arrTK = new ArrayList<>();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			if(role.compareTo("nhanvien")==0||role.compareTo("khachhang")==0) 
+			{
+			ps.setString(1, role);
+			}
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				TaiKhoan tk = new TaiKhoan();
+				tk.setEmail(rs.getString("Email"));
 				tk.setRole(rs.getString("Role"));
 				arrTK.add(tk);
 			}
@@ -128,5 +307,80 @@ public class TaiKhoanDAOImplement implements TaiKhoanDAO{
 		return arrTK;
 	}
 
+	@Override
+	public NhanVien getInfoAdmin(String email) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		try {
+			conn = ConnectionUtils.getConnection();
+			String sql = "Select * from nhanvien" //
+					+ " where Email = ? and Chucvu = 'admin'";
 
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, email);
+
+			ResultSet rs = pstm.executeQuery();
+
+			if (rs.next()) {
+				String CMND = rs.getString("CMND");
+				String hoten = rs.getString("HoTen");			
+				String sdt = rs.getString("SDT");
+				String Chucvu = rs.getString("Chucvu");
+
+				NhanVien nhanVien = new NhanVien();
+				nhanVien.setcMND(CMND);
+				nhanVien.setHoTen(hoten);
+				nhanVien.setEmail(email);
+				nhanVien.setsDT(sdt);
+				nhanVien.setChucVu(Chucvu);
+				return nhanVien;
+			}
+			return null;
+		}
+		catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return null;
+		}
+	}
+	@Override
+	public boolean InsertUserCustom(Connection conn, TaiKhoan taiKhoan) {
+		try {
+			conn =  ConnectionUtils.getConnection();
+			String sql = "Insert into TaiKhoan values(?,?,?)";
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1,taiKhoan.getEmail());
+			pstm.setString(2,taiKhoan.getPass());
+			pstm.setString(3,taiKhoan.getRole());
+			int res = pstm.executeUpdate();
+			if(res!=0)
+				return true;
+			else
+				return false;
+		}
+		catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return false;
+		}
+	}
+	@Override
+	public boolean UpdateUser(TaiKhoan taiKhoan) {
+		// TODO Auto-generated method stub
+				Connection connection = null;
+				try {
+					connection = DBConnect.getMySQLConnection();
+					String sql = "UPDATE taikhoan SET Pass = ? WHERE Email = ?";			
+					PreparedStatement ps = connection.prepareStatement(sql);
+					ps.setString(1, taiKhoan.getPass());
+					ps.setString(2, taiKhoan.getEmail());
+					System.out.println(ps.executeUpdate());
+					ps.executeUpdate();
+					return true;
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+				return false;
+	}
 }
+

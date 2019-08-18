@@ -16,7 +16,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import connect.ConnectionUtils;
-import dao.MyConnect;
+import connect.MyConnect;
+
 
 
 /**

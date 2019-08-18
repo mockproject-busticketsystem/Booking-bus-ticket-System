@@ -32,6 +32,11 @@ public class TaiKhoan {
 		this.pass = pass;
 		this.role = role;
 	}
+	public TaiKhoan(String email, String pass) {
+		super();
+		this.email = email;
+		this.pass = pass;
+	}
 	
 	
 }

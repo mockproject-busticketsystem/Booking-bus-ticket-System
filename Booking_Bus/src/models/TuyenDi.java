@@ -8,6 +8,7 @@ public class TuyenDi {
 	private String maTuyen;
 	private String diaDiemDi;
 	private String diaDiemDen;
+	private String hangDoi;
 	public String getMaTuyen() {
 		return maTuyen;
 	}
@@ -23,14 +24,26 @@ public class TuyenDi {
 	public String getDiaDiemDen() {
 		return diaDiemDen;
 	}
+	@Override
+	public String toString() {
+		return this.maTuyen+"--"+this.diaDiemDi+ "--"+this.diaDiemDen;
+	}
 	public void setDiaDiemDen(String diaDiemDen) {
 		this.diaDiemDen = diaDiemDen;
 	}
-	public TuyenDi(String maTuyen, String diaDiemDi, String diaDiemDen) {
+
+	public TuyenDi(String maTuyen, String diaDiemDi, String diaDiemDen, String hangDoi) {
 		super();
 		this.maTuyen = maTuyen;
 		this.diaDiemDi = diaDiemDi;
 		this.diaDiemDen = diaDiemDen;
+		this.hangDoi = hangDoi;
+	}
+	public String getHangDoi() {
+		return hangDoi;
+	}
+	public void setHangDoi(String hangDoi) {
+		this.hangDoi = hangDoi;
 	}
 	
 

@@ -5,9 +5,10 @@
 <head>
  <title>Booking Bus</title>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-       <link rel="icon" type="image/png" href="../img/baner-bus.png" />
+       <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/baner-bus.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../css/main.css">
+     <%--    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css"> --%>
+     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!--              <link rel="stylesheet" type="text/css" href="css/footer.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,7 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      <script>
+     <!--  <script>
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
     var currentScrollPos = window.pageYOffset;
@@ -24,17 +25,34 @@
      }
      prevScrollpos = currentScrollPos;
     }
-</script>
+</script> -->
+<style type="text/css">
+#head img{
+   margin-right: 650px;
+}
+.animate {
+    margin-bottom: -20px;
+    width: 250px;
+    height: 100px;
+    bottom: -2px;
+    background:url("https://storage.googleapis.com/fe-production/images/Route/mascot-vxr.png") no-repeat 0 0;
+    background-size: 80%;
+     position: absolute;
+    animation: moveImage 10s linear infinite;
+    margin-bottom: -30px;
+}
+
+</style>
 </head>
 <body>
   <div id="main"> 
  	 <jsp:include page="header.jsp"></jsp:include>
-        <div id="head">
-        </br>  </br>    
-                    <img src="../img/baner-bus.png">
-                 <h1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCông ty TNHH BookBus<br>
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(BOOKBUS EXPRESS)<br>
-CHẤT LƯỢNG- HIỆU QUẢ - NHANH CHỐNG<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp TIN CẬY - AN TÂM.</h1>
+        <div id="head" style="background-image: url('${pageContext.request.contextPath}/img/back.jpg');">
+        </br>   
+                    <img src="${pageContext.request.contextPath}/img/baner-bus.png">
+                 <!-- <h1>Công ty TNHH BookBus<br>
+(BOOKBUS EXPRESS)<br>
+CHẤT LƯỢNG- HIỆU QUẢ - NHANH CHÓNG<br> TIN CẬY - AN TÂM.</h1> -->
         </div>
      
          <div id="content">
@@ -45,7 +63,7 @@ CHẤT LƯỢNG- HIỆU QUẢ - NHANH CHỐNG<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&
     <h3 class="heading"><i class="fa fa-file-text" aria-hidden="true"></i> Khởi hành từ các thành phố lớn</h3>
     <div class="row">
         <div class="col-md-4 startpoint-block">
-            <figure><img src="../img/c1.png"></figure>
+            <figure><img src="${pageContext.request.contextPath}/img/c1.png"></figure>
             <div class="startpoint-text">
                 <p>Khởi hành từ: <span>Sài Gòn</span></p>
                 <p>Hotline: <span>1900 6067</span></p>
@@ -54,7 +72,7 @@ CHẤT LƯỢNG- HIỆU QUẢ - NHANH CHỐNG<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&
             </div>
         </div>
         <div class="col-md-4 startpoint-block">
-             <figure><img src="../img/c2.png"></figure>
+             <figure><img src="${pageContext.request.contextPath}/img/c2.png"></figure>
             <div class="startpoint-text">
                 <p>Khởi hành từ: <span>Đà Lạt</span></p>
                 <p>Hotline: <span>02633 58 58 58</span></p>
@@ -101,35 +119,7 @@ CHẤT LƯỢNG- HIỆU QUẢ - NHANH CHỐNG<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4 startpoint-block">
-             <figure><img src="../img/c7.png"></figure>
-            <div class="startpoint-text">
-                <p>Khởi hành từ: <span>Hà Tiên - Rạch Giá</span></p>
-                <p>Hotline: <span>02973 66 88 66 - 02973 691 691</span></p>
-                <p>Điểm đến: Sài Gòn, Cần Thơ,...</p>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <div class="col-md-4 startpoint-block">
-            <figure><img src="../img/c8.png"></figure>
-            <div class="startpoint-text">
-                <p>Khởi hành từ: <span>Cà Mau - Năm Căn</p>
-                <p>Hotline: <span>02903 651 651 - 02903 715 715</span></p>
-                <p>Điểm đến: Sài Gòn, Cần Thơ,...</p>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <div class="col-md-4 startpoint-block">
-             <figure><img src="../img/c9.png"></figure>
-            <div class="startpoint-text">
-                <p>Khởi hành từ: <span>Long Xuyên - Châu Đốc</span></p>
-                <p>Hotline: <span>02963 98 9999 - 02963 565 888</span></p>
-                <p>Điểm đến: Sài Gòn, Cần Thơ,...</p>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
+
 </section>
 <jsp:include page="footer.jsp"></jsp:include>
     </div>

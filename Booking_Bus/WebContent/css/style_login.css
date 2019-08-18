@@ -247,7 +247,8 @@ input[type="submit"]:hover {
 
 .contact-form1 {
     padding: 10px 40px;
-    background: #537b35;
+	background: #537b35;
+	width: 100%;
 }
 #small-dialog, #small-dialog1, #small-dialog2 {
     max-width: 555px;
@@ -535,6 +536,7 @@ input[type="checkbox"] {
 	}
 	.contact-form1 {
 		padding: 60px 33px;
+		
 	}
 	h2 {
 		font-size: 28px;
@@ -642,4 +644,4 @@ input[type="checkbox"] {
 
 
 
-/*--- Responsive Code ---*/9-1";
+/*--- Responsive Code ---*/

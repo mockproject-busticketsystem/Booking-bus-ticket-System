@@ -2,21 +2,18 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 16px;
-}
-
 .plane {
-  margin: 20px auto;
-  max-width: 500px;
+  margin-left: -50px;
 }
 
 .cockpit {
-  height: 250px;
+  height: 194px;
   position: relative;
   overflow: hidden;
   text-align: center;
-  border-bottom: 5px solid #d8d8d8;
+  border-bottom: 3px solid #333333;
+  width: 440px;
+margin-top: -10px;
 }
 .cockpit:before {
   content: "";
@@ -26,9 +23,10 @@ html {
   left: 0;
   height: 500px;
   width: 100%;
-  border-radius: 50%;
-  border-right: 5px solid #d8d8d8;
-  border-left: 5px solid #d8d8d8;
+/*  border-radius: 50%;*/
+/*  border-right: 5px solid #333333;
+  border-left: 5px solid #333333;*/
+
 }
 .cockpit h1 {
   width: 60%;
@@ -39,7 +37,7 @@ html {
   position: relative;
   height: 50px;
 }
-.exit:before, .exit:after {
+ .exit:after {
   content: "EXIT";
   font-size: 14px;
   line-height: 18px;
@@ -51,31 +49,49 @@ html {
   color: white;
   top: 50%;
   transform: translate(0, -50%);
+
 }
-.exit:before {
-  left: 0;
+.ghedangchon{
+  margin-left: -30px;
+}
+.ghekhongban{
+  margin-top: -19px;
+  margin-right: 140px;
+}
+.ghechuachon{
+  margin-top: -39px;
+  margin-right: -160px;
 }
 .exit:after {
   right: 0;
 }
+.end_bus{
+   display: block;
+    border-bottom: 3px solid #333333;
 
-.fuselage {
-  border-right: 5px solid #d8d8d8;
-  border-left: 5px solid #d8d8d8;
+
 }
-
+.fuselage {
+  border-right: 3px solid #333333;
+  border-left: 3px solid #333333;
+}
+#seats_bus li{
+	margin-left: 50px;
+}
 ol {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0px;
 }
-
+/*Change location seats*/
 .seats {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: flex-start;
-
+  justify-conten4: flex-start;
+  margin-left: 24px;
+  margin-right: 20px;
+  margin-top: -5px;
 }
 
 .seat {
@@ -121,18 +137,19 @@ ol {
 .seat label {
   display: block;
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: 52px;
+  height: 52px;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
   line-height: 1.5rem;
   padding: 4px 0;
-  background-image: url("../img/ghexe.PNG");
+  background-image: url("../img/ghexe2.PNG");
   border-radius: 5px;
   animation-duration: 300ms;
   animation-fill-mode: both;
   background-size: cover;
+  margin-left: 8px;
 }
 .seat label:before {
   content: "";
@@ -154,10 +171,67 @@ ol {
   -webkit-animation-name: rubberBand;
   animation-name: rubberBand;
 }
-#booking {
-margin-left: 220px;
+
+.status_xe{
+	margin-top: -30px;
+}
+/* table properties */
+
+.col-wrap {
+  display: table;
+  width: 100%;
 
 }
-.status_xe{
-	margin-top: 20px;
+
+.col {
+  display: table-cell;
+  padding: 1rem
+}
+
+.col:nth-child(even) {
+  background-color: #D9D9D9;
+}
+
+.col:nth-child(odd) {
+  background-color: #D9D9D9;;
+}
+
+/* flexbox */
+
+.f-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-left: -1rem;
+  flex-flow: row wrap;
+}
+
+.f-grid-col {
+  flex: 1 0;
+  background-color: #D9D9D9;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+/* grid */
+
+.g-grid {
+  display: grid;
+  /* W(adjusted) = W(individual) - (1rem * 1/2) */
+  grid-template-columns: calc(50% - (30px * 1/2)) calc(50% - (30px * 1/2));
+  grid-column-gap: 30px;
+}
+
+.g-grid-col {
+  padding: 30px;
+  background-color: #D9D9D9;
+  color: #fff;
+}
+.btn {
+  background-color: #808080;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
 }
