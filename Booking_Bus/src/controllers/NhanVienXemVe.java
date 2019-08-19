@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.VexeDAOImplement;
 import models.VeXe;
@@ -32,10 +32,12 @@ public class NhanVienXemVe  extends HttpServlet {
 		String all=null;
 		all=req.getParameter("all");
 		String ngaydi=req.getParameter("ngaydi");
+		
 	    String idchuyen=req.getParameter("idchuyen");
 	    String Search=req.getParameter("Search");
 	    req.setAttribute("idchuyen", idchuyen);
 	    req.setAttribute("ngaydi", ngaydi);
+	 
 		List<VeXe> allve = null;
 	    allve = vexeDao.getAllVeXe(idchuyen,ngaydi);
 	    

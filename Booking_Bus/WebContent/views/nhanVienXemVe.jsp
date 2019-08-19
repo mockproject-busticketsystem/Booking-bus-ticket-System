@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="utf-8" />
-<title>Nhân Viên</title>
+<title>Nhân Viên Xem Chuyến</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/nhanvien.css">
 <!-- Bootstrap CSS -->
@@ -18,65 +18,136 @@
 	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
 	type="text/css">
 <body>
+	<div id=main_top>
+		<div id=main2>
+			<div class=top>
+				<h4>main</h4>
+				<hr class=new4>
 
-	<div id="main">
+				<div class=right>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/DashboardNhanVien">
 
-		<c:set var="a" value="0"/>
-		<c:forEach items="${allve}" var="ve" >
-			<c:if test="${a.equals('0')}">
-			<h4>Id Chuyến : ${ve.iDChuyen} Ngày Đi : ${ve.ngayDi} Giờ Xe
-				Chạy : ${ve.gioDi} Địa Điểm Khởi Hành : ${ve.diaDiemDi} Địa Điểm Đến
-				: ${ve.diaDiemDen} Vị Trí Chờ Xe : ${ve.hangDoi}</h4>
-					<c:set var="a" value="1"/>
-				</c:if>
-		</c:forEach>
-		
-		<div id="content">
+						<h4>
+							<input type="submit" value="Back Nhân Viên">
+					</form>
+					</h4>
+				</div>
+				<div class=right2>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/DashboardNhanVien/LoadBangGhe">
+						<input type="hidden" name="idchuyen" value="${idchuyen}"></input>
+									<input type="hidden" name="ngaydi" value="${ngaydi}"></input>
+						<h4>
+							<input type="submit" value="Xem Sơ Đồ Ghế">
+					</form>
+					</h4>
+				</div>
+	
 
-
-			<table id="mydataTable" class="table table-striped table-bordered"
-				style="width: 100%">
-				<thead>
-					<tr>
-						<th scope="col" style="color: black;">CMND</th>
-						<th scope="col" style="color: black;">Họ Tên</th>
-						<th scope="col" style="color: black;">SDT</th>
-
-
-						<th scope="col" style="color: black;">Đơn Giá</th>
-						<th scope="col" style="color: black;">Số Lượng Vé</th>
-						<th scope="col" style="color: black;">Thành Tiền</th>
-							
-						<th scope="col" style="color: black;">Status</th>
-						<th scope="col" style="color: black;">Xem Ghế</th>
-					</tr>
-				</thead>
-
-				<c:forEach items="${allve}" var="ve">
-					<tbody>
-						<td>${ve.cMND}</td>
-						<td>${ve.hoTen}</td>
-						<td>${ve.sDT}</td>
-						<td>${ve.donGia}</td>
-						<td>${ve.soLuong}</td>
-						<td>${ve.soLuong*ve.donGia}</td>
-						<td>${ve.status}</td>
-						<form method="POST"
-							action="${pageContext.request.contextPath}/DashboardNhanVien/XemGhe">
-							<input type="hidden" name="cmnd" value=${ve.cMND}></input> <input
-								type="hidden" name="idchuyen" value=${ve.iDChuyen}></input> <input
-								type="hidden" name="ngaydi" value=${ve.ngayDi}></input> <input
-								type="hidden" name="giodi" value=${ve.gioDi}></input> <input
-								type="hidden" name="diemdi" value=${ve.diaDiemDi}></input> <input
-								type="hidden" name="diemden" value=${ve.diaDiemDen}></input>
-						<td><input type="submit" value="xem ghế"></td>
-						</form>
-					</tbody>
-
-
-				</c:forEach>
-			</table>
+			</div>
 		</div>
+		<div id="main">
+			<div id=head>
+				<div class=logo>
+					<p>Thông Tin Chuyến Đi</p>
+				</div>
+
+
+
+			</div>
+
+
+			<c:set var="a" value="0" />
+
+			<div id="head1">
+				<c:forEach items="${allve}" var="ve">
+					<c:if test="${a.equals('0')}">
+						<h4>
+							<div class="left1" style="margin-left:30px" >Id Chuyến &nbsp</div>
+								<div class=left2> ${ve.iDChuyen}</div>
+							<div class=left1>
+								Giờ Xe Chạy </br> </br> Ngày Đi
+							</div>
+							<div class=left2>
+								 ${ve.gioDi} </br> </br> ${ve.ngayDi}
+							</div>
+							<div class=left1>
+								Khởi Hành </br> </br> Điểm Đến
+							</div>
+							<div class=left2>
+								 ${ve.diaDiemDi} </br> </br>  ${ve.diaDiemDen}
+							</div>
+							<div class=left1>Vị Trí Chờ Xe  &nbsp</div>
+								<div class=left2> ${ve.hangDoi}</div>
+						</h4>
+						<c:set var="a" value="1" />
+					</c:if>
+				</c:forEach>
+			</div>
+			</br>
+			<div id="content">
+
+
+				<table id="mydataTable" class="table table-striped table-bordered"
+					style="width: 100%">
+					<thead>
+						<tr>
+							<th scope="col" style="color: black;">CMND</th>
+							<th scope="col" style="color: black;">Họ Tên</th>
+							<th scope="col" style="color: black;">SDT</th>
+
+
+							<th scope="col" style="color: black;">Đơn Giá</th>
+							<th scope="col" style="color: black;">Số Lượng Vé</th>
+							<th scope="col" style="color: black;">Thành Tiền</th>
+
+							<th scope="col" style="color: black;">Status</th>
+							<th scope="col" style="color: black;">Xem Ghế</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${allve}" var="ve">
+
+							<tr>
+								<td>${ve.cMND}</td>
+								<td>${ve.hoTen}</td>
+								<td>${ve.sDT}</td>
+								<td>${ve.donGia}</td>
+								<td>${ve.soLuong}</td>
+								<td>${ve.soLuong*ve.donGia}</td>
+								<td><c:choose>
+									<c:when test="${ve.status == false}">
+								<img  src="${pageContext.request.contextPath}/img/x.png"  height="22" width="22">
+									
+									</c:when>
+									<c:when test="${ve.status}">
+										<img src="${pageContext.request.contextPath}/img/accept.png"  height="22" width="22">
+									
+									</c:when>
+									</c:choose></td>
+								<form method="POST"
+									action="${pageContext.request.contextPath}/DashboardNhanVien/XemGhe">
+									<input type="hidden" name="cmnd" value="${ve.cMND}"></input> <input
+										type="hidden" name="hoten" value="${ve.hoTen}"></input> <input
+										type="hidden" name="idchuyen" value="${ve.iDChuyen}"></input>
+									<input type="hidden" name="ngaydi" value="${ve.ngayDi}"></input>
+									<input type="hidden" name="giodi" value="${ve.gioDi}"></input>
+									<input type="hidden" name="diemdi" value="${ve.diaDiemDi}">
+									</input> <input type="hidden" name="diemden" value="${ve.diaDiemDen}"></input>
+									<input type="hidden" name="sdt" value="${ve.sDT}"></input>
+									<td><input type="submit" value="xem ghế" style="border-radius:20px"></input></td>
+								</form>
+							</tr>
+
+
+
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -94,10 +165,10 @@
 		type="text/javascript"></script>
 
 	<script type="text/javascript">
-        $(document).ready( function () {
-    $('#mydataTable').DataTable();
-} );
-    </script>
+		$(document).ready(function() {
+			$('#mydataTable').DataTable();
+		});
+	</script>
 </body>
 
 </html>

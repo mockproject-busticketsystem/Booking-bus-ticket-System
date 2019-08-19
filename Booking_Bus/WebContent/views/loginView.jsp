@@ -4,10 +4,10 @@
 <html>
 <head>
 <title>Booking Bus</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css"
-	media="all">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css"/>
+<%-- <link rel="stylesheet" type="text/css" href = "${pageContext.request.contextPath}/css/poppuo-box.css"> --%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style_login.css" />
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/pictures/baner-bus.png" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
@@ -24,9 +24,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/script.js"></script>
 <link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700"
 	rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -35,7 +32,7 @@
 		<jsp:include page="header.jsp"></jsp:include>
 		<div id="content">
 			<div id="datve" class="clearfix" data-selected="true"
-				data-label-id="0">
+				data-label-id="0" style=" background: url(${pageContext.request.contextPath}/img/bgdatve.png);">
 				<div class="inner">
 					<div class="left_datve">
 						<div class="title_datve">BookBus</div>
@@ -85,11 +82,13 @@
 									placeholder="EMAIL" required="" /> <input type="password"
 									Name="Password" value="${user.pass}" placeholder="PASSWORD"
 									required="" />
-									<p style="color: yellow;">${errorString}</p>
+										<p style="color: yellow;">${errorString}</p>
 								<ul class="agileinfotickwthree">
 									<!-- <ul style="display: inline-block;width: 100%;margin-bottom: 40px;text-align: left;padding-left: 10px;"> -->
 									<li><input type="checkbox" name="checkRemember" checked=""
-										value="Y" /> <label for="brand1">Rememberme</label> <a
+										value="Y" /> 
+									
+										<label for="brand1">Rememberme</label> <a
 										href="#">Forgot password?</a></li>
 								</ul>
 								<div class="aitssendbuttonw3ls">
@@ -103,6 +102,7 @@
 							</form>
 						</div>
 						<!-- Bat dau regester -->
+					<!-- Bat dau regester -->
 						<div class="modal fade" id="myModal" role="dialog">
 							<div class="modal-dialog">
 								<!-- Modal content-->

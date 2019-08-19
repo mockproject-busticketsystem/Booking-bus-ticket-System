@@ -10,7 +10,7 @@ select {
   outline: 0;
   box-shadow: none;
   border: 4px white;
-  background: #2c3e50;
+  background: #9095A2;
   background-image: none;
 }
 /* Remove IE arrow */
@@ -24,7 +24,7 @@ select::-ms-expand {
   width: 20em;
   height: 3em;
   line-height: 3;
-  background: #2c3e50;
+  background: #9095A2;
   overflow: hidden;
   border-radius: .25em;
 }
@@ -41,7 +41,7 @@ select {
   top: 0;
   right: 0;
   padding: 0 1em;
-  background: #34495e;
+  background: #9095A2;
   cursor: pointer;
   pointer-events: none;
   -webkit-transition: .25s all ease;

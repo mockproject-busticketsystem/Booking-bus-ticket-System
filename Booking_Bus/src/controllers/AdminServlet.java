@@ -44,7 +44,7 @@ public class AdminServlet extends HttpServlet{
 		
 		String khach ="";
 		khach=req.getParameter("filter");
-		if(khach==null)khach="admin";
+		if(khach==null)khach="Admin";
 		taiKhoan = tkDao.getTaikhoan();
 		filternhanvien = tkDao.getTaiKhoanFilter(khach);
 	

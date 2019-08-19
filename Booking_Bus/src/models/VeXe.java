@@ -23,6 +23,13 @@ public class VeXe {
 	private String maGhe;
 	private BigDecimal donGia;
 	private Boolean status;
+	private int statuscount;
+	public int getStatuscount() {
+		return statuscount;
+	}
+	public void setStatuscount(int statuscount) {
+		this.statuscount = statuscount;
+	}
 	private ChuyenDi chuyenDi;
 	private String ngayGioDat;
 	private String hoTen;

@@ -23,6 +23,8 @@
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/style_ghengoi.css">
+	<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/css.css">
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css_booking_ghe/bootstrap.min.css" />
 
@@ -86,7 +88,7 @@ $("#frm_info").submit(function(e) {
 </script>
 <script type="text/javascript">
 $(document).ready(function () {
-$("#frm_info").submit(function(e) {
+	$("#frm_info").submit(function(e) {
 	var countGhe = <%=request.getAttribute("countGhe")%>;
 	var soghedat = $('#count_ghe').val();
 /* 	alert(Number(countGhe) + Number(soghedat)); */
@@ -99,15 +101,8 @@ $("#frm_info").submit(function(e) {
 });
 </script>
 </head>
-<body style="background: url('${pageContext.request.contextPath}/img/background2.jpg');background-size: cover;">
-	<%-- $(document).ready(function() {
-	var val = <%= request.getAttribute("maghe") %>;
-	for(var i = 0;i < val.lenght();i++){
-		alert(val);
-	}
-/* 	$('input:checkbox[value=' + val + ']').attr('disabled', true); */
-	
-}); --%>
+<body >
+
 	<script type="text/javascript">
 $(document).ready(function() {
 var maghe = [
@@ -148,6 +143,9 @@ if(countGhe >= 5){
 			Giá :
 			<%=request.getAttribute("dongia")%>đ
 		</h2> --%>
+		<div id="main">
+		<jsp:include page="header2.jsp"></jsp:include>
+		<div id="content" style="background: url('${pageContext.request.contextPath}/img/background2.jpg');background-size: cover;">
 		<div id="booking_bus" class="section" >
 		<div class="section-center" >
 			<div class="container" >
@@ -185,7 +183,9 @@ if(countGhe >= 5){
     </div>
     <div class="exit exit--front fuselage" style="width: 440px;"></div>
     <ol class="cabin fuselage" style="width: 440px;">
-    	<img src="${pageContext.request.contextPath}/img/banhlai.png" style="margin-top: -60px;margin-left: 22px;width: 50px;">
+    <label style="margin-left: 80px;">Floor2</label>
+    	<img src="${pageContext.request.contextPath}/img/banhlai.png" style="margin-top: -60px;margin-left: 115px;width: 50px;">
+    	<label>Floor1</label>
       <li class="row row--1" >
         <ol class="seats" type="A">
         	
@@ -196,11 +196,18 @@ if(countGhe >= 5){
           <li class="seat"><input type="checkbox" id="1B" value="1B"
             name="check" class="checkbox" onclick="array();" /> <label
             for="1B">1B</label></li>
-            <li class="seat"></li>
-           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <li class="seat"><input type="checkbox" id="1E" value="1E"
+            <li class="seat"><input type="checkbox" id="1C" value="1C"
             name="check" class="checkbox" onclick="array();" /> <label
-            for="1E">1E</label><input type="checkbox" id="1F" value="1F"
+            for="1C">1C</label>
+            </li>
+              <li class="seat">
+             <input type="checkbox" id="1D" value="1D"
+            name="check" class="checkbox" onclick="array();" /> <label
+            for="1D">1D</label>
+            <input type="checkbox" id="1E" value="1E"
+            name="check" class="checkbox" onclick="array();" /> <label
+            for="1E">1E</label>
+            <input type="checkbox" id="1F" value="1F"
             name="check" class="checkbox" onclick="array();" /> <label
             for="1F">1F</label></li>
          
@@ -218,9 +225,14 @@ if(countGhe >= 5){
           <li class="seat"><input type="checkbox" id="2B" value="2B"
             name="check" class="checkbox" onclick="array();" /> <label
             for="2B">2B</label></li>
-              <li class="seat"></li>
-              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <li class="seat"><input type="checkbox" id="2E" value="2E"
+               <li class="seat"><input type="checkbox" id="2C" value="2C"
+            name="check" class="checkbox" onclick="array();" /> <label
+            for="2C">2C</label></li>
+             
+          <li class="seat">
+           <input type="checkbox" id="2D" value="2D"
+            name="check" class="checkbox" onclick="array();" /> <label
+            for="2D">2D</label><input type="checkbox" id="2E" value="2E"
             name="check" class="checkbox" onclick="array();" /> <label
             for="2E">2E</label><input type="checkbox" id="2F" value="2F"
             name="check" class="checkbox" onclick="array();" /> <label
@@ -238,9 +250,13 @@ if(countGhe >= 5){
           <li class="seat"><input type="checkbox" id="3B" value="3B"
             name="check" class="checkbox" onclick="array();" /> <label
             for="3B">3B</label></li>
- 			<li class="seat"></li>
- 			  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          	<li class="seat"><input type="checkbox" id="3E" value="3E"
+ 			 <li class="seat"><input type="checkbox" id="3C" value="3C"
+            name="check" class="checkbox" onclick="array();" /> <label
+            for="3C">3C</label></li>
+ 			
+          	<li class="seat"> <input type="checkbox" id="3D" value="3D"
+            name="check" class="checkbox" onclick="array();" /> <label
+            for="3D">3D</label><input type="checkbox" id="3E" value="3E"
             name="check" class="checkbox" onclick="array();" /> <label
             for="3E">3E</label><input type="checkbox" id="3F" value="3F"
             name="check" class="checkbox" onclick="array();" /> <label
@@ -261,11 +277,18 @@ if(countGhe >= 5){
             for="4B">4B</label>
 
         </li>
- 			<li class="seat"></li>
- 			 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <li class="seat"><input type="checkbox" id="4E" value="4E"
+ 			 <li class="seat"><input type="checkbox" id="4C" value="4C"
             name="check" class="checkbox" onclick="array();" /> <label
-            for="4E">4E</label><input type="checkbox" id="4F" value="4F"
+            for="4C">4C</label></li>
+ 			 
+          <li class="seat">
+           <input type="checkbox" id="4D" value="4D"
+            name="check" class="checkbox" onclick="array();" /> <label
+            for="4D">4D</label>
+            <input type="checkbox" id="4E" value="4E"
+            name="check" class="checkbox" onclick="array();" /> <label
+            for="4E">4E</label>
+            <input type="checkbox" id="4F" value="4F"
             name="check" class="checkbox" onclick="array();" /> <label
             for="4F">4F</label></li>
        
@@ -286,22 +309,25 @@ if(countGhe >= 5){
             for="5B">5B</label></li> -->
           <li class="seat"><input type="checkbox" id="5B" value="5B"
             name="check" class="checkbox" onclick="array();" /> <label
-            for="5B">5B</label>&nbsp&nbsp&nbsp
-            <input type="checkbox" id="5C" value="5C"
+            for="5B">5B</label>
+   
+          
+        </li>
+           <li class="seat"><input type="checkbox" id="5C" value="5C"
             name="check" class="checkbox" onclick="array();" /> <label
-            for="5C">5C</label>&nbsp&nbsp&nbsp
+            for="5C">5C</label></li>
+ 		
+          <li class="seat">
            <input type="checkbox" id="5D" value="5D"
-            name="check" class="checkbox" onclick="array();" /> <label
-            for="5D">5D</label>&nbsp&nbsp
+            name="check" class="checkbox" onclick="array();" /><label
+            for="5D">5D</label>
               <input type="checkbox" id="5E" value="5E"
-            name="check" class="checkbox" onclick="array();" /> <label
+            name="check" class="checkbox" onclick="array();" /><label
             for="5E">5E</label>
              <input type="checkbox" id="5F" value="5F"
             name="check" class="checkbox" onclick="array();" /> <label
             for="5F">5F</label>
-        </li>
-          
-        
+            </li>
         </ol>
       </li>
 
@@ -323,13 +349,13 @@ if(countGhe >= 5){
 								<div class="col-md-6">
 									<div class="form-group">
 										<span class="form-label">Điểm Đi</span>
-										<input class="form-control" type="text" value = " ${diemdi}" name = "diemdi">
+										<input class="form-control" type="text" value = " ${diemdi}" name = "diemdi" disabled>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
 										<span class="form-label">Điểm Đến</span>
-										<input class="form-control" type="text" value = "${diemden}" name = "diemden">
+										<input class="form-control" type="text" value = "${diemden}" name = "diemden" disabled>
 									</div>
 								</div>
 							</div>
@@ -337,14 +363,16 @@ if(countGhe >= 5){
 								<div class="col-md-6">
 									<div class="form-group">
 										<span class="form-label">CMND</span>
-										<input class="form-control" type="text" name="CMND" value = "${CMND}">
+										<input class="form-control" type="text" value = "${CMND}" disabled>
+										<input class="form-control" type="hidden" name="CMND" value = "${CMND}">
 										<span class="select-arrow"></span>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
 										<span class="form-label">Ngày Đi</span>
-										<input class="form-control" type="text" name="ngaydi" value = "${ngaydi}">
+										<input class="form-control" type="text" value = "${ngaydi}" disabled>
+										<input class="form-control" type="hidden" name="ngaydi" value = "${ngaydi}">
 										<span class="select-arrow"></span>
 									</div>
 								</div>
@@ -365,6 +393,7 @@ if(countGhe >= 5){
 							<div class="form-group">
 								<span class="form-label" id="tongTien" style="font-size: 17px;">Tổng tiền: 0</span>
 								<input type="hidden" id = "tong_Tien" name = "tong_Tien"/>
+								
 							</div>
 							<div class="form-btn">
 								<button class="submit-btn" onclick = "return confirm('Are you sure you want to Booking ?')">Book Now</button>
@@ -386,6 +415,8 @@ if(countGhe >= 5){
 			<button type="submit" class="btn btn-primary" onclick="" id="booking">Booking</button>
 		</form> --%>
 	<!-- partial -->
-
+</div>
+<jsp:include page="footer.jsp"></jsp:include>
+</div>
 </body>
 </html>

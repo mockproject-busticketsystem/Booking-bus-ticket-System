@@ -1,6 +1,8 @@
 package controllers;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -40,15 +42,29 @@ public class NhanVienXemGhe extends HttpServlet {
 		req.setAttribute("diemdi", diemdi);
 		String diemden=req.getParameter("diemden");
 		req.setAttribute("diemden", diemden);
+			
+		String hoten=req.getParameter("hoten");
+		req.setAttribute("hoten", hoten);
+		System.out.println(hoten);
+		String sdt=req.getParameter("sdt");
+		req.setAttribute("sdt", sdt);
+		
 		String update=null;
 		 update=req.getParameter("update");
-		 System.out.println(update);
-		
+	
+			req.setAttribute("update", update);
 		 String delete=null;
 		 delete=req.getParameter("delete");
-		 System.out.println(delete);
+		 SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss");
+		 Date date = new Date(System.currentTimeMillis());
+		 System.out.println(formatter.format(date));
+		 
+		 
+		 
+		 
 		 if(update!=null) {
-			vexeDao.UpdateStatus(cmnd,idchuyen,ngaydi,maghe);
+			 
+			 vexeDao.UpdateStatus(cmnd,idchuyen,ngaydi,maghe);
 		 }else
 		 if(delete!=null) {
 				vexeDao.DeleteVe(cmnd,idchuyen,ngaydi,maghe);

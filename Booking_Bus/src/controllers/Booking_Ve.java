@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ChuyenDiDAOImplement;
 import dao.VexeDAOImplement;
 import models.ChuyenDi;
+import models.KhachHang;
+import models.NhanVien;
+import models.TaiKhoan;
 import models.VeXe;
 @WebServlet("/booking")
 public class Booking_Ve extends HttpServlet{
@@ -31,6 +35,7 @@ public class Booking_Ve extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		String CMND = req.getParameter("CMND");
 		Integer idchuyen = Integer.valueOf(req.getParameter("idchuyen"));
 		
@@ -52,12 +57,13 @@ public class Booking_Ve extends HttpServlet{
 			vexe.setDonGia(chuyenDi.getDonGia());
 			vexe.setMaGhe(array_ghe.split(",")[i]);	
 			Boolean success = vxDao.Booking_Ve(vexe);
+			String error = "";
 			if(success == true) {
-				req.getServletContext().getRequestDispatcher("/views/booking_toi.jsp").forward(req, resp);
+				resp.sendRedirect(req.getContextPath()+"/ViewAllTicketCustom");
 			}else {
-				System.out.println("insert fail!");
-				}
+				error = "Booking failed!";
 			}
+		}
 			catch (Exception e) {
 				// TODO: handle exception
 				e.getMessage();

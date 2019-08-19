@@ -71,7 +71,7 @@
 	margin-top: -1px;
 }
 #table_length select{
-	background-color: #777777;
+	background-color: #9095A2;
 }
 #table_length label{
 	color:black;
@@ -134,6 +134,27 @@ img {
   text-decoration: none;
   width: 50px;
   border-radius: 30px;
+}
+.container2 {
+	width: 350px;
+	
+}
+.container2 label{
+	margin-left: 50px;
+	color: black;
+}
+.container2 input{
+	margin-left: 25px;
+	color: white;
+}
+.container2 .select{
+	margin-left: 40px;
+	border-radius: 30px;
+
+}
+.container2 button{
+	margin-left: 25px;
+	
 }
 
 </style>
@@ -224,7 +245,7 @@ img {
                 </div>
               </li>-->
 
-							<c:if test="${role == 'admin'}">
+							<c:if test="${role == 'Admin'}">
 								<li class="nav-item" style="float: right;"><a style="color: #24292E;"
 									class="nav-link"> <strong>${admin.hoTen}</strong> <i class="material-icons">person</i>
 										<p class="d-lg-none d-md-block"></p>
@@ -240,7 +261,7 @@ img {
 			</nav>
 			<!-- End Navbar -->
 			<!-- ListUser -->
-			<c:if test="${role == 'admin'}">
+			<c:if test="${role == 'Admin'}">
 				<div id="users">
 				<div class = "loc_insert">
 				<div class="container" style="max-height: 80px;" >
@@ -250,19 +271,19 @@ img {
     </div>
     <div class="col-sm">
     <form  method="POST" action="${pageContext.request.contextPath}/DashboardAdmin">
-							<label style="color: #24292E;font-family: cursive;font-size: 20px;font-weight: bold;">Lọc</label> <select name="filter" class="txtFrm"
+							<label style="color: #24292E;font-family: cursive;font-size: 20px;font-weight: bold;">Lọc theo </label> <select name="filter" class="txtFrm"
 								onchange="this.form.submit();">
-								<option value="admin"
-									<c:if test="${ choosefilter.compareTo('admin')==0}">
+								<option value="Admin"
+									<c:if test="${ choosefilter.compareTo('Admin')==0}">
 											selected 
 									</c:if>>Admin</option>
-								<option value="khachhang"
-									<c:if test="${ choosefilter.compareTo('khachhang')==0}">
+								<option value="KhachHang"
+									<c:if test="${ choosefilter.compareTo('KhachHang')==0}">
 											selected
 									</c:if>>Khach
 									Hang</option>
-								<option value="nhanvien"
-									<c:if test="${choosefilter.compareTo('nhanvien')==0}">
+								<option value="NhanVien"
+									<c:if test="${choosefilter.compareTo('NhanVien')==0}">
 											selected
 									</c:if>>Nhan
 									Vien</option>
@@ -293,7 +314,7 @@ img {
 							<tbody style="background: #DDDDDD;">
 							<c:forEach items="${filter}" var="taikhoan">
 								
-									<c:if test="${taikhoan.role != 'admin'}">
+									<c:if test="${taikhoan.role != 'Admin'}">
 										<tr>
 											<td style="color: black;">${taikhoan.email}</td>
 											<input type="hidden" value="${taikhoan.email}" name="email">
@@ -305,18 +326,18 @@ img {
 												onclick="document.getElementById('modform').style.display='block';addRowHandlers();"
 												style="width:auto;"></a></td>
 										
-											<td><c:if test="${taikhoan.role == 'nhanvien'}">
+											<td><c:if test="${taikhoan.role == 'NhanVien'}">
 													<a href="infoNhanvien?email=${taikhoan.email}"
 														class="btn btn-info">Detail</a>
-												</c:if> <c:if test="${taikhoan.role == 'khachhang'}">
+												</c:if> <c:if test="${taikhoan.role == 'KhachHang'}">
 													<a href="info_UpdateKhachhang?email=${taikhoan.email}"
 														class="btn btn-info">Detail</a>
-												</c:if> <c:if test="${taikhoan.role == 'admin'}">
-													<c:if test="${taikhoan.role == 'nhanvien'}">
+												</c:if> <c:if test="${taikhoan.role == 'Admin'}">
+													<c:if test="${taikhoan.role == 'NhanVien'}">
 														<a href="infoNhanvien?email=${taikhoan.email}"
 															class="btn btn-info">Detail</a>
 													</c:if>
-													<c:if test="${taikhoan.role == 'khachhang'}">
+													<c:if test="${taikhoan.role == 'KhachHang'}">
 														<a href="info_UpdateKhachhang?email=${taikhoan.email}"
 															class="btn btn-info">Detail</a>
 													</c:if>
@@ -362,13 +383,14 @@ img {
 														style="text-align: center;background: #202940;color: red;">
 												</div>
 											</div>
-											<div class="col-md-4">
+												<div class="col-md-6">
 												<div class="form-group">
-													<label class="bmd-label-floating">Họ và tên </label> <input
-														type="text" value="${admin.hoTen}" class="form-control"
-														style="text-align: center;background: #202940;" name = "HoTen">
+													<label class="bmd-label-floating">Email</label> <input
+														type="text" value="${admin.email}" class="form-control" disabled 
+														style="text-align: center;background: #202940;color: red;">
 												</div>
 											</div>
+											
 										</div>
 										<div class="row">
 											<div class="col-md-6">
@@ -378,11 +400,11 @@ img {
 														style="text-align: center;background: #202940;" name = "SDT">
 												</div>
 											</div>
-											<div class="col-md-6">
+										<div class="col-md-4">
 												<div class="form-group">
-													<label class="bmd-label-floating">Email</label> <input
-														type="text" value="${admin.email}" class="form-control" disabled 
-														style="text-align: center;background: #202940;color: red;">
+													<label class="bmd-label-floating">Họ và tên </label> <input
+														type="text" value="${admin.hoTen}" class="form-control"
+														style="text-align: center;background: #202940;" name = "HoTen">
 												</div>
 											</div>
 										</div>
@@ -475,22 +497,26 @@ img {
 					<h2 style="font-family: Algerian; text-align: center;">Insert
 						User</h2>
 					<div class="container2">
-						<label><b>CMND</b></label> <input type="text" id="cmnd"
-							name="cmnd_insert" required pattern="^[0-9]*$"> <label><b>Password</b></label>
-						<input type="text" id="pass" name="pass_insert"> <label><b>Email</b></label>
-						<input type="text" id="email" name="email_insert" required
+						<label ><b>CMND</b></label> 
+						<input  style="background: #9095A2;" type="text" id="cmnd" name="cmnd_insert" required pattern="^[0-9]*$"> 
+						<label><b>Password</b></label>
+						<input  style="background: #9095A2;" type="text" id="pass" name="pass_insert">
+						 <label><b>Email</b></label>
+						<input  style="background: #9095A2;" type="text" id="email" name="email_insert" required
 							pattern="^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$">
-						<label><b>Họ và tên</b></label> <input type="text" id="hoten"
-							name="hoten_insert" required> <label><b>SDT</b></label> <input
-							type="text" id="sdt" name="sdt_insert" required> <label><b>Chức
-								vụ</b></label> <input type="text" id="chucvu" name="chucvu_insert">
+						<label><b>Họ và tên</b></label>
+						 <input  style="background: #9095A2;" type="text" id="hoten" name="hoten_insert" required>
+						  <label><b>SDT</b></label> 
+						  <input  style="background: #9095A2;" type="text" id="sdt" name="sdt_insert" required>
+						   <label><b>Chức vụ</b></label>
+						    <input  style="background: #9095A2;" type="text" id="chucvu" name="chucvu_insert">
 						<label><b>Role</b></label>
 						<div class="select">
 							<select name="role_insert" id="slct" required>
 								<option selected disabled>Choose role option</option>
-								<option value="nhanvien">Nhân viên</option>
-								<option value="khachhang">Khách hàng</option>
-								<option value="admin">Admin</option>
+								<option value="NhanVien">Nhân viên</option>
+								<option value="KhachHang">Khách hàng</option>
+								<option value="Admin">Admin</option>
 							</select>
 						</div>
 						<button type="submit">Insert</button>

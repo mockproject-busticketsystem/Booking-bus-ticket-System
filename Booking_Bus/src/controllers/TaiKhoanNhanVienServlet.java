@@ -45,160 +45,64 @@ public class TaiKhoanNhanVienServlet extends HttpServlet{
 		thuoctinh.add("Hang Doi");
 
 		req.setAttribute("thuoctinh", thuoctinh);
-		 
-		 
+
+
 		//chosse filter
 		String choosethuoctinh=req.getParameter("choosethuoctinh");
 		String choosethuoctinh2=req.getParameter("choosethuoctinh2");
 		String choosevalues=req.getParameter("choosevalues");
 		String choosevalues2=req.getParameter("choosevalues2");
-		
+
 		if(choosethuoctinh==null)choosethuoctinh="All";
 		if(choosethuoctinh2==null||choosethuoctinh.equals("All"))choosethuoctinh2="All";
-		
+		if(choosevalues==null)choosevalues="filter value";
+		if(choosevalues2==null)choosevalues2="filter value";
 		req.setAttribute("choosethuoctinh2", choosethuoctinh2);
 		req.setAttribute("choosethuoctinh", choosethuoctinh);
 		req.setAttribute("choosevalues", choosevalues);
 		req.setAttribute("choosevalues2", choosevalues2);
-
+		
 		//distinct  filter values
-		List<VeXe> idchuyen = null;
-		List<VeXe> ngaydi = null;
-		List<VeXe> giodi = null;
-		List<VeXe> diemdi = null;
-		List<VeXe> diemden = null;
-		List<VeXe> dongia = null;
-		List<VeXe> hangdoi = null;
-		List<VeXe> soluong = null;
+
 		String temp="0";
-		String temp2="0";
-		//	String chonfilter=null;
-		if(choosethuoctinh.equals("Id Chuyen"))
+		String temp2="0";	
+
+		String data[] = {"IdChuyen", "NgayDi", "GioDi","DiaDiemDi","DiaDiemDen","DonGia","HangDoi"};
+		String datachoose[]={"Id Chuyen", "Ngay Di", "Gio Di","Diem Di","Diem Den","Don Gia","Hang Doi"};
+		for(int i=0;i<datachoose.length;i++)
 		{
-			idchuyen = vexeDao.VeXedistinctIDChuyen();	
-			req.setAttribute("distinctidchuyen", idchuyen);
-			//chonfilter="ve.ngayDi.toString()";
-			temp="1";
-		}	
-		if(choosethuoctinh.equals("Ngay Di"))
-		{
-			ngaydi = vexeDao.VeXedistinctDate();	
-			req.setAttribute("distinctngaydi", ngaydi);
-			//chonfilter="ve.ngayDi.toString()";
-			temp="2";
-		}	
-		if(choosethuoctinh.equals("Gio Di"))
-		{
-			giodi = vexeDao.VeXedistinctTime();	
-			req.setAttribute("distinctgiodi", giodi);
-			//	chonfilter="ve.gioDi.toString()";
-			temp="3";
-		}
-		if(choosethuoctinh.equals("Diem Di")) 
-		{
-			diemdi = vexeDao.VeXedistinctDi();
-			req.setAttribute("distinctdiemdi", diemdi);
-			//chonfilter="ve.diaDiemDi.toString()";
-			temp="4";
+			if(choosethuoctinh.equals(datachoose[i]))
+			{
+				temp=data[i];
+			}		
+			if(choosethuoctinh2.equals(datachoose[i]))
+			{
+				temp2=data[i];
+			}	
 		}
 
-		if(choosethuoctinh.equals("Diem Den")) 
-		{
-			diemden = vexeDao.VeXedistinctDen();
-			req.setAttribute("distinctdiemden", diemden);
-			//	chonfilter="ve.diaDiemDen.toString()";
-			temp="5";
-		}
-		if(choosethuoctinh.equals("Don Gia")) 
-		{
-			dongia = vexeDao.VeXedistinctDonGia();	
-			req.setAttribute("distinctdongia", dongia);
-			//	chonfilter="ve.donGia.toString()";
-			temp="6";
-		}
-		if(choosethuoctinh.equals("Hang Doi")) 
-		{
-			hangdoi = vexeDao.VeXedistinctHangDoi();	
-			req.setAttribute("distincthangdoi", hangdoi);
-			//		chonfilter="ve.hangDoi.toString()";
-			temp="7";
-		}
-		if(choosethuoctinh.equals("So Luong")) 
-		{
-			soluong = vexeDao.VeXedistinctSoLuong();
-			req.setAttribute("distinctsoluong", soluong);
-			//			chonfilter="ve.SoLuong.toString()";
 
-		}
-		
-		
-		//temp2
-		if(choosethuoctinh2.equals("Id Chuyen"))
-		{
-			idchuyen = vexeDao.VeXedistinctIDChuyen();	
-			req.setAttribute("distinctidchuyen2", idchuyen);
-			//chonfilter="ve.ngayDi.toString()";
-			temp2="21";
-		}	
-		if(choosethuoctinh2.equals("Ngay Di"))
-		{
-			ngaydi = vexeDao.VeXedistinctDate();	
-			req.setAttribute("distinctngaydi2", ngaydi);
-			//chonfilter="ve.ngayDi.toString()";
-			temp2="22";
-		}	
-		if(choosethuoctinh2.equals("Gio Di"))
-		{
-			giodi = vexeDao.VeXedistinctTime();	
-			req.setAttribute("distinctgiodi2", giodi);
-			//	chonfilter="ve.gioDi.toString()";
-			temp2="23";
-		}
-		if(choosethuoctinh2.equals("Diem Di")) 
-		{
-			diemdi = vexeDao.VeXedistinctDi();
-			req.setAttribute("distinctdiemdi2", diemdi);
-			//chonfilter="ve.diaDiemDi.toString()";
-			temp2="24";
-		}
 
-		if(choosethuoctinh2.equals("Diem Den")) 
-		{
-			diemden = vexeDao.VeXedistinctDen();
-			req.setAttribute("distinctdiemden2", diemden);
-			//	chonfilter="ve.diaDiemDen.toString()";
-			temp2="25";
-		}
-		if(choosethuoctinh2.equals("Don Gia")) 
-		{
-			dongia = vexeDao.VeXedistinctDonGia();	
-			req.setAttribute("distinctdongia2", dongia);
-			//	chonfilter="ve.donGia.toString()";
-			temp2="26";
-		}
-		if(choosethuoctinh2.equals("Hang Doi")) 
-		{
-			hangdoi = vexeDao.VeXedistinctHangDoi();	
-			req.setAttribute("distincthangdoi2", hangdoi);
-			//		chonfilter="ve.hangDoi.toString()";
-			temp2="27";
-		}
-		if(choosethuoctinh2.equals("So Luong")) 
-		{
-			soluong = vexeDao.VeXedistinctSoLuong();
-			req.setAttribute("distinctsoluong2", soluong);
-			//			chonfilter="ve.SoLuong.toString()";
-
-		}
-		
-		
+		List<VeXe> distinct = null;
+		distinct = vexeDao.filterDistinct(choosevalues,temp);
+		req.setAttribute("distinct", distinct);
+		List<VeXe> distinct2 = null;
+		distinct2 = vexeDao.filterDistinct2(choosevalues,temp,choosevalues2,temp2);
+		req.setAttribute("distinct2", distinct2);
 		
 		if(choosevalues!=null||choosethuoctinh.equals("All"))
 		{
+
+	if(choosevalues.equals("filter value")) {
+		temp="0";
+	}
+	if(choosevalues2.equals("filter value")) {
+		temp2="0";
+	}
 			ve = vexeDao.getAllInformationVeXe(choosevalues,temp,choosevalues2,temp2);
 			req.setAttribute("AllInfor", ve);
 		}
-		//req.setAttribute("chonfilter", chonfilter);
+
 		req.getRequestDispatcher("/views/DashboardNhanVien.jsp").forward(req, resp);//forwarding the request
 	}
 }

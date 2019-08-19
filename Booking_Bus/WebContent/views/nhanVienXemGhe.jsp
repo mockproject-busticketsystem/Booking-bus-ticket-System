@@ -9,7 +9,7 @@
 <title>Nhân Viên Xem Ghế</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/nhanvien.css">
-	<!-- Bootstrap CSS -->
+<!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -18,57 +18,135 @@
 	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
 	type="text/css">
 <body>
-	<div id="main">
-		<div id="head">
-			<br>
-		<h4>Id Chuyến : ${idchuyen} Ngày Đi : ${ngaydi} Giờ Xe Chạy : ${giodi} Địa Điểm
-				Khởi Hành : ${diemdi} Địa Điểm Đến : ${diemden}
-				</h4></div>
-				
-		<div id="content">
 
-			<div class=left>
-				<table id="mydataTable" class="table table-striped table-bordered"
-				style="width: 100%">
-					<thead>
-						<tr>
-							<th scope="col" style="color: black;">Ghế</th>
-							<th scope="col" style="color: black;">Status</th>
-							<th scope="col" style="color: black;">Ngày Giờ Đặt</th>
-							<th scope="col" style="color: black;">Update Status</th>
-							<th scope="col" style="color: black;">Delete</th>
+	<div id=main_top>
+		<div id=main2>
 
-						</tr>
-					</thead>
-					<c:forEach items="${ghe}" var="chongoi">
-						
+			<div class=top>
+				<h4>main</h4>
+				<hr class=new4>
+				<div class=right>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/DashboardNhanVien">
+
+						<h4>
+							<input type="submit" value="Back Nhân Viên">
+					</form>
+					</h4>
+				</div>
+				<div class=right2>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/DashboardNhanVien/XemVe">
+						<input type="hidden" name="idchuyen" value=${idchuyen}></input> <input
+							type="hidden" name="ngaydi" value=${ngaydi}></input>
+						<h4>
+							<input type="submit" value="Back Chuyến Đi">
+					</form>
+					</h4>
+				</div>
+
+
+
+
+
+			</div>
+
+
+		</div>
+		<div id="main">
+			<div id=head>
+				<div class=logo>
+					<p>Thanh Toán</p>
+				</div>
+
+
+
+			</div>
+
+
+			<div id="head1">
+				<h4>
+					<div class="left1" style="margin-left:30px" >Id Chuyến  &nbsp</div> 			
+					<div class=left2> ${idchuyen}</div>
+					<div class=left1>
+						Giờ Xe Chạy </br> </br>Ngày Đi
+					</div>
+					<div class=left2>
+						 ${giodi} </br> </br>  ${ngaydi}
+					</div>
+					<div class=left1>
+						Khởi Hành </br> </br> Điểm Đến
+					</div>
+					<div class=left2>
+						 ${diemdi}</br> </br>  ${diemden}
+					</div>
+					<div class=left1>
+						Người đặt </br> </br>SĐT
+					</div>
+					<div class=left2>
+						 ${hoten}</br> </br>  ${sdt}
+					</div>
+				</h4>
+			</div>
+			</br>
+			<div id="content">
+
+				<div class=left>
+					<table id="mydataTable" class="table table-striped table-bordered"
+						style="width: 100%">
+						<thead>
+							<tr>
+								<th scope="col" style="color: black;">Ghế</th>
+								<th scope="col" style="color: black;">Status</th>
+								<th scope="col" style="color: black;">Ngày Giờ Đặt</th>
+								<th scope="col" style="color: black;">Update Status</th>
+								<th scope="col" style="color: black;">Delete</th>
+
+							</tr>
+						</thead>
 						<tbody>
-							
-							<td>${chongoi.maGhe}</td>
-							<td>${chongoi.status}</td>
-							<td></td>
-							<form method="POST"
-							action="${pageContext.request.contextPath}/DashboardNhanVien/XemGhe">
-							<input type="hidden" name="cmnd" value=${cmnd}></input>
-										<input type="hidden" name="idchuyen" value=${idchuyen}></input>
-										<input type="hidden" name="ngaydi" value=${ngaydi}></input>
-												<input type="hidden" name="giodi" value=${giodi}></input>
-												<input type="hidden" name="diemdi" value=${diemdi}></input>
-													<input type="hidden" name="diemden" value=${diemden}></input>
-														<input type="hidden" name="maghe" value=${chongoi.maGhe}></input>
-							<td>	<c:if test="${chongoi.status.equals('false')}"><input type="submit" name="update" value="Update"></c:if></td>
-							
-								<td><input type="submit" name="delete" onclick = "return confirm('Bạn có muốn xóa vé này không ?')"value="Delete"></td>
+							<c:forEach items="${ghe}" var="chongoi">
+
+
+								<tr>
+									<td>${chongoi.maGhe}</td>
+									<td><c:choose>
+									<c:when test="${chongoi.status == true}">
+								<img  src="${pageContext.request.contextPath}/img/accept.png"  height="22" width="22">
+									
+									</c:when>
+									<c:when test="${chongoi.status == false}">
+										<img src="${pageContext.request.contextPath}/img/x.png"  height="22" width="22">
+									
+									</c:when>
+									</c:choose></td>
+									<td>${chongoi.ngayGioDat}</td>
+									<form method="POST"
+										action="${pageContext.request.contextPath}/DashboardNhanVien/XemGhe">
+										<input type="hidden" name="cmnd" value="${cmnd}"></input> <input
+											type="hidden" name="idchuyen" value="${idchuyen}"></input> <input
+											type="hidden" name="ngaydi" value="${ngaydi}"></input> <input
+											type="hidden" name="giodi" value="${giodi}"></input> <input
+											type="hidden" name="diemdi" value="${diemdi}"></input> <input
+											type="hidden" name="diemden" value="${diemden}"></input> <input
+											type="hidden" name="maghe" value="${chongoi.maGhe}"></input>
+										<td><c:if test="${chongoi.status==((false))}">
+												<input type="submit" name="update" value="Update" style="border-radius:20px">
+											</c:if></td>
+
+										<td><input type="submit" name="delete" value="Delete" style="border-radius:20px"></td>
 									</form>
+
+								</tr>
+							</c:forEach>
 						</tbody>
 
-					
-					</c:forEach>
-				</table>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script
@@ -84,9 +162,9 @@
 		type="text/javascript"></script>
 
 	<script type="text/javascript">
-        $(document).ready( function () {
-    $('#mydataTable').DataTable();
-} );
-    </script>
+		$(document).ready(function() {
+			$('#mydataTable').DataTable();
+		});
+	</script>
 </body>
 </html>

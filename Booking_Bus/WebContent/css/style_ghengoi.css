@@ -91,19 +91,18 @@ ol {
   justify-conten4: flex-start;
   margin-left: 24px;
   margin-right: 20px;
-  margin-top: -5px;
+  margin-top: 8px;
 }
 
 .seat {
   display: flex;
   flex: 0 0 14.28571428571429%;
-  padding: 5px;
   position: relative;
   text-align: center;
     
 }
 .seat:nth-child(3) {
-  margin-right: 14.28571428571429%;
+  margin-right: 10.28571428571429%;
 }
 .seat input[type=checkbox] {
   position: absolute;

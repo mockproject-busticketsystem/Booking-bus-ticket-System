@@ -48,19 +48,20 @@
 #footer_2{
 	height: 380px;
 	
-	margin-top: -60px;
+	margin-top: -49.9px;
 }
 </style>
 </head>
 <script>
 $(document).ready(function () {
 	var success = '${success}';
-	if(success== "true")
-	{alert("Cap Nhap Thanh Cong!! :)");
+	if(success == "true")
+	{
+		alert("Cap Nhap Thanh Cong!! :)");
 	}
 else if(success == "false")
 	{
-	alert("Opps...Cap Nhap Khong Thanh Cong!! "+"${err}" );
+		alert("Opps...Cap Nhap Khong Thanh Cong!! "+"${err}" );
 	}
 });
 
@@ -70,7 +71,7 @@ else if(success == "false")
 	<div id="main" >
 		<jsp:include page="header2.jsp"></jsp:include>
 		<div id="content">
-			<div class="row_tt" style="height: 550px;margin-bottom: 60px;background-image: url('${pageContext.request.contextPath}/img/bg_info.jpg'); 
+			<div class="row_tt" style="height: 600px;margin-bottom:50px;background-image: url('${pageContext.request.contextPath}/img/bg_info.jpg'); 
   background-size: contain;">
 				<div class="col-sm-8 col-sm-offset-2">
 					<!--      Wizard container        -->

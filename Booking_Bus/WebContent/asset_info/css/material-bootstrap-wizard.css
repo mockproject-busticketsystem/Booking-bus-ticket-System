@@ -143,10 +143,8 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
       color: rgba(255, 255, 255, 0.9); }
 
 .wizard-container {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  z-index: 3; 
-  }
+  padding-top: 100px;
+  z-index: 3; }
   .wizard-container .wizard-navigation {
     position: relative; }
 
@@ -221,7 +219,6 @@ h2.title {
 
 .wizard-card {
   min-height: 300px;
-  max-height: 500px;
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2); }
   .wizard-card .picture-container {
     position: relative;

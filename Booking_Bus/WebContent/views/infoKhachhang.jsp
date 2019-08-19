@@ -50,12 +50,27 @@
 								
 										
 										<div class="row">
-											<div class="col-md-3">
+											<div class="col-md-4">
 												<div class="form-group">
-													<label class="bmd-label-floating">CMND</label>
-													
-													 <input type="text" value="${cus.cMND}" class="form-control" name = "CMND">
-															
+													<label class="bmd-label-floating">CMND</label>													
+													 <input type="text" value="${cus.cMND}" class="form-control" name = "CMND"
+													 disabled style="color: red;background: #202940;">	
+												</div>
+											</div>
+												<div class="col-md-3">
+													<div class="form-group">
+													<label class="bmd-label-floating">Email</label> <input
+														type="text"  value = "${cus.email}" class="form-control" 	disabled 
+														style="text-align: center;background: #202940;color: red;">
+												</div>
+											</div>
+											
+										</div>
+										<div class="row">
+											<div class="col-md-4">
+												<div class="form-group">
+													<label class="bmd-label-floating">Số điện thoại</label> <input
+														type="text"  value = "${cus.sDT}" class="form-control" name = "SDT">
 												</div>
 											</div>
 											<div class="col-md-4">
@@ -66,21 +81,7 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label class="bmd-label-floating">Số điện thoại</label> <input
-														type="text"  value = "${cus.sDT}" class="form-control" name = "SDT">
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="bmd-label-floating">Email</label> <input
-														type="text"  value = "${cus.email}" class="form-control" 	disabled 
-														style="text-align: center;background: #202940;color: red;">
-												</div>
-											</div>
+										
 										</div>
 									<!-- 	<button type="submit" class="btn btn-primary pull-right">Update
 											Profile</button> -->

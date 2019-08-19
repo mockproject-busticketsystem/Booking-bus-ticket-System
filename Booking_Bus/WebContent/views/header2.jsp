@@ -46,7 +46,7 @@
   #hoten{
     float: right;
     color: white;
-     width: 200px;
+     width:300px;
        display: inline-block;
     height: 40px;
     line-height: 40px;
@@ -56,13 +56,14 @@
     /*background-color: blue;  */
     text-align: left;
       margin-top: 15px;
-   
+      margin-right: 90px;
+   	margin-top: -40px;
 }
 #dangxuat{
-	  float: right;
+	float: right;
     color: white;
    	margin-right:20px;
-       display: inline-block;
+    display: inline-block;
     height: 40px;
     line-height: 40px;
     font-family: Britannic Bold;
@@ -71,14 +72,20 @@
     /*background-color: blue;  */
       margin-top: 15px;
 }
+#lichsu{
+	margin-right: -50px;
+	padding-right: 20px;
+}
  </style>
      <div id="menu">  
-      <a href="${pageContext.request.contextPath}/pageUser">
+      <a  href="http://localhost:8080/Booking_Bus/views/index.jsp">
                 <img src="${pageContext.request.contextPath}/img/logo_bus.png">    
 </a>
                         <ul style="list-style-type: none;">
+                        
                          <li class="left"><a href="<%=request.getContextPath()%>/ThongTinKhachHang">Thông tin cá nhân</a></li>
-                            <li class="left"><a href="${pageContext.request.contextPath}/ViewAllTicketCustom">Lịch sử booking</a></li>
+                            <li class="left" id = "lichsu"><a href="${pageContext.request.contextPath}/ViewAllTicketCustom">Lịch sử booking</a></li>
+                            <li class="left"><a href="<%=request.getContextPath()%>/pageUser">Booking Vé</a></li>
                             <li id = "dangxuat"><a href="http://localhost:8080/Booking_Bus/views/loginView.jsp">Đăng xuất</a></li>                     
                            <li id = "hoten"><a>Welcome ${hoTen}</a></li>  
                         </ul>  

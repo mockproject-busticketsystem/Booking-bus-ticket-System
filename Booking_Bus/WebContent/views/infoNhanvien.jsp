@@ -48,14 +48,13 @@
 												<div class="form-group">
 													<label class="bmd-label-floating">Id</label>
 													 <input type="text" value="${nv.cMND}" class="form-control"
-													 name = "CMND">		
+													 name = "CMND" disabled style="color: red;background: #202940;">		
 												</div>
 											</div>
-											<div class="col-md-4">
+											<div class="col-md-6">
 												<div class="form-group">
-													<label class="bmd-label-floating">Họ và tên
-													</label> <input type="text" value = "${nv.hoTen}" class="form-control"
-													 name = "HoTen">
+													<label class="bmd-label-floating">Email</label> <input
+														type="text" disabled style="color: red;background: #202940;" value = "${nv.email}" class="form-control">
 												</div>
 											</div>
 										</div>
@@ -66,10 +65,11 @@
 														type="text"  value = "${nv.sDT}" class="form-control" name = "SDT">
 												</div>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-4">
 												<div class="form-group">
-													<label class="bmd-label-floating">Email</label> <input
-														type="text" disabled style="color: red;background: #202940;" value = "${nv.email}" class="form-control">
+													<label class="bmd-label-floating">Họ và tên
+													</label> <input type="text" value = "${nv.hoTen}" class="form-control"
+													 name = "HoTen">
 												</div>
 											</div>
 										</div>

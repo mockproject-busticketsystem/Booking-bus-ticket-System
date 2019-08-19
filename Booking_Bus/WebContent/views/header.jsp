@@ -168,15 +168,15 @@
 							<input placeholder="Họ Tên" type="text" name="Ten" required>
 							<!-- CMND -->
 							<input placeholder="CMND" name="CMND" type="text"
-								pattern="[0-9]*.{9,11}" required>
+								pattern="[0-9]*" required>
 							<!-- SDT -->
-							<input placeholder="SDT" type="text" name="SDT" pattern="[0-9]*.{10,11}"
+							<input placeholder="SDT" type="text" name="SDT" pattern="[0-9]*"
 								required>
 							<!-- Email -->
 							<input placeholder="Email" class="mail" type="email" name="Email"
 								required>
 							<!-- Pass -->
-							<input placeholder="Password" type="password" name="Pass" pattern=".{4,}"
+							<input placeholder="Password" type="password" name="Pass"
 								id="Pass" required>
 							<!-- Confirm Pass -->
 							<input placeholder="Confirm Password" type="password"
@@ -200,7 +200,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="icon-box">
-					<i class="material-icons"><img src = '${pageContext.request.contextPath}/img/baner-bus.png'"/>
+					<i class="material-icons"><img src = '${pageContext.request.contextPath}/img/baner-bus.png'/>
 				</i>
 				</div>				
 				<h4 class="modal-title">Chi Tiết Liên Hệ</h4>	

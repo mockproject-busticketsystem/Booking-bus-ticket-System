@@ -82,6 +82,7 @@ public class VexeDAOImplement implements VexeDAO{
 //			}
 ////			return 0;
 //		}
+	
 	@Override
 	public ArrayList<VeXe> viewAllTicketCusTom(String cMND)
 	{
@@ -114,6 +115,7 @@ public class VexeDAOImplement implements VexeDAO{
 		return array;
 		
 	}
+	
 	@Override
 	public ArrayList<VeXe> viewAllTicketCusTomNotChanage(String cMND)
 	{
@@ -140,10 +142,10 @@ public class VexeDAOImplement implements VexeDAO{
 				String maGhe = rs.getString("MaGhe");
 				BigDecimal donGia = rs.getBigDecimal("DonGia");
 				Boolean status = rs.getBoolean("Status");
-				String ngaygiodat = rs.getString("NgayGioDat");
+				String NgayGioDat = rs.getString("NgayGioDat");
 				TuyenDi tuyenDi = new TuyenDi(maTuyen,diaDiemDi,diaDiemDen,hangDoi);
 				ChuyenDi chuyenDi = new ChuyenDi(iDChuyen,GioDi,GioDen,donGia,tuyenDi);
-				VeXe veXe = new VeXe(cMND,ngayDi,maGhe,donGia,status,chuyenDi,ngaygiodat);
+				VeXe veXe = new VeXe(cMND,ngayDi,maGhe,donGia,status,chuyenDi,NgayGioDat);
 				array.add(veXe);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -175,16 +177,16 @@ public class VexeDAOImplement implements VexeDAO{
 				LocalTime GioDen = LocalTime.parse(rs.getString("GioDen"));
 				LocalDate ngayDi = LocalDate.parse(rs.getString("NgayDi"));
 //				 DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//				 LocalDateTime ngaygio_dat = LocalDateTime.parse((rs.getTimestamp("NgayGioDat")).toString(), inputFormatter);
-//				System.out.println(ngaygio_dat);
-				String ngaygiodat = rs.getString("NgayGioDat");
+//				 LocalDateTime ngayGioDi_dat = LocalDateTime.parse((rs.getTimestamp("NgayGioDat")).toString(), inputFormatter);
+//				System.out.println(ngayGioDi_dat);
+				String NgayGioDat = rs.getString("NgayGioDat");
 			
 				String maGhe = rs.getString("MaGhe");
 				BigDecimal donGia = rs.getBigDecimal("DonGia");
 				Boolean status = rs.getBoolean("Status");
 				TuyenDi tuyenDi = new TuyenDi(maTuyen,diaDiemDi,diaDiemDen,hangDoi);
 				ChuyenDi chuyenDi = new ChuyenDi(iDChuyen,GioDi,GioDen,donGia,tuyenDi);
-				VeXe veXe = new VeXe(cMND,ngayDi,maGhe,donGia,status,chuyenDi,ngaygiodat);
+				VeXe veXe = new VeXe(cMND,ngayDi,maGhe,donGia,status,chuyenDi,NgayGioDat);
 				array.add(veXe);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -193,6 +195,7 @@ public class VexeDAOImplement implements VexeDAO{
 		}
 		return array;
 	}
+	
 	public ArrayList<VeXe> getAllInformationVeXe(String value,String count,String value2,String count2)
 	{// TODO Auto-generated method stub
 		Connection connection = null;
@@ -202,60 +205,25 @@ public class VexeDAOImplement implements VexeDAO{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String sql = "SELECT IdChuyen,HangDoi,NgayDi,GioDi,DiaDiemDen,DiaDiemDi,DonGia,count(IdChuyen) as soluong FROM vexe,chuyendi,tuyendi where vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen";
-		if(count.equals("1")) {
-			sql=sql+" and IdChuyen='"+value+"'";
-		
+		String sql = "SELECT IdChuyen,HangDoi,NgayDi,GioDi,DiaDiemDen,DiaDiemDi,vexe.DonGia,count(IdChuyen) as soluong,sum(status) as statuscount FROM vexe,chuyendi,tuyendi where vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen";	
+		String data[] = {"IdChuyen", "NgayDi", "GioDi","DiaDiemDi","DiaDiemDen","DonGia","HangDoi"};
+		for(int i=0;i<data.length;i++)
+		{
+			if(count.equals(data[i]))
+			{
+				sql=sql+" and "+data[i]+"='"+value+"'";
+			}
 		}
-		if(count.equals("2")) {
-			sql=sql+" and NgayDi='"+value+"'";
+		for(int i=0;i<data.length;i++)
+		{
+			if(count2.equals(data[i]))
+			{
+				sql=sql+" and "+data[i]+"='"+value2+"'";
+			}
 		}
-		if(count.equals("3")) {
-			sql=sql+" and GioDi='"+value+"'";
-		}
-		if(count.equals("4")) {
-			sql=sql+" and DiaDiemDi='"+value+"'";
-		}
-		if(count.equals("5")) {
-			sql=sql+" and DiaDiemDen='"+value+"'";
-		}
-		if(count.equals("6")) {
-			sql=sql+" and DonGia='"+value+"'";
-		}
-		if(count.equals("7")) {
-			sql=sql+" and HangDoi='"+value+"'";
-		}
-//2
-		if(count2.equals("21")) {
-			sql=sql+" and IdChuyen='"+value2+"'";
-		
-		}
-		if(count2.equals("22")) {
-			sql=sql+" and NgayDi='"+value2+"'";
-		}
-		if(count2.equals("23")) {
-			sql=sql+" and GioDi='"+value2+"'";
-		}
-		if(count2.equals("24")) {
-			sql=sql+" and DiaDiemDi='"+value2+"'";
-		}
-		if(count2.equals("25")) {
-			sql=sql+" and DiaDiemDen='"+value2+"'";
-		}
-		if(count2.equals("26")) {
-			sql=sql+" and DonGia='"+value2+"'";
-		}
-		if(count2.equals("27")) {
-			sql=sql+" and HangDoi='"+value2+"'";
-		}
-		
-		
-        
 
 		sql=sql+" group by NgayDi,IdChuyen,GioDi;";
-
-
-
+		System.out.println(sql);
 		ArrayList<VeXe> arr = new ArrayList<>();
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -274,6 +242,7 @@ public class VexeDAOImplement implements VexeDAO{
 				vexe.setDonGia(rs.getBigDecimal("DonGia"));
 				vexe.setSoLuong(rs.getInt("soluong"));
 				vexe.setHangDoi(rs.getString("HangDoi"));
+				vexe.setStatuscount(rs.getInt("statuscount"));
 				arr.add(vexe);
 			}
 			connection.close();
@@ -284,12 +253,8 @@ public class VexeDAOImplement implements VexeDAO{
 		return arr;
 	}
 
-
-
-
-
-	//filter distinct
-	public ArrayList<VeXe> VeXedistinctIDChuyen()
+	
+	public ArrayList<VeXe> filterDistinct(String value,String count)
 	{// TODO Auto-generated method stub
 		Connection connection = null;
 		try {
@@ -298,20 +263,58 @@ public class VexeDAOImplement implements VexeDAO{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String sql = "SELECT DISTINCT IdChuyen FROM vexe,chuyendi,tuyendi where vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen group by NgayDi,IdChuyen,GioDi;";
+		String sql="";
+		String data[] = {"IdChuyen", "NgayDi", "GioDi","DiaDiemDi","DiaDiemDen","DonGia","HangDoi"};
+		
+		for(int i=0;i<data.length;i++)
+		{
+			if(count.equals(data[i]))
+			{  	
+				sql+="SELECT DISTINCT "+data[i]+" FROM vexe,chuyendi,tuyendi where vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen  group by NgayDi,IdChuyen,GioDi";
+			break;
+			}
+		}	
+
 		ArrayList<VeXe> arr = new ArrayList<>();
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 
 			ResultSet rs = ps.executeQuery();
+
 			while(rs.next())
 			{
-
-
 				VeXe vexe = new VeXe();
 
-				vexe.setiDChuyen(rs.getInt("iDChuyen"));
-
+				if(count.equals(data[0]))
+				{
+					vexe.setiDChuyen(rs.getInt("IdChuyen"));
+				}
+				if(count.equals(data[1]))
+				{
+					LocalDate date= LocalDate.parse(rs.getString("NgayDi"));
+					vexe.setNgayDi(date);
+				}
+				if(count.equals(data[2]))
+				{
+					LocalTime time= LocalTime.parse(rs.getString("GioDi"));
+					vexe.setGioDi(time);
+				}
+				if(count.equals(data[3]))
+				{
+					vexe.setDiaDiemDi(rs.getString("DiaDiemDi"));
+				}
+				if(count.equals(data[4]))
+				{
+					vexe.setDiaDiemDen(rs.getString("DiaDiemDen"));
+				}
+				if(count.equals(data[5]))
+				{
+					vexe.setDonGia(rs.getBigDecimal("DonGia"));
+				}
+				if(count.equals(data[6]))
+				{
+					vexe.setHangDoi(rs.getString("HangDoi"));
+				}
 				arr.add(vexe);
 			}
 			connection.close();
@@ -322,7 +325,7 @@ public class VexeDAOImplement implements VexeDAO{
 		return arr;
 	}
 
-	public ArrayList<VeXe> VeXedistinctDate()
+	public ArrayList<VeXe> filterDistinct2(String value,String count,String value2,String count2)
 	{// TODO Auto-generated method stub
 		Connection connection = null;
 		try {
@@ -331,20 +334,79 @@ public class VexeDAOImplement implements VexeDAO{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String sql = "SELECT DISTINCT NgayDi FROM vexe,chuyendi,tuyendi where vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen group by NgayDi,IdChuyen,GioDi;";
+
+		String sql="";
+		String data[] = {"IdChuyen", "NgayDi", "GioDi","DiaDiemDi","DiaDiemDen","DonGia","HangDoi"};
+		String sql_temp="";
+	
+		for(int i=0;i<data.length;i++)
+		{
+			if(count.equals(data[i]))
+			{  	
+				sql+=" FROM vexe,chuyendi,tuyendi where vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen ";
+				sql_temp=" and "+data[i]+"='"+value+"'";
+			}
+		}
+		for(int i=0;i<data.length;i++)
+		{
+			if(count2.equals(data[i]))
+			{
+				sql=sql+sql_temp;
+				
+			}
+		}
+		sql=sql+" group by NgayDi,IdChuyen,GioDi";
+
+			for(int i=0;i<data.length;i++)
+			{
+				if(count2.equals(data[i]))
+				{
+					String sql1 = "SELECT DISTINCT "+data[i];
+					sql=sql1+sql;
+				}
+			}
+
+	
 		ArrayList<VeXe> arr = new ArrayList<>();
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
 
 			ResultSet rs = ps.executeQuery();
+	
 			while(rs.next())
 			{
-				LocalDate date= LocalDate.parse(rs.getString("NgayDi"));
-
 				VeXe vexe = new VeXe();
 
-				vexe.setNgayDi(date);
-
+				if(count2.equals(data[0]))
+				{
+					vexe.setiDChuyen(rs.getInt("IdChuyen"));
+				}
+				if(count2.equals(data[1]))
+				{
+					LocalDate date= LocalDate.parse(rs.getString("NgayDi"));
+					vexe.setNgayDi(date);
+				}
+				if(count2.equals(data[2]))
+				{
+					LocalTime time= LocalTime.parse(rs.getString("GioDi"));
+					vexe.setGioDi(time);
+				}
+				if(count2.equals(data[3]))
+				{
+					vexe.setDiaDiemDi(rs.getString("DiaDiemDi"));
+				}
+				if(count2.equals(data[4]))
+				{
+					vexe.setDiaDiemDen(rs.getString("DiaDiemDen"));
+				}
+				if(count2.equals(data[5]))
+				{
+					vexe.setDonGia(rs.getBigDecimal("DonGia"));
+				}
+				if(count2.equals(data[6]))
+				{
+					vexe.setHangDoi(rs.getString("HangDoi"));
+				}
 				arr.add(vexe);
 			}
 			connection.close();
@@ -354,182 +416,7 @@ public class VexeDAOImplement implements VexeDAO{
 		}
 		return arr;
 	}
-	public ArrayList<VeXe> VeXedistinctTime()
-	{// TODO Auto-generated method stub
-		Connection connection = null;
-		try {
-			connection = DBConnect.getMySQLConnection();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		String sql = "SELECT distinct GioDi FROM vexe,chuyendi,tuyendi where vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen group by NgayDi,IdChuyen,GioDi;";
-		ArrayList<VeXe> arr = new ArrayList<>();
-		try {
-			PreparedStatement ps = connection.prepareStatement(sql);
 
-			ResultSet rs = ps.executeQuery();
-			while(rs.next())
-			{
-
-				LocalTime time= LocalTime.parse(rs.getString("GioDi"));
-				VeXe vexe = new VeXe();
-
-				vexe.setGioDi(time);
-				arr.add(vexe);
-			}
-			connection.close();
-		}catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return arr;
-	}
-
-	public ArrayList<VeXe> VeXedistinctDi()	{// TODO Auto-generated method stub
-		Connection connection = null;
-		try {
-			connection = DBConnect.getMySQLConnection();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		String sql = "SELECT distinct DiaDiemDi FROM vexe,chuyendi,tuyendi where vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen group by NgayDi,IdChuyen,GioDi;";
-		ArrayList<VeXe> arr = new ArrayList<>();
-		try {
-			PreparedStatement ps = connection.prepareStatement(sql);
-
-			ResultSet rs = ps.executeQuery();
-			while(rs.next())
-			{	
-
-				VeXe vexe = new VeXe();
-				vexe.setDiaDiemDi(rs.getString("DiaDiemDi"));
-				arr.add(vexe);
-			}
-			connection.close();
-		}catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return arr;
-	}
-	public ArrayList<VeXe> VeXedistinctDen(){// TODO Auto-generated method stub
-		Connection connection = null;
-		try {
-			connection = DBConnect.getMySQLConnection();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		String sql = "SELECT distinct DiaDiemDen FROM vexe,chuyendi,tuyendi where vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen group by NgayDi,IdChuyen,GioDi;";
-		ArrayList<VeXe> arr = new ArrayList<>();
-		try {
-			PreparedStatement ps = connection.prepareStatement(sql);
-
-			ResultSet rs = ps.executeQuery();
-			while(rs.next())
-			{	
-
-				VeXe vexe = new VeXe();
-				vexe.setDiaDiemDen(rs.getString("DiaDiemDen"));
-				arr.add(vexe);
-			}
-			connection.close();
-		}catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return arr;
-	}
-	public ArrayList<VeXe> VeXedistinctDonGia()
-	{// TODO Auto-generated method stub
-		Connection connection = null;
-		try {
-			connection = DBConnect.getMySQLConnection();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		String sql = "SELECT distinct DonGia FROM vexe,chuyendi,tuyendi where vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen group by NgayDi,IdChuyen,GioDi;";
-		ArrayList<VeXe> arr = new ArrayList<>();
-		try {
-			PreparedStatement ps = connection.prepareStatement(sql);
-
-			ResultSet rs = ps.executeQuery();
-			while(rs.next())
-			{	
-
-				VeXe vexe = new VeXe();
-				vexe.setDonGia(rs.getBigDecimal("DonGia"));
-				arr.add(vexe);
-			}
-			connection.close();
-		}catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return arr;
-	}
-	public ArrayList<VeXe> VeXedistinctSoLuong()
-	{// TODO Auto-generated method stub
-		Connection connection = null;
-		try {
-			connection = DBConnect.getMySQLConnection();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		String sql = "SELECT distinct count(IdChuyen) as soluong  FROM vexe,chuyendi,tuyendi where vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen group by NgayDi,IdChuyen,GioDi;";
-		ArrayList<VeXe> arr = new ArrayList<>();
-		try {
-			PreparedStatement ps = connection.prepareStatement(sql);
-
-			ResultSet rs = ps.executeQuery();
-			while(rs.next())
-			{	
-
-				VeXe vexe = new VeXe();
-				vexe.setSoLuong(rs.getInt("soluong"));
-				arr.add(vexe);
-			}
-			connection.close();
-		}catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return arr;
-	}
-	public ArrayList<VeXe> VeXedistinctHangDoi()
-	{// TODO Auto-generated method stub
-		Connection connection = null;
-		try {
-			connection = DBConnect.getMySQLConnection();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		String sql = "SELECT distinct HangDoi FROM vexe,chuyendi,tuyendi where vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen group by NgayDi,IdChuyen,GioDi;";
-		ArrayList<VeXe> arr = new ArrayList<>();
-		try {
-			PreparedStatement ps = connection.prepareStatement(sql);
-
-			ResultSet rs = ps.executeQuery();
-			while(rs.next())
-			{	
-
-				VeXe vexe = new VeXe();
-				vexe.setHangDoi(rs.getString("HangDoi"));
-				arr.add(vexe);
-			}
-			connection.close();
-		}catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return arr;
-	}
-	//end filter distinct
 
 
 	//quyen xem ve cua nhan vien
@@ -541,7 +428,8 @@ public class VexeDAOImplement implements VexeDAO{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String sql = "SELECT  khachhang.CMND,IdChuyen,NgayDi,status,GioDi,DonGia,DiaDiemDi,DiaDiemDen,HangDoi,HoTen,SDT, count(IdChuyen) as soluong  FROM vexe,chuyendi,tuyendi,khachhang where vexe.CMND=khachhang.CMND and vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen  and NgayDi=? and IdChuyen=?  group by NgayDi,IdChuyen,GioDi,SDT,status";
+		String sql = "SELECT  khachhang.CMND,IdChuyen,NgayDi,status,GioDi,vexe.DonGia,DiaDiemDi,DiaDiemDen,HangDoi,HoTen,SDT, count(IdChuyen) as soluong  FROM vexe,chuyendi,tuyendi,khachhang where vexe.CMND=khachhang.CMND and vexe.IdChuyen=chuyendi.id and tuyendi.Id=chuyendi.MaTuyen  and NgayDi=? and IdChuyen=?  group by NgayDi,IdChuyen,GioDi,SDT,status";
+		System.out.println(sql);
 		ArrayList<VeXe> arr = new ArrayList<>();
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -600,6 +488,7 @@ public class VexeDAOImplement implements VexeDAO{
 				VeXe vexe = new VeXe();
 				vexe.setMaGhe(rs.getString("MaGhe"));
 				vexe.setStatus(rs.getBoolean("status"));
+				vexe.setNgayGioDat(rs.getString("NgayGioDat"));
 				arr.add(vexe);
 			}
 			connection.close();
@@ -663,23 +552,23 @@ public class VexeDAOImplement implements VexeDAO{
 		// TODO Auto-generated method stub
 		try {
 			Connection conn = ConnectionUtils.getConnection();
-			String sql = "Insert into vexe(CMND,IdChuyen,NgayDi,MaGhe,NgayGioDat,DonGia,status) values(?, ?, ?, ?, ?,?, 0)";
+			String sql = "Insert into vexe(CMND,IdChuyen,NgayDi,MaGhe,NgayGioDat,DonGia,status) values(?, ?, ?, ?, ?, ?, 0)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, veXe.getcMND());
 			ps.setInt(2, veXe.getiDChuyen());
 			LocalDate ngaydi = veXe.getNgayDi();
 			ps.setDate(3, java.sql.Date.valueOf(ngaydi));
 			ps.setString(4, veXe.getMaGhe());	
+		/*	ps.setString(5, veXe.getHangDoi());	*/
 			LocalDateTime now = LocalDateTime.now();
 			java.sql.Timestamp datetime_now = java.sql.Timestamp.valueOf(now);
 			ps.setTimestamp(5,datetime_now);	
-			System.out.println(datetime_now);
 			ps.setBigDecimal(6,veXe.getDonGia());
+			System.out.println(datetime_now);
+//			System.out.println("insert ve xe: " + ps.executeUpdate());
 			int res = ps.executeUpdate();
-			if(res != 0)
-			{
+			if(res > 0) 
 			return true;
-			}
 		}
 		catch (Exception e1) {
 			// TODO Auto-generated catch block

@@ -277,7 +277,7 @@ public class TaiKhoanDAOImplement implements TaiKhoanDAO{
 		}
 		
 		String sql = null;
-		if(role.compareTo("nhanvien")==0||role.compareTo("khachhang")==0){
+		if(role.compareTo("NhanVien")==0||role.compareTo("KhachHang")==0){
 			sql="select * from taikhoan where Role = ?";
 
 		}else
@@ -288,7 +288,7 @@ public class TaiKhoanDAOImplement implements TaiKhoanDAO{
 		ArrayList<TaiKhoan> arrTK = new ArrayList<>();
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
-			if(role.compareTo("nhanvien")==0||role.compareTo("khachhang")==0) 
+			if(role.compareTo("NhanVien")==0||role.compareTo("KhachHang")==0) 
 			{
 			ps.setString(1, role);
 			}
