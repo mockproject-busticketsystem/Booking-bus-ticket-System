@@ -47,10 +47,10 @@
 		<!--   Big container   -->
 		<div class="container" >
 			<div class="row">
-				<div class="col-sm-8 col-sm-offset-1">
+				<div class="col-sm-8 col-sm-offset-0">
 					<!--      Wizard container        -->
-					<div class="wizard-container" style="min-width:1000px;">
-						<div class="card wizard-card" data-color="red" id="wizard" >
+					<div class="wizard-container" style="min-width:1110px;max-height:600px;">
+						<div class="card wizard-card" data-color="red" id="wizard" style="overflow-y:auto;">
 							<form action="" method="">
 								<!--        You can switch " data-color="blue" "  with one of the next bright colors: "green", "orange", "red", "purple"             -->
 
@@ -105,7 +105,7 @@
 											</tbody>
 										</table>
 									</div>
-									<div class="tab-pane" id="captain">
+									<div class="tab-pane" id="captain" style="overflow-y:auto;">
 										<!--Table here -->
 										<table id="example" class="table table-striped table-bordered"
 											cellspacing="0">
@@ -256,21 +256,13 @@ for(var i = 1; i < table.rows.length; i++)
             method: "POST",//HTTP method.
             success: function (data)
             {
-            	 $("#example").html(data);
-         	/* table.deleteRow(rIndex); */
+            	/*  $("#example").html(data); */
+         	 table.deleteRow(rIndex);
             },
             error : function(jqXHR, exception) {
 				console.log('Error occured!!');
 			}
         }); 
-            	/* <c:forEach var="item" items="${listVeStatusFalse}">
-            	alert("${item.chuyenDi.tuyenDi.diaDiemDi}");
-            	var ve = "${item.chuyenDi.tuyenDi.diaDiemDi}";
-            	alert(typeof(ve) + "----"+ ve+"---"+typeof("${item}")+"----"+"${item}");
-            	request.setAttribute(vexe,);
-            	
-            	</c:forEach> */
-        
         
     };
 }

@@ -52,11 +52,25 @@
 }
 </style>
 </head>
+<script>
+$(document).ready(function () {
+	var success = '${success}';
+	if(success== "true")
+	{alert("Cap Nhap Thanh Cong!! :)");
+	}
+else if(success == "false")
+	{
+	alert("Opps...Cap Nhap Khong Thanh Cong!! "+"${err}" );
+	}
+});
+
+</script>
+
 <body>
 	<div id="main" >
 		<jsp:include page="header2.jsp"></jsp:include>
 		<div id="content">
-			<div class="row_tt" style="height: 680px;margin-bottom: 60px;background-image: url('${pageContext.request.contextPath}/img/bg_info.jpg'); 
+			<div class="row_tt" style="height: 550px;margin-bottom: 60px;background-image: url('${pageContext.request.contextPath}/img/bg_info.jpg'); 
   background-size: contain;">
 				<div class="col-sm-8 col-sm-offset-2">
 					<!--      Wizard container        -->
@@ -91,7 +105,8 @@
 												</div>
 											</div>
 										</div>
-										<!--Ho ten -->
+										<!--Email -->
+										<div class="col-sm-6">
 										<div class="input-group">
 											<span class="input-group-addon"> <i
 												class="material-icons">email</i>
@@ -102,8 +117,9 @@
 													value="${khachHang.email}" readonly>
 											</div>
 										</div>
+										</div>
+										<!--ho Ten-->
 										<div class="col-sm-6">
-											<!--Email-->
 											<div class="input-group">
 												<span class="input-group-addon"> <i
 													class="material-icons">face</i>
@@ -115,6 +131,8 @@
 												</div>
 											</div>
 										</div>
+										<!--Phone-->
+										<div class="col-sm-6">
 										<div class="input-group">
 											<span class="input-group-addon"> <i
 												class="material-icons">phone</i>
@@ -124,6 +142,7 @@
 													type="text" class="form-control" value="${khachHang.sDT}"
 													readonly>
 											</div>
+										</div>
 										</div>
 									</div>
 								</div>
@@ -144,6 +163,7 @@
 											</div>
 										</div>
 										<!--Email -->
+										<div class="col-sm-6">
 										<div class="input-group">
 											<span class="input-group-addon"> <i
 												class="material-icons">email</i>
@@ -154,8 +174,9 @@
 													value="${khachHang.email}" readonly>
 											</div>
 										</div>
+										</div>
+										<!--Ho Ten-->
 										<div class="col-sm-6">
-											<!--Ho Ten-->
 											<div class="input-group">
 												<span class="input-group-addon"> <i
 													class="material-icons">face</i>
@@ -167,6 +188,8 @@
 												</div>
 											</div>
 										</div>
+										<!-- Phone -->
+										<div class="col-sm-6">
 										<div class="input-group">
 											<span class="input-group-addon"> <i
 												class="material-icons">phone</i>
@@ -175,6 +198,7 @@
 												<label class="control-label">SĐT</label> <input name="SDT"
 													type="text" class="form-control" value="${khachHang.sDT}">
 											</div>
+										</div>
 										</div>
 										<div class="pull-right">
 											<input type='submit'

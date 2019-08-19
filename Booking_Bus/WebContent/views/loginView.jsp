@@ -4,10 +4,10 @@
 <html>
 <head>
 <title>Booking Bus</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css"/>
-<%-- <link rel="stylesheet" type="text/css" href = "${pageContext.request.contextPath}/css/poppuo-box.css"> --%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style_login.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css"
+	media="all">
 <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/pictures/baner-bus.png" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
@@ -24,6 +24,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/script.js"></script>
 <link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700"
 	rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -32,7 +35,7 @@
 		<jsp:include page="header.jsp"></jsp:include>
 		<div id="content">
 			<div id="datve" class="clearfix" data-selected="true"
-				data-label-id="0" style=" background: url(${pageContext.request.contextPath}/img/bgdatve.png);">
+				data-label-id="0">
 				<div class="inner">
 					<div class="left_datve">
 						<div class="title_datve">BookBus</div>
@@ -82,35 +85,86 @@
 									placeholder="EMAIL" required="" /> <input type="password"
 									Name="Password" value="${user.pass}" placeholder="PASSWORD"
 									required="" />
-										<p style="color: yellow;">${errorString}</p>
+									<p style="color: yellow;">${errorString}</p>
 								<ul class="agileinfotickwthree">
 									<!-- <ul style="display: inline-block;width: 100%;margin-bottom: 40px;text-align: left;padding-left: 10px;"> -->
 									<li><input type="checkbox" name="checkRemember" checked=""
-										value="Y" /> 
-									
-										<label for="brand1">Rememberme</label> <a
+										value="Y" /> <label for="brand1">Rememberme</label> <a
 										href="#">Forgot password?</a></li>
 								</ul>
 								<div class="aitssendbuttonw3ls">
 									<input type="submit" value="LOGIN">
 									<p>
 										To register new account <span>→</span> <a
-											class="w3_play_icon1" href="#small-dialog1"> Click Here</a>
+											 data-toggle="modal" href="#myModal"> Click Here</a>
 									</p>
 									<div class="clear"></div>
 								</div>
 							</form>
 						</div>
 						<!-- Bat dau regester -->
-						
+						<div class="modal fade" id="myModal" role="dialog">
+							<div class="modal-dialog">
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="contact-form1">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h2>Đăng Ký</h2>
+										<div class="contact-w3-agileits">
+											<form action="${pageContext.request.contextPath}/register-customer" method="post">
+												<!-- Ho ten -->
+												<div class="form-sub-w3ls">
+													<input placeholder="Họ Tên" type="text" name="Ten" required>
+													<!-- CMND -->
+													<input placeholder="CMND" name="CMND" type="text"
+														pattern="[0-9]*.{9,11}" required>
+													<!-- SDT -->
+													<input placeholder="SDT" type="text" name="SDT"
+														pattern="[0-9]*.{10,11}" required>
+													<!-- Email -->
+													<input placeholder="Email" class="mail" type="email"
+														name="Email" required>
+													<!-- Pass -->
+													<input placeholder="Password" type="password" name="Pass"
+														pattern=".{4,}" id="Pass" required>
+													<!-- Confirm Pass -->
+													<input placeholder="Confirm Password" type="password"
+														name="ConfirmPass" id="ConfirmPass" required>
+												</div>
+												<div class="submit-w3l">
+													<input type="submit" value="Register">
+												</div>
+											</form>
+										</div>
+									</div>
 
+								</div>
+
+							</div>
+						</div>
+						<!-- ket thuc register -->
 					</div>
 					<!-- Ket thuc right -->
-					<!-- for register popup -->
+
 				</div>
 			</div>
 		</div>
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
+	<script type="text/javascript">
+	var password = document.getElementById("Pass")
+	  , confirm_password = document.getElementById("ConfirmPass");
+
+	function validatePassword(){
+	  if(password.value != confirm_password.value) {
+	    confirm_password.setCustomValidity("Passwords Don't Match");
+	  } else {
+	    confirm_password.setCustomValidity('');
+	  }
+	}
+
+	password.onchange = validatePassword;
+	confirm_password.onkeyup = validatePassword;
+	</script>
 </body>
 </html>

@@ -45,6 +45,10 @@ public class ChangeInfoCustom extends HttpServlet {
 		khachHang.setHoTen(name);
 		khachHang.setsDT(SDT);
 		Boolean success = khachHangDao.UpdateKhachHang(khachHang);
+		if(success == true)
+		{
+			session.setAttribute("hoTen",name);
+		}
 		request.setAttribute("success", success);
 		request.setAttribute("khachHang",khachHang);
 		RequestDispatcher dispatcher //

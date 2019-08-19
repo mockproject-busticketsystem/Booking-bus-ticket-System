@@ -43,6 +43,19 @@
 }
 
 </style>
+<script>
+$(document).ready(function () {
+	var success = '${successRegis}';
+	if(success== "true")
+	{alert("Chúc mừng bạn đã đăng ký thành công!!! Bạn nên đăng nhập lại!!:)))");
+	}
+else if(success == "false")
+	{
+	alert("Opps... Có thể CMND hoặc Email đã được sử dụng!!:(( Mời bạn đăng ký lại!<3");
+	}
+});
+
+</script>
 </head>
 <body>
   <div id="main"> 
@@ -81,7 +94,7 @@ CHẤT LƯỢNG- HIỆU QUẢ - NHANH CHÓNG<br> TIN CẬY - AN TÂM.</h1> -->
             </div>
         </div>
         <div class="col-md-4 startpoint-block">
-             <figure><img src="../img/c3.png"></figure>
+             <figure><img src="${pageContext.request.contextPath}/img/c3.png"></figure>
             <div class="startpoint-text">
                 <p>Khởi hành từ: <span>Nha Trang</span></p>
                 <p>Hotline: <span>02583 812 812</span></p>
@@ -92,7 +105,7 @@ CHẤT LƯỢNG- HIỆU QUẢ - NHANH CHÓNG<br> TIN CẬY - AN TÂM.</h1> -->
     </div>
     <div class="row">
         <div class="col-md-4 startpoint-block">
-             <figure><img src="../img/c4.png"></figure>
+             <figure><img src="${pageContext.request.contextPath}/img/c4.png"></figure>
             <div class="startpoint-text">
                 <p>Khởi hành từ: <span>Cần Thơ</span></p>
                 <p>Hotline: <span>02923 769 768</span></p>
@@ -101,7 +114,7 @@ CHẤT LƯỢNG- HIỆU QUẢ - NHANH CHÓNG<br> TIN CẬY - AN TÂM.</h1> -->
             </div>
         </div>
         <div class="col-md-4 startpoint-block">
-             <figure><img src="../img/c5.png"></figure>
+             <figure><img src="${pageContext.request.contextPath}/img/c5.png"></figure>
             <div class="startpoint-text">
                 <p>Khởi hành từ: <span>Đà Nẵng</span></p>
                 <p>Hotline: <span>02363 786 786</span></p>
@@ -110,7 +123,7 @@ CHẤT LƯỢNG- HIỆU QUẢ - NHANH CHÓNG<br> TIN CẬY - AN TÂM.</h1> -->
             </div>
         </div>
         <div class="col-md-4 startpoint-block">
-             <figure><img src="../img/c6.png"></figure>
+             <figure><img src="${pageContext.request.contextPath}/img/c6.png"></figure>
             <div class="startpoint-text">
                 <p>Khởi hành từ: <span>Hà Nội</span></p>
                 <p>Hotline: <span>0243 864 19 19</span></p>

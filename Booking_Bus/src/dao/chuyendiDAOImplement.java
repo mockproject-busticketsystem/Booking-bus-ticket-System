@@ -41,6 +41,32 @@ public class ChuyenDiDAOImplement implements ChuyenDiDAO{
 		return chuyenDi;
 	}
 	@Override
+	public ChuyenDi findChuyenDi(int id) {
+		// TODO Auto-generated method stub
+		ChuyenDi chuyenDi = null;
+		Connection connection = null;
+		try {
+			connection = ConnectionUtils.getConnection();
+			String sql = "SELECT * FROM chuyendi where id = ?";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				BigDecimal donGia = rs.getBigDecimal("DonGia");
+				LocalTime gioDen = LocalTime.parse(rs.getString("GioDen"));
+				LocalTime gioDi = LocalTime.parse(rs.getString("GioDi"));
+				String idTuyen = rs.getString("MaTuyen");
+				chuyenDi = new ChuyenDi(id,idTuyen,gioDi,gioDen,donGia);
+			}
+			connection.close();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return chuyenDi;
+	}
+	@Override
 	public BigDecimal getDongia(String tuyendi) {
 		// TODO Auto-generated method stub
 		BigDecimal donGia = new BigDecimal("0.0");

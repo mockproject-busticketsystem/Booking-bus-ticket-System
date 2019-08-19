@@ -663,22 +663,23 @@ public class VexeDAOImplement implements VexeDAO{
 		// TODO Auto-generated method stub
 		try {
 			Connection conn = ConnectionUtils.getConnection();
-			String sql = "Insert into vexe(CMND,IdChuyen,NgayDi,MaGhe,NgayGioDat,status) values(?, ?, ?, ?, ?, 0)";
+			String sql = "Insert into vexe(CMND,IdChuyen,NgayDi,MaGhe,NgayGioDat,DonGia,status) values(?, ?, ?, ?, ?,?, 0)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, veXe.getcMND());
 			ps.setInt(2, veXe.getiDChuyen());
 			LocalDate ngaydi = veXe.getNgayDi();
 			ps.setDate(3, java.sql.Date.valueOf(ngaydi));
 			ps.setString(4, veXe.getMaGhe());	
-		/*	ps.setString(5, veXe.getHangDoi());	*/
 			LocalDateTime now = LocalDateTime.now();
 			java.sql.Timestamp datetime_now = java.sql.Timestamp.valueOf(now);
 			ps.setTimestamp(5,datetime_now);	
 			System.out.println(datetime_now);
-//			System.out.println("insert ve xe: " + ps.executeUpdate());
+			ps.setBigDecimal(6,veXe.getDonGia());
 			int res = ps.executeUpdate();
-			if(res > 0) 
+			if(res != 0)
+			{
 			return true;
+			}
 		}
 		catch (Exception e1) {
 			// TODO Auto-generated catch block
