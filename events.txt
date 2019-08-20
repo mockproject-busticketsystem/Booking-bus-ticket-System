@@ -1,0 +1,9 @@
+show processlist;
+show events from bookbus;
+SET GLOBAL event_scheduler = ON;
+
+Create EVENT delete_ticket
+ON SCHEDULE EVERY 1 MINUTE
+STARTS now()
+DO
+delete from vexe where (NgayGioDat <= SUBDATE(now(),INTERVAL 24 hour)) and status = 0;
