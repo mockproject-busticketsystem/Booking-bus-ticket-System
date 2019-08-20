@@ -50,7 +50,7 @@
 				<div class="col-sm-8 col-sm-offset-0">
 					<!--      Wizard container        -->
 					<div class="wizard-container" style="min-width:1110px;max-height:600px;">
-						<div class="card wizard-card" data-color="red" id="wizard" style="overflow-y:auto;">
+						<div class="card wizard-card" data-color="red" id="wizard" style="overflow-y:auto!important;">
 							<form action="" method="">
 								<!--        You can switch " data-color="blue" "  with one of the next bright colors: "green", "orange", "red", "purple"             -->
 
@@ -98,8 +98,7 @@
 														<td>${item.donGia}</td>
 														<td>${item.ngayGioDat}</td>
 														<td><span class="table-remove">
-														<button type="button" id="buttonRe" class="btn btn-danger btn-rounded btn-sm my-0"
-														onclick="deleteRow(this.parentNode.parentNode.rowIndex)">Remove</button></span></td>
+														<button type="button" id="buttonRe" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -235,37 +234,42 @@
 
 </body>
 
-<script type="text/javascript">
-var table = document.getElementById("example"),rIndex;
-for(var i = 1; i < table.rows.length; i++)
-{
-    table.rows[i].onclick = function()
-    {
-        rIndex = this.rowIndex;
-        console.log(rIndex);
-       var diemDi = this.cells[0].innerHTML;
-       var diemDen = this.cells[1].innerHTML;
-       var ngayDi = this.cells[2].innerHTML;
-        var gioDi = this.cells[3].innerHTML;
-       var maGhe= this.cells[5].innerHTML;
-       var hangDoi = this.cells[6].innerHTML;
-        $.ajax({
-            url: "DeleteTicketbyCustom",//your jsp page name */
-           data: {diemDi:diemDi, diemDen:diemDen, ngayDi:ngayDi, gioDi:gioDi, maGhe:maGhe, hangDoi:hangDoi
-				},//sending request to state.jsp page.
-            method: "POST",//HTTP method.
-            success: function (data)
-            {
-            	/*  $("#example").html(data); */
-         	 table.deleteRow(rIndex);
-            },
-            error : function(jqXHR, exception) {
-				console.log('Error occured!!');
+<script>
+var table = document.getElementById("example"),rIndex,diemDi,diemDen,ngayDi,gioDi,maGhe,hangDoi; 
+$(document).ready(function () {
+	/**/
+	 for(var i = 1; i < table.rows.length; i++)
+	{ 
+		 table.rows[i].onclick = function(){
+				 rIndex = this.rowIndex;
+		        console.log(rIndex);
+		       diemDi = this.cells[0].innerHTML;
+		       diemDen = this.cells[1].innerHTML;
+		       ngayDi = this.cells[2].innerHTML;
+		       gioDi = this.cells[3].innerHTML;
+		       maGhe= this.cells[5].innerHTML;
+		       hangDoi = this.cells[6].innerHTML;
+		};
+	}
+	 $("tbody", "#example").on("click", "td",function() {
+			if(this.innerText=="REMOVE")
+			{
+				$.ajax({
+		            url: "DeleteTicketbyCustom",//your jsp page name
+		           data: {diemDi:diemDi, diemDen:diemDen, ngayDi:ngayDi, gioDi:gioDi, maGhe:maGhe, hangDoi:hangDoi
+						},//sending request to state.jsp page.
+		            method: "POST",//HTTP method.
+		            success: function (data)
+		            {
+		         	 table.deleteRow(rIndex);
+		            },
+		            error : function(jqXHR, exception) {
+						console.log('Error occured!!');
+					}
+		        });	
 			}
-        }); 
-        
-    };
-}
+	 });
+	});
 </script>
 <!--   Core JS Files   -->
 <script src="${pageContext.request.contextPath}/asset_info/js/jquery-2.2.4.min.js" type="text/javascript"></script>

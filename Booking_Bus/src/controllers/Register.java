@@ -74,7 +74,7 @@ public class Register extends HttpServlet {
 					errorString = errorString.concat(e1.getMessage());
 				}
 				request.setAttribute("errorString", errorString);
-				request.setAttribute("success", success);
+				request.setAttribute("successRegis", success);
 				/*System.out.println(success);*/
 				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/index.jsp");
 				dispatcher.forward(request, response);

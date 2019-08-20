@@ -48,20 +48,19 @@
 #footer_2{
 	height: 380px;
 	
-	margin-top: -49.9px;
+	margin-top: -60px;
 }
 </style>
 </head>
 <script>
 $(document).ready(function () {
 	var success = '${success}';
-	if(success == "true")
-	{
-		alert("Cap Nhap Thanh Cong!! :)");
+	if(success== "true")
+	{alert("Cap Nhap Thanh Cong!! :)");
 	}
 else if(success == "false")
 	{
-		alert("Opps...Cap Nhap Khong Thanh Cong!! "+"${err}" );
+	alert("Opps...Cap Nhap Khong Thanh Cong!! "+"${err}" );
 	}
 });
 
@@ -71,7 +70,7 @@ else if(success == "false")
 	<div id="main" >
 		<jsp:include page="header2.jsp"></jsp:include>
 		<div id="content">
-			<div class="row_tt" style="height: 600px;margin-bottom:50px;background-image: url('${pageContext.request.contextPath}/img/bg_info.jpg'); 
+			<div class="row_tt" style="height: 550px;margin-bottom: 60px;background-image: url('${pageContext.request.contextPath}/img/bg_info.jpg'); 
   background-size: contain;">
 				<div class="col-sm-8 col-sm-offset-2">
 					<!--      Wizard container        -->
@@ -185,7 +184,7 @@ else if(success == "false")
 												<div class="form-group label-floating">
 													<label class="control-label">Họ Tên</label> <input
 														name="hoTen" type="text" class="form-control"
-														value="${khachHang.hoTen}">
+														value="${khachHang.hoTen}" required>
 												</div>
 											</div>
 										</div>
@@ -197,7 +196,7 @@ else if(success == "false")
 											</span>
 											<div class="form-group label-floating">
 												<label class="control-label">SĐT</label> <input name="SDT"
-													type="text" class="form-control" value="${khachHang.sDT}">
+													type="text" class="form-control" value="${khachHang.sDT}" pattern="[0-9]*.{10,11}" required>
 											</div>
 										</div>
 										</div>
@@ -211,19 +210,19 @@ else if(success == "false")
 
 								<!--Cap Nhap Mat Khau-->
 								<div class="tab-pane" id="address">
-									<form action="${pageContext.request.contextPath}/ThayDoiMatKhau" method="Post">
+									<form action="${pageContext.request.contextPath}/ThayDoiMatKhau" onsubmit="return validatePassword();" method="Post">
 										<div class="row">
 											<div class="col-sm-7 col-sm-offset-1">
 												<div class="form-group label-floating">
 													<label class="control-label">Mật Khẩu Hiện Tại</label> <input
 														type="password" id="curPass" name="curPass"
-														class="form-control">
+														class="form-control" pattern=".{4,}" required>
 												</div>
 											</div>
 											<div class="col-sm-7 col-sm-offset-1">
 												<div class="form-group label-floating">
 													<label class="control-label">Mật Khẩu Mới</label> <input
-														type="password" id="newPass" name="newPass"
+														type="password" id="newPass" name="newPass" pattern=".{4,}" required
 														class="form-control">
 												</div>
 											</div>
@@ -231,7 +230,7 @@ else if(success == "false")
 												<div class="form-group label-floating">
 													<label class="control-label">Nhập Lại Mật Khẩu Mới</label>
 													<input type="password" id="confirm_pass"
-														name="confirm_pass" class="form-control">
+														name="confirm_pass" class="form-control" pattern=".{4,}" required>
 												</div>
 
 											</div>
@@ -241,7 +240,7 @@ else if(success == "false")
 											<div class="pull-right">
 												<input type='submit'
 													class='btn btn-finish btn-fill btn-success btn-wd'
-													name='finish' value='Submit' onclick="validatePassword();" />
+													name='finish' value='Submit'/>
 											</div>
 											<div class="clearfix"></div>
 										</div>
@@ -366,29 +365,11 @@ function validatePassword(){
 	  , confirm_password = document.getElementById("confirm_pass").value;
 	  if(password != confirm_password) {
 	    alert("Passwords Don't Match");
+	    return false;
 	  } else {
 	    confirm_password.setCustomValidity('');
+	    return true;
 	  }
-	}
-	/* password.onchange = validatePassword; */
-	confirm_password.onkeyup = validatePassword;
-	var success ='${success}';
-	function showAlert()
-	{
-		if(success!="")
-		{
-		if(success=="true")
-			{
-			alert("Cập Nhập Thành Công :) :)");
-			}
-		else
-		{
-			var err = '${err}';
-			alert("Cập Nhập Không Thành Công!!!"+err);
-			
-		}
-		}
-		
-	}
+	};
 	</script>
 </html>

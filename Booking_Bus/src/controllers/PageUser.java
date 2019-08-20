@@ -1,12 +1,7 @@
 package controllers;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,14 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import connect.DBConnect;
+import connect.MyConnect;
 import dao.ChuyenDiDAOImplement;
-import dao.KhachHangDAOImplement;
 import dao.TuyenDiDAOImplement;
-import models.ChuyenDi;
-import models.KhachHang;
-import models.TuyenDi;
+import models.TaiKhoan;
 @WebServlet("/pageUser")
 public class PageUser extends HttpServlet{
 
@@ -38,17 +31,28 @@ public class PageUser extends HttpServlet{
 		@Override
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 			// TODO Auto-generated method stub
+			//
+			HttpSession session = request.getSession();
+			TaiKhoan taiKhoan = MyConnect.getLoginedUser(session);
+			if(taiKhoan==null)
+			{
+				response.sendRedirect(request.getContextPath()+"/views/loginView.jsp");
+			}
+			else
+			{
 			ArrayList<String> arrayDiemDi = tdDao.getDiaDiemDi();
 			request.setAttribute("arrayDiemDi", arrayDiemDi);
 			RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/views/pageUser.jsp");
 			dispatcher.forward(request, response);
-		}
+			}
+			}
 		/**
 		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			// TODO Auto-generated method stub
 			doGet(request, response);
+			
 			
 		}
 

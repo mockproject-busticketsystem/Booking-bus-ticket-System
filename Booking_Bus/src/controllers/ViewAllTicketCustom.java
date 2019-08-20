@@ -26,14 +26,14 @@ public class ViewAllTicketCustom extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	KhachHangDAOImplement khachHangDao = new KhachHangDAOImplement();
 	VexeDAOImplement veXeDao = new VexeDAOImplement();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ViewAllTicketCustom() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ViewAllTicketCustom() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,6 +41,40 @@ public class ViewAllTicketCustom extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
+		TaiKhoan taiKhoan = MyConnect.getLoginedUser(session);
+		if(taiKhoan==null)
+		{
+			response.sendRedirect(request.getContextPath()+"/views/loginView.jsp");
+		}
+		else
+		{
+			// lay khach hang
+			KhachHang khach = khachHangDao.showInfor(taiKhoan);
+			// lay cac ve da dduoc thanh toan
+			ArrayList<VeXe> listVeStatusTrue = new ArrayList<>();
+			listVeStatusTrue = veXeDao.viewAllTicketCusTomNotChanage(khach.getcMND());
+			ArrayList<VeXe> listVeStatusFalse = new ArrayList<>();
+			listVeStatusFalse = veXeDao.viewAllTicketCusTomChanage(khach.getcMND());
+			System.out.println(listVeStatusTrue.size());
+			request.setAttribute("listVeStatusTrue",listVeStatusTrue);
+			request.setAttribute("listVeStatusFalse",listVeStatusFalse);
+			RequestDispatcher dispatcher //
+			= this.getServletContext().getRequestDispatcher("/views/ViewTicketCustom.jsp");
+			dispatcher.forward(request, response);
+		}
+		/*request.getRequestDispatcher("/info-user").forward(request, response);//forwarding the request
+		 */		
+
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+		/*	HttpSession session = request.getSession();
 		// Lay Tai Khoan 
 		TaiKhoan taiKhoan = MyConnect.getLoginedUser(session);
 		// lay khach hang
@@ -50,23 +84,12 @@ public class ViewAllTicketCustom extends HttpServlet {
 		listVeStatusTrue = veXeDao.viewAllTicketCusTomNotChanage(khach.getcMND());
 		ArrayList<VeXe> listVeStatusFalse = new ArrayList<>();
 		listVeStatusFalse = veXeDao.viewAllTicketCusTomChanage(khach.getcMND());
-		/*System.out.println(listVeStatusTrue.size());*/
+		System.out.println(listVeStatusTrue.size());
 		request.setAttribute("listVeStatusTrue",listVeStatusTrue);
 		request.setAttribute("listVeStatusFalse",listVeStatusFalse);
 		RequestDispatcher dispatcher //
 		= this.getServletContext().getRequestDispatcher("/views/ViewTicketCustom.jsp");
-		dispatcher.forward(request, response);
-		
-		
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		dispatcher.forward(request, response);*/
 	}
 
 }

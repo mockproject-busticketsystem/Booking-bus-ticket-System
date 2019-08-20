@@ -41,7 +41,7 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		/*RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/loginView.jsp");
 		dispatcher.forward(request, response);*/
-		request.getRequestDispatcher("/views/loginView.jsp").forward(request, response);//forwarding the request
+		request.getRequestDispatcher("/info-user").forward(request, response);//forwarding the request
 	}
 
 	/**
@@ -53,8 +53,6 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("Password");
 		String rememberMeStr = request.getParameter("checkRemember");
 		boolean remember = "Y".equals(rememberMeStr);
-	
-
 		TaiKhoan user = null;
 		boolean hasError = false;
 		String errorString = null;
@@ -63,21 +61,6 @@ public class Login extends HttpServlet {
 			hasError = true;
 			errorString = "Required username and password!";
 		} else {
-			/*Connection conn = MyConnect.getStoredConnection(request);
-			try {
-				// TÃ¬m user trong DB.
-				user = TaiKhoanDao.findUser(conn, userName, password);
-
-				if (user == null) {
-					hasError = true;
-					errorString = "User Name or password invalid";
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-				hasError = true;
-				errorString = e.getMessage();
-			}*/
-			
 			// TÃ¬m user trong DB.
 			user = tkDao.findUser(userName, password);
 			if (user == null) {
@@ -85,14 +68,12 @@ public class Login extends HttpServlet {
 				errorString = "User Name or password invalid";
 			}
 		}
-		// Trong trÆ°á»�ng há»£p cÃ³ lá»—i,
-		// forward (chuyá»ƒn hÆ°á»›ng) tá»›i /views/loginView.jsp
-		if (hasError) {
+	
+		if (hasError== true) {
 			user = new TaiKhoan();
 			user.setEmail(userName);
 			user.setPass(password);
 
-			// LÆ°u cÃ¡c thÃ´ng tin vÃ o request attribute trÆ°á»›c khi forward.
 			request.setAttribute("errorString", errorString);
 			request.setAttribute("user", user);
 
@@ -103,48 +84,21 @@ public class Login extends HttpServlet {
 			dispatcher.forward(request, response);*/
 			request.getRequestDispatcher("/views/loginView.jsp").forward(request, response);
 		}
-		// TrÆ°á»�ng há»£p khÃ´ng cÃ³ lá»—i.
-		// LÆ°u thÃ´ng tin ngÆ°á»�i dÃ¹ng vÃ o Session.
-		// VÃ  chuyá»ƒn hÆ°á»›ng sang trang userInfo.
 		else {
-			 HttpSession session = request.getSession();
+			HttpSession session = request.getSession();
+			// luu vao session
 			MyConnect.storeLoginedUser(session, user);
-			
-			// Náº¿u ngÆ°á»�i dÃ¹ng chá»�n tÃ­nh nÄƒng "Remember me".
 			if (remember) {
 				MyConnect.storeUserCookie(response, user);
 			}
-			// NgÆ°á»£c láº¡i xÃ³a Cookie
+			// xoa cookie
 			else {
 				MyConnect.deleteUserCookie(response);
 			}
-				String role = user.getRole();
-				String email = user.getEmail();
-				session.setAttribute("role",role);	
-				session.setAttribute("email",email);
-				
-			// Redirect (Chuyá»ƒn hÆ°á»›ng) sang trang /userInfo.
-				if(role.equals("KhachHang")) {
-					String hoTen = "";
-					hoTen = tkDao.getHoten(role, userName);
-					session.setAttribute("hoTen", hoTen);
-					KhachHang khachHang = null;
-					khachHang = khDao.showInfor(user);
-					String CMND = khachHang.getcMND();
-					session.setAttribute("CMND",CMND);
-					request.getRequestDispatcher("/pageUser").forward(request, response);
-				}
-				else if(role.equals("Admin")) {
-					
-					request.getRequestDispatcher("/DashboardAdmin").forward(request, response);
-				}
-				else if(role.equals("NhanVien")) {
-					String hoTen = "";
-					hoTen = tkDao.getHoten(role, userName);
-					request.setAttribute("hoTen", hoTen);
-					request.getRequestDispatcher("/DashboardNhanVien").forward(request, response);
-				}
-		
+			
+			request.getRequestDispatcher("/info-user").forward(request, response);
+
+
 		}
 	}
 }
