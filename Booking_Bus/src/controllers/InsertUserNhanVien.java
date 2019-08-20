@@ -1,6 +1,8 @@
 package controllers;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import connect.ConnectionUtils;
+import dao.KhachHangDAOImplement;
+import dao.NhanVienDAOImplement;
 import dao.TaiKhoanDAOImplement;
 import models.KhachHang;
 import models.NhanVien;
@@ -19,7 +24,9 @@ public class InsertUserNhanVien extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private TaiKhoanDAOImplement tkDao = new TaiKhoanDAOImplement();
+	private TaiKhoanDAOImplement taiKhoanDao = new TaiKhoanDAOImplement();
+	private KhachHangDAOImplement khachHangDao = new KhachHangDAOImplement();
+	private NhanVienDAOImplement nhanVienDao = new NhanVienDAOImplement();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -38,42 +45,63 @@ public class InsertUserNhanVien extends HttpServlet{
 		String role = req.getParameter("role_insert");
 		System.out.println(email);
 		System.out.println(role);
+		boolean success = false;
+		String errorString = null;
+		TaiKhoan taiKhoan = new TaiKhoan(email,pass,role);
+		Connection conn = null;
 		try {
-			TaiKhoan taikhoan = new TaiKhoan();
-			taikhoan.setEmail(email);
-			taikhoan.setPass(pass);
-			taikhoan.setRole(role);
-			System.out.println(taikhoan.getEmail());
-			System.out.println(taikhoan.getRole());
-			NhanVien nhanVien = new NhanVien();
-			nhanVien.setcMND(cmnd);
-			nhanVien.setHoTen(hoten);
-			nhanVien.setsDT(sdt);
-			nhanVien.setEmail(email);
-			nhanVien.setChucVu(chucvu);
-			System.out.println(nhanVien.getcMND());
-			KhachHang khachHang = new KhachHang();
-			khachHang.setcMND(cmnd);
-			khachHang.setHoTen(hoten);
-			khachHang.setsDT(sdt);
-			khachHang.setEmail(email);
-			if(role.equals("nhanvien")) {
-				tkDao.themUser_NhanVien(taikhoan, nhanVien);
-				System.out.println("Insert ok!: " );
-				req.getServletContext().getRequestDispatcher("/DashboardAdmin").forward(req, resp);
+			conn = ConnectionUtils.getConnection();
+			conn.setAutoCommit(false);
+			if(role.equals("NhanVien"))
+			{
+				NhanVien nhanVien = new NhanVien(cmnd,hoten,sdt,email,chucvu);
+				success = nhanVienDao.InsertUserNhanVien(conn, nhanVien);
+				if(success == true)
+				{
+					taiKhoan.setRole("NhanVien");
+					success = taiKhoanDao.InsertUserCustom(conn, taiKhoan);
+					if(success == true)
+					{
+						ConnectionUtils.closeQuietly(conn);
+					}
+					else
+					{
+						ConnectionUtils.rollbackQuietly(conn);
+						errorString = "Opss.... Something was wrong!!! CMND or Email not available :( :(";
+					}
+				}
 			}
-			else if(role.equals("khachhang")) {
-				tkDao.themUser_KhachHang(taikhoan, khachHang);
-				System.out.println("Insert ok!: " );
-				req.getServletContext().getRequestDispatcher("/DashboardAdmin").forward(req, resp);
+			else if(role.equals("KhachHang"))
+			{
+				KhachHang khachHang = new KhachHang(cmnd,hoten,sdt,email);
+				success = khachHangDao.InsertKhachHang(conn,khachHang);
+				if(success == true)
+				{
+					taiKhoan.setRole("khachhang");
+					success = taiKhoanDao.InsertUserCustom(conn, taiKhoan);
+					if(success == true)
+					{
+						ConnectionUtils.closeQuietly(conn);
+					}
+					else
+					{
+						ConnectionUtils.rollbackQuietly(conn);
+						errorString = "Opss.... Something was wrong!!! CMND or Email not available :( :(";
+					}
+				}
+
 			}
 			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			errorString += e.getMessage();
+			
 		}
-		catch (Exception e)
-		{
-			e.getMessage();
-		}	
-		
+		req.setAttribute("success", success);
+		req.setAttribute("errorString",errorString);
+		req.getServletContext().getRequestDispatcher("/DashboardAdmin").forward(req, resp);
+
 	}
 
 }

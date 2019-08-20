@@ -22,8 +22,9 @@
 	rel="stylesheet" />
 	<link href="${pageContext.request.contextPath}/css/css_info.css"
 	rel="stylesheet" />
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
 </head>
 <body class="dark-edition" style="background: #DDDDDD;">
 	<!-- content Nhân_Viên -->
@@ -48,7 +49,8 @@
 												<div class="form-group">
 													<label class="bmd-label-floating">Id</label>
 													 <input type="text" value="${nv.cMND}" class="form-control"
-													 name = "CMND" disabled style="color: red;background: #202940;">		
+													disabled style="color: red;background: #202940;">	
+													 	 <input type="hidden" value="${nv.cMND}"  name = "CMND" >	
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -68,8 +70,7 @@
 											<div class="col-md-4">
 												<div class="form-group">
 													<label class="bmd-label-floating">Họ và tên
-													</label> <input type="text" value = "${nv.hoTen}" class="form-control"
-													 name = "HoTen">
+													</label> <input type="text" value = "${nv.hoTen}" class="form-control" name = "HoTen">
 												</div>
 											</div>
 										</div>

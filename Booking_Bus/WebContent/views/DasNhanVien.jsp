@@ -39,28 +39,11 @@
 			$("#info_admin").show();
 			$("#users").hide();
 		});
-		$("#list_users").on('click', function() {6
+		$("#list_users").on('click', function() {
 			$("#info_admin").hide();
 			$("#users").show();
 		});
-	
 	});
-	
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-	$('#slct').on('change', function (e) {
-	    var optionSelected = $("option:selected", this);
-	    var valueSelected = this.value;
-	    if( valueSelected == "NhanVien"){
-	    	 $("#inputChucVu").show();
-	    }
-	    else
-	    {
-	    	$("#inputChucVu").hide();
-	    }
-	});
-});
 </script>
 <style type="text/css">
 #content .hidden {
@@ -175,28 +158,6 @@ img {
 }
 
 </style>
-<script>
-$(document).ready(function () {
-	var updated = '${updated}';
-	if(updated == "true")
-	{
-		alert("Cap Nhap Thanh Cong!! :)");
-	}
-	else if(updated == "false")
-	{
-		alert("Opps...Cap Nhap Khong Thanh Cong!! " );
-	}
-	var InsertNV = '${success}';
-	if(InsertNV == "true")
-	{
-		alert("Thêm Thành Công!! :)");
-	}
-	else if(InsertNV == "false")
-	{
-		alert("Opps...Them Khong Thanh Cong!!"+ '${errorString}' );
-	}
-});
-</script>
 
 </head>
 
@@ -256,7 +217,7 @@ $(document).ready(function () {
 								method="get">
 								<div class="input-group no-border">
 									<input type="email" value="" class="form-control"
-										placeholder="Search Detail..." name="email_search" required>
+										placeholder="Search Detail..." name="email_search">
 									<button type="submit"
 										class="btn btn-default btn-round btn-just-icon">
 										<i class="material-icons">search</i>
@@ -315,7 +276,7 @@ $(document).ready(function () {
 								<option value="Admin"
 									<c:if test="${ choosefilter.compareTo('Admin')==0}">
 											selected 
-									</c:if>>All</option>
+									</c:if>>Admin</option>
 								<option value="KhachHang"
 									<c:if test="${ choosefilter.compareTo('KhachHang')==0}">
 											selected
@@ -346,7 +307,7 @@ $(document).ready(function () {
 								<tr>
 									<th scope="col" style="color: white;text-align: center;">Email</th>
 									<th scope="col" style="color: white;text-align: center;">Role</th>
-									<!-- <th scope="col" style="color: white;text-align: center;">Edit</th> -->
+									<th scope="col" style="color: white;text-align: center;">Edit</th>
 									<th scope="col" style="color: white;text-align: center;">Detail</th>
 								</tr>
 							</thead>
@@ -360,10 +321,10 @@ $(document).ready(function () {
 
 											<td  style="color: black;">${taikhoan.role}</td>
 
-											<!-- <td><a class="fa fa-pencil" id="select"
+											<td><a class="fa fa-pencil" id="select"
 												style="color: black; text-decoration: none; font-size: 15px; font-size: 20px;"
 												onclick="document.getElementById('modform').style.display='block';addRowHandlers();"
-												style="width:auto;"></a></td> -->
+												style="width:auto;"></a></td>
 										
 											<td><c:if test="${taikhoan.role == 'NhanVien'}">
 													<a href="infoNhanvien?email=${taikhoan.email}"
@@ -417,9 +378,9 @@ $(document).ready(function () {
 											<div class="col-md-3">
 												<div class="form-group">
 													<label class="bmd-label-floating">CMND</label> <input
-														type="text"  value="${admin.cMND}" class="form-control"
-														disabled style="text-align: center;background: #202940;color: red;">
-														<input type="hidden"  value="${admin.cMND}" name = "CMND">
+														type="text"  value="${admin.cMND}" class="form-control" name = "CMND"
+														disabled 
+														style="text-align: center;background: #202940;color: red;">
 												</div>
 											</div>
 												<div class="col-md-6">
@@ -427,7 +388,6 @@ $(document).ready(function () {
 													<label class="bmd-label-floating">Email</label> <input
 														type="text" value="${admin.email}" class="form-control" disabled 
 														style="text-align: center;background: #202940;color: red;">
-															
 												</div>
 											</div>
 											
@@ -470,7 +430,7 @@ $(document).ready(function () {
 						<div class="col-md-4">
 							<div class="card card-profile">
 								<div class="card-avatar">
-									<a href="#pablo" target="_blank"> <img class="img"
+									<a href="#pablo"> <img class="img"
 										src="${pageContext.request.contextPath}/img/tuan.jpg" />
 									</a>
 								</div>
@@ -478,7 +438,7 @@ $(document).ready(function () {
 									<h5 class="card-category">CEO</h5>
 									<h4 class="card-title">${admin.hoTen}</h4>
 									
-									<a href="https://www.facebook.com/thai.tuan1803" class="btn btn-primary btn-round">Follow</a>
+									<a href="#pablo" class="btn btn-primary btn-round">Follow</a>
 								</div>
 							</div>
 						</div>
@@ -503,9 +463,7 @@ $(document).ready(function () {
 						Profile</h2>
 					<div class="container">
 						<label><b>Email</b></label> <input type="text" id="email"
-							name="email_edit" disabled> 
-							<label><b>Role</b></label>
-							 <input
+							name="email_edit"> <label><b>Role</b></label> <input
 							type="text" id="role" name="role_edit">
 					<button type="submit" style=" border-radius: 30px;">Update</button>
 				</form>
@@ -528,7 +486,9 @@ $(document).ready(function () {
 
 			<!-- content Nhân_Viên -->
 			<div id="modform2" class="background-modal">
-				<form class="modal-content animate" action="${pageContext.request.contextPath}/InsertUserNhanVien" method="post">
+				<form class="modal-content animate"
+					action="${pageContext.request.contextPath}/InsertUserNhanVien"
+					method="post">
 					<div class="close-button">
 						<span
 							onclick="document.getElementById('modform2').style.display='none'"
@@ -538,16 +498,18 @@ $(document).ready(function () {
 						User</h2>
 					<div class="container2">
 						<label ><b>CMND</b></label> 
-						<input  style="background: #9095A2;" type="text" id="cmnd" name="cmnd_insert" required pattern="[0-9]*.{9,11}">
+						<input  style="background: #9095A2;" type="text" id="cmnd" name="cmnd_insert" required pattern="^[0-9]*$"> 
+						<label><b>Password</b></label>
+						<input  style="background: #9095A2;" type="text" id="pass" name="pass_insert">
 						 <label><b>Email</b></label>
 						<input  style="background: #9095A2;" type="text" id="email" name="email_insert" required
 							pattern="^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$">
 						<label><b>Họ và tên</b></label>
 						 <input  style="background: #9095A2;" type="text" id="hoten" name="hoten_insert" required>
 						  <label><b>SDT</b></label> 
-						  <input  style="background: #9095A2;" type="text" id="sdt" name="sdt_insert" pattern="[0-9]*.{10,11}" required> 
-						<label><b>Password</b></label>
-						<input  style="background: #9095A2;" type="password" id="pass" name="pass_insert" pattern=".{4,}">
+						  <input  style="background: #9095A2;" type="text" id="sdt" name="sdt_insert" required>
+						   <label><b>Chức vụ</b></label>
+						    <input  style="background: #9095A2;" type="text" id="chucvu" name="chucvu_insert">
 						<label><b>Role</b></label>
 						<div class="select">
 							<select name="role_insert" id="slct" required>
@@ -556,10 +518,6 @@ $(document).ready(function () {
 								<option value="KhachHang">Khách hàng</option>
 								<option value="Admin">Admin</option>
 							</select>
-						</div>
-						<div id="inputChucVu" style="display:none;">
-						<label><b>Chức vụ</b></label>
-						    <input  style="background: #9095A2;" type="text" id="chucvu" name="chucvu_insert">
 						</div>
 						<button type="submit">Insert</button>
 						<button
@@ -604,6 +562,7 @@ $(document).ready(function () {
 		$(document).ready(function() {
 			// Javascript method's body can be found in assets/js/demos.js
 			md.initDashboardPageCharts();
+
 		});
 	</script>
 </body>

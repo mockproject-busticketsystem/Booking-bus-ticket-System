@@ -15,8 +15,6 @@ public interface TaiKhoanDAO {
 	public int UpdateTaiKhoan(TaiKhoan TaiKhoan);
 	public ArrayList<KhachHang> getInfoKhachHang(String email);
 	public ArrayList<NhanVien> getInfoNhanVien(String email);
-	public void themUser_NhanVien(TaiKhoan taiKhoan, NhanVien nhanVien);
-	public void themUser_KhachHang(TaiKhoan taiKhoan, KhachHang khachHang);
 	public NhanVien getInfoAdmin(String email);
 	public ArrayList<TaiKhoan> getTaiKhoanFilter(String role);
 	public boolean InsertUserCustom(Connection conn, TaiKhoan taiKhoan);

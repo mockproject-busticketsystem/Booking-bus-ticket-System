@@ -210,61 +210,7 @@ public class TaiKhoanDAOImplement implements TaiKhoanDAO{
 		}
 		return arr;
 	}
-	@Override
-	public void themUser_NhanVien(TaiKhoan taikhoan, NhanVien nhanVien) {
-		// TODO Auto-generated method stub
-		Connection connection = null;
-		try {
-			connection = DBConnect.getMySQLConnection();
-			String sql = "Insert into taikhoan values(?, ?, ?)";
-			String sql1 = "Insert into nhanvien values(?, ?, ?, ?, ?)";
-			PreparedStatement ps = connection.prepareStatement(sql);
-			PreparedStatement ps1 = connection.prepareStatement(sql1);
-			ps.setString(1, taikhoan.getEmail());
-			ps.setString(2, taikhoan.getPass());
-			ps.setString(3, taikhoan.getRole());
-			ps1.setString(1, nhanVien.getcMND());
-			ps1.setString(2, nhanVien.getHoTen());
-			ps1.setString(3, nhanVien.getsDT());
-			ps1.setString(4, nhanVien.getEmail());
-			ps1.setString(5, nhanVien.getChucVu());
-			System.out.println(ps.executeUpdate());
-			System.out.println("insert nhân viên: " + ps1.executeUpdate());
-			ps.executeUpdate();
-			ps1.executeUpdate();
-//			return 1;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-//		return 0;
-	}
-	@Override
-	public void themUser_KhachHang(TaiKhoan taikhoan, KhachHang khachHang) {
-		// TODO Auto-generated method stub
-		Connection connection = null;
-		try {
-			connection = DBConnect.getMySQLConnection();
-			String sql = "Insert taikhoan(Email,Pass,Role) values(?, ?, ?)";
-			String sql1 = "Insert into khachhang values(?, ?, ?, ?)";
-			PreparedStatement ps = connection.prepareStatement(sql);
-			PreparedStatement ps1 = connection.prepareStatement(sql1);
-			ps.setString(1, taikhoan.getEmail());
-			ps.setString(2, taikhoan.getPass());
-			ps.setString(3, taikhoan.getRole());
-			ps1.setString(1, khachHang.getcMND());
-			ps1.setString(2, khachHang.getHoTen());
-			ps1.setString(3, khachHang.getsDT());
-			ps1.setString(4, khachHang.getEmail());
-			System.out.println(ps.executeUpdate());
-			System.out.println(ps1.executeUpdate());
-			ps.executeUpdate();
-			ps1.executeUpdate();
-//			retrun 1;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-//		return 0;
-	}
+	
 	@Override
 	public ArrayList<TaiKhoan> getTaiKhoanFilter(String role) {
 		// TODO Auto-generated method stub
@@ -344,7 +290,7 @@ public class TaiKhoanDAOImplement implements TaiKhoanDAO{
 		}
 	}
 	@Override
-	public boolean InsertUserCustom(Connection conn, TaiKhoan taiKhoan) {
+public boolean InsertUserCustom(Connection conn, TaiKhoan taiKhoan) {
 		try {
 			conn =  ConnectionUtils.getConnection();
 			String sql = "Insert into TaiKhoan values(?,?,?)";

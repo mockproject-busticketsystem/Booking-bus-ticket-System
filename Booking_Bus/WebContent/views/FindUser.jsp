@@ -38,7 +38,7 @@
 							<tr>
 								<th scope="col" style="color: white;">Email</th>
 								<th scope="col" style="color: white;">Role</th>
-								<th scope="col" style="color: white;">Edit</th>
+								<!-- <th scope="col" style="color: white;">Edit</th> -->
 								<th scope="col" style="color: white;">Detail</th>
 							</tr>
 						</thead>
@@ -47,18 +47,18 @@
 									<td>${tkSearch.email}</td>
 									<input type="hidden" value="${tkSearch.email}" name="email">
 									<td>${tkSearch.role}</td>
-									<td><a class="fa fa-pencil" id="select"
+									<!-- <td><a class="fa fa-pencil" id="select"
 										style="color: white; text-decoration: none; font-size: 15px; font-size: 20px;"
 										onclick="document.getElementById('modform').style.display='block';addRowHandlers();"
-										style="width:auto;"></a></td>
+										style="width:auto;"></a></td> -->
 									<%-- 								<td>&nbsp&nbsp&nbsp<a class="material-icons"
 									style="color: white; text-decoration: none; 
 									text-align: center;" href="http://localhost:8080/Booking_Bus/DeleteUserServlet?email_delete=${taikhoan.email}">&#xE872;</a>
 								</td> --%>
-									<td><c:if test="${tkSearch.role == 'nhanvien'}">
+									<td><c:if test="${tkSearch.role == 'NhanVien'}">
 											<a href="infoNhanvien?email=${tkSearch.email}"
 												class="btn btn-info">Detail</a>
-										</c:if> <c:if test="${tkSearch.role == 'khachhang'}">
+										</c:if> <c:if test="${tkSearch.role == 'KhachHang'}">
 											<a href="infoKhachhang?email=${tkSearch.email}"
 												class="btn btn-info">Detail</a>
 										</c:if></td>

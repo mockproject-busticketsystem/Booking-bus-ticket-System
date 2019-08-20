@@ -25,7 +25,6 @@ public class SearchUserByEmail extends HttpServlet{
 		String email = req.getParameter("email_search");
 		TaiKhoan taiKhoan = tkDao.findUser(email);
 		req.setAttribute("tkSearch", taiKhoan);
-		System.out.println("aaaAA" + taiKhoan.getRole());
 		req.getServletContext().getRequestDispatcher("/views/FindUser.jsp").forward(req, resp);
 	}
 	@Override

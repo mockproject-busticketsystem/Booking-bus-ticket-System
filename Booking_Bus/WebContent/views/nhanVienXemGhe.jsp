@@ -66,25 +66,25 @@
 
 			<div id="head1">
 				<h4>
-					<div class="left1" style="margin-left:30px" >Id Chuyến  &nbsp</div> 			
-					<div class=left2> ${idchuyen}</div>
+					<div class="left1" style="margin-left: 30px">Id Chuyến &nbsp</div>
+					<div class=left2>${idchuyen}</div>
 					<div class=left1>
 						Giờ Xe Chạy </br> </br>Ngày Đi
 					</div>
 					<div class=left2>
-						 ${giodi} </br> </br>  ${ngaydi}
+						${giodi} </br> </br> ${ngaydi}
 					</div>
 					<div class=left1>
 						Khởi Hành </br> </br> Điểm Đến
 					</div>
 					<div class=left2>
-						 ${diemdi}</br> </br>  ${diemden}
+						${diemdi}</br> </br> ${diemden}
 					</div>
 					<div class=left1>
 						Người đặt </br> </br>SĐT
 					</div>
 					<div class=left2>
-						 ${hoten}</br> </br>  ${sdt}
+						${hoten}</br> </br> ${sdt}
 					</div>
 				</h4>
 			</div>
@@ -105,21 +105,24 @@
 							</tr>
 						</thead>
 						<tbody>
+						
 							<c:forEach items="${ghe}" var="chongoi">
 
 
 								<tr>
 									<td>${chongoi.maGhe}</td>
 									<td><c:choose>
-									<c:when test="${chongoi.status == true}">
-								<img  src="${pageContext.request.contextPath}/img/accept.png"  height="22" width="22">
-									
-									</c:when>
-									<c:when test="${chongoi.status == false}">
-										<img src="${pageContext.request.contextPath}/img/x.png"  height="22" width="22">
-									
-									</c:when>
-									</c:choose></td>
+											<c:when test="${chongoi.status == true}">
+												<img src="${pageContext.request.contextPath}/img/accept.png"
+													height="22" width="22">
+
+											</c:when>
+											<c:when test="${chongoi.status == false}">
+												<img src="${pageContext.request.contextPath}/img/x.png"
+													height="22" width="22">
+
+											</c:when>
+										</c:choose></td>
 									<td>${chongoi.ngayGioDat}</td>
 									<form method="POST"
 										action="${pageContext.request.contextPath}/DashboardNhanVien/XemGhe">
@@ -129,14 +132,17 @@
 											type="hidden" name="giodi" value="${giodi}"></input> <input
 											type="hidden" name="diemdi" value="${diemdi}"></input> <input
 											type="hidden" name="diemden" value="${diemden}"></input> <input
-											type="hidden" name="maghe" value="${chongoi.maGhe}"></input>
+											type="hidden" name="maghe" value="${chongoi.maGhe}"></input><input
+											type="hidden" name="statuschoose" value="${chongoi.status}"></input>
 										<td><c:if test="${chongoi.status==((false))}">
-												<input type="submit" name="update" value="Update" style="border-radius:20px">
+												<input type="submit" name="update" value="Update"
+													style="border-radius: 20px">
 											</c:if></td>
 
-										<td><input type="submit" name="delete" value="Delete" style="border-radius:20px"></td>
+										<td><input type="submit" name="delete" id="btnDelete" value="Delete"
+											style="border-radius: 20px"></td>
 									</form>
-
+										
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -165,6 +171,7 @@
 		$(document).ready(function() {
 			$('#mydataTable').DataTable();
 		});
+		
 	</script>
 </body>
 </html>

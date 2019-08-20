@@ -252,6 +252,44 @@ public class VexeDAOImplement implements VexeDAO{
 		}
 		return arr;
 	}
+	public ArrayList<VeXe> getAllVeXe()
+	{
+		ArrayList<VeXe> array =  new ArrayList<>();
+		try {
+			Connection conn = ConnectionUtils.getConnection();
+			String query="SELECT * FROM vexe INNER JOIN chuyendi ON vexe.IdChuyen=chuyendi.id "
+					+ "INNER JOIN tuyendi ON chuyendi.MaTuyen=tuyendi.Id";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				int iDChuyen = rs.getInt("IdChuyen");
+				String cMND = rs.getString("CMND");
+				String diaDiemDi = rs.getString("DiaDiemDi");
+				String diaDiemDen = rs.getString("DiaDiemDen");
+				String hangDoi = rs.getString("HangDoi");
+				String maTuyen = rs.getString("MaTuyen");
+				LocalTime GioDi = LocalTime.parse(rs.getString("GioDi"));
+				LocalTime GioDen = LocalTime.parse(rs.getString("GioDen"));
+				LocalDate ngayDi = LocalDate.parse(rs.getString("NgayDi"));
+//				 DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//				 LocalDateTime ngayGioDi_dat = LocalDateTime.parse((rs.getTimestamp("NgayGioDat")).toString(), inputFormatter);
+//				System.out.println(ngayGioDi_dat);
+				String NgayGioDat = rs.getString("NgayGioDat");
+				String maGhe = rs.getString("MaGhe");
+				BigDecimal donGia = rs.getBigDecimal("DonGia");
+				Boolean status = rs.getBoolean("Status");
+				TuyenDi tuyenDi = new TuyenDi(maTuyen,diaDiemDi,diaDiemDen,hangDoi);
+				ChuyenDi chuyenDi = new ChuyenDi(iDChuyen,GioDi,GioDen,donGia,tuyenDi);
+				VeXe veXe = new VeXe(cMND,ngayDi,maGhe,donGia,status,chuyenDi,NgayGioDat);
+				array.add(veXe);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return array;
+	}
 
 	
 	public ArrayList<VeXe> filterDistinct(String value,String count)

@@ -168,15 +168,15 @@
 							<input placeholder="Họ Tên" type="text" name="Ten" required>
 							<!-- CMND -->
 							<input placeholder="CMND" name="CMND" type="text"
-								pattern="[0-9]*" required>
+								pattern="[0-9]*.{9,11}" required>
 							<!-- SDT -->
-							<input placeholder="SDT" type="text" name="SDT" pattern="[0-9]*"
+							<input placeholder="SDT" type="text" name="SDT" pattern="[0-9]*.{10,11}"
 								required>
 							<!-- Email -->
 							<input placeholder="Email" class="mail" type="email" name="Email"
 								required>
 							<!-- Pass -->
-							<input placeholder="Password" type="password" name="Pass"
+							<input placeholder="Password" type="password" name="Pass" pattern=".{4,}"
 								id="Pass" required>
 							<!-- Confirm Pass -->
 							<input placeholder="Confirm Password" type="password"
@@ -229,14 +229,16 @@
 										style="font-size: 15px; font-weight: bold;"><img alt=""
 											src="https://www.innhanhphuocloctho.vn/hoangnhu/upload/images/images.png"
 											style="cursor: default; height: 29px; width: 30px;">&nbsp;
-											&nbsp;<ins>bookbus1803@gmail.com</ins></span></span></span>
+											&nbsp;<a href="mailto:bookbus1803@gmail.com"><ins>bookbus1803@gmail.com</ins></a>
+											</span></span></span>
 							</p>
 
 							<p>
 								<span style="line-height: 2"><span style="color: #000000"><span
 										style="font-size: 15px; font-weight: bold;"><img alt=""
 											src="https://www.innhanhphuocloctho.vn/hoangnhu/upload/images/w.png"
-											style="cursor: default; height: 30px; width: 30px">&nbsp;&nbsp;<ins>www.bookbuscar.com.vn</ins></span></span></span>
+											style="cursor: default; height: 30px; width: 30px">&nbsp;&nbsp;
+											<a href=""><ins>www.bookbuscar.com.vn</ins></a></span></span></span>
 							</p></div>
     </div>
 			</div>

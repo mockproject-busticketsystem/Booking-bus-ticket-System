@@ -52,7 +52,7 @@ public class InfoUserLogin extends HttpServlet {
 			String email = loginedUser.getEmail();
 			session.setAttribute("role",role);	
 			session.setAttribute("email",email);
-			if(role.equals("khachhang")) {
+			if(role.equals("KhachHang")) {
 				String hoTen = "";
 				hoTen = tkDao.getHoten(role, loginedUser.getEmail());
 				session.setAttribute("hoTen", hoTen);
@@ -62,15 +62,15 @@ public class InfoUserLogin extends HttpServlet {
 				session.setAttribute("CMND",CMND);
 				request.getRequestDispatcher("/pageUser").forward(request, response);
 			}
-			else if(role.equals("admin")) {
+			else if(role.equals("Admin")) {
 
 				request.getRequestDispatcher("/DashboardAdmin").forward(request, response);
 			}
-			else if(role.equals("nhanvien")) {
+			else if(role.equals("NhanVien")) {
 				String hoTen = "";
 				hoTen = tkDao.getHoten(role,loginedUser.getEmail());
 				request.setAttribute("hoTen", hoTen);
-				request.getRequestDispatcher("/DashboardNhanVien").forward(request, response);
+				request.getRequestDispatcher("/ViewAll").forward(request, response);
 			}
 		}
 	}
