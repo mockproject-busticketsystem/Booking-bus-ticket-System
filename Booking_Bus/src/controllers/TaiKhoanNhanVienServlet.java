@@ -31,6 +31,9 @@ public class TaiKhoanNhanVienServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List<VeXe> ve = null;
+
+
+
 		ArrayList<String> thuoctinh = new ArrayList<String>();
 		thuoctinh.add("All");
 		thuoctinh.add("Id Chuyen");

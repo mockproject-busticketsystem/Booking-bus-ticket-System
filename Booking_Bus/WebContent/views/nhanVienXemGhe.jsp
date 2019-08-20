@@ -23,24 +23,41 @@
 		<div id=main2>
 
 			<div class=top>
-				<h4>main</h4>
+				<h5>Nhân Viên Quản Lý</h5>
 				<hr class=new4>
+					<div class=right>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/LoadVe">
+
+						<h4>
+							<input type="submit" value="All Vé">
+					</form>
+					</h4>
+				</div>
 				<div class=right>
 					<form method="POST"
 						action="${pageContext.request.contextPath}/DashboardNhanVien">
 
 						<h4>
-							<input type="submit" value="Back Nhân Viên">
+							<input type="submit" value="All Chuyến">
 					</form>
 					</h4>
 				</div>
+						<div class=right2>
+					
+						<h4>
+							<input type="submit" value="Xem Sơ Đồ Ghế">
+				
+					</h4>
+				</div>
+	
 				<div class=right2>
 					<form method="POST"
 						action="${pageContext.request.contextPath}/DashboardNhanVien/XemVe">
 						<input type="hidden" name="idchuyen" value=${idchuyen}></input> <input
 							type="hidden" name="ngaydi" value=${ngaydi}></input>
 						<h4>
-							<input type="submit" value="Back Chuyến Đi">
+							<input type="submit" value="Back Chuyến" >
 					</form>
 					</h4>
 				</div>
@@ -134,15 +151,16 @@
 											type="hidden" name="diemden" value="${diemden}"></input> <input
 											type="hidden" name="maghe" value="${chongoi.maGhe}"></input><input
 											type="hidden" name="statuschoose" value="${chongoi.status}"></input>
+										
 										<td><c:if test="${chongoi.status==((false))}">
 												<input type="submit" name="update" value="Update"
 													style="border-radius: 20px">
 											</c:if></td>
 
-										<td><input type="submit" name="delete" id="btnDelete" value="Delete"
-											style="border-radius: 20px"></td>
+										<td><c:if test="${checkDelete==(true)}"><input type="submit" name="delete" value="Delete"
+											style="border-radius: 20px"></c:if></td>
 									</form>
-										
+									
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -171,7 +189,6 @@
 		$(document).ready(function() {
 			$('#mydataTable').DataTable();
 		});
-		
 	</script>
 </body>
 </html>

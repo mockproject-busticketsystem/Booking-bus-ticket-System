@@ -20,10 +20,43 @@
 <body>
 	<div id=main_top>
 		<div id=main2>
-			<div class=top>
-				<h4>main</h4>
+					<div class=top>
+				<h5>Nhân Viên Quản Lý</h5>
 				<hr class=new4>
+				<div class=right>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/LoadVe">
+
+						<h4>
+							<input type="submit" value="All Vé">
+					</form>
+					</h4>
+				</div>
+				<div class=right2>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/DashboardNhanVien">
+						<input type="hidden" name="idchuyen" value=${idchuyen}></input> <input
+							type="hidden" name="ngaydi" value=${ngaydi}></input>
+						<h4>
+							<input type="submit" value="All Chuyến">
+					</form>
+					</h4>
+				</div>
+					<div class=right2>
+					
+						<h4>
+							<input type="submit" value="Xem Sơ Đồ Ghế">
+				
+					</h4>
+				</div>
+	
+
+
+
+
+
 			</div>
+
 
 
 
@@ -32,7 +65,7 @@
 		<div id="main">
 			<div id=head>
 				<div class=logo>
-					<p>Nhân viên quản lý</p>
+					<p>Xem Tất Cả Chuyến</p>
 				</div>
 
 			</div>
@@ -235,46 +268,31 @@
 
 
 				<table id="mydataTable" class="table table-striped table-bordered"
-					style="width: 100%" style=" overflow-x:auto!important; ">
+					style="width: 100%">
 
 					<thead>
 
 						<tr>
-							<th scope="col" style="color: black;">CMND</th>
+							<th scope="col" style="color: black;">Chuyến</th>
+							<th scope="col" style="color: black;">Ngày Đi</th>
+							<th scope="col" style="color: black;">Giờ</th>
 							<th scope="col" style="color: black;">Điểm Đi</th>
 							<th scope="col" style="color: black;">Điểm Đến</th>
-							<th scope="col" style="color: black;">Ngày Đi</th>
-							<th scope="col" style="color: black;">Giờ Đi</th>
-							<th scope="col" style="color: black;">Giờ Đến</th>
 							<th scope="col" style="color: black;">Đơn Giá</th>
-							<th scope="col" style="color: black;">Mã Ghế</th>
 							<th scope="col" style="color: black;">Hàng Đợi</th>
+							<th scope="col" style="color: black;">Đã Đặt</th>
+							<th scope="col" style="color: black;">Tổng Giá</th>
 							<th scope="col" style="color: black;">Status</th>
-							<th scope="col" style="color: black;">Ngày Đặt</th>
-							<th scope="col" style="color: black;">Chi Tiết</th>
-							<th scope="col" style="color: black;">Xóa Vé</th>
+							<th scope="col" style="color: black;">View vé</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${viewAllTicket}" var="ve">
+						<c:forEach items="${AllInfor}" var="ve">
 
 							<tr>
-								<td>${ve.cMND}</td>
-								<td>${ve.chuyenDi.tuyenDi.diaDiemDi}</td>
-								<td>${ve.chuyenDi.tuyenDi.diaDiemDen}</td>
+								<td>${ve.iDChuyen}</td>
 								<td>${ve.ngayDi}</td>
-								<td>${ve.chuyenDi.gioDi}</td>
-								<td>${ve.chuyenDi.gioDen}</td>
-								<td>${ve.donGia}</td>
-								<td>${ve.maGhe}</td>
-								<td>${ve.chuyenDi.tuyenDi.hangDoi}</td>
-								<td>${ve.status}</td>
-								<td>${ve.ngayGioDat}</td>
-								<td><span class="table-remove">
-								<button type="button" id="buttonRe" class="btn btn-danger btn-rounded btn-sm my-0">Chi Tiết</button></span></td>
-								<td><span class="table-remove">
-								<button type="button" id="buttonRe" class="btn btn-danger btn-rounded btn-sm my-0">Xóa</button></span></td>
-								<%-- <td>${ve.gioDi}</td>
+								<td>${ve.gioDi}</td>
 								<td>${ve.diaDiemDi}</td>
 								<td>${ve.diaDiemDen}</td>
 								<td>${ve.donGia}</td>
@@ -290,15 +308,14 @@
 										<img src="${pageContext.request.contextPath}/img/x.png"  height="22" width="22">
 									
 									</c:when>
-									</c:choose></td> --%>
-									
-								<%-- <form method="POST"
+									</c:choose></td>
+								<form method="POST"
 									action="${pageContext.request.contextPath}/DashboardNhanVien/XemVe">
 									<input type="hidden" name="idchuyen" value=${ve.iDChuyen}></input>
 									<input type="hidden" name="ngaydi" value=${ve.ngayDi}></input>
 									<td><input type="submit" value="xem vé" style="width:80px"></td>
 
-								</form> --%>
+								</form>
 							</tr>
 
 						</c:forEach>

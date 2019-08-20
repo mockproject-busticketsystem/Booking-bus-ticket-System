@@ -24,7 +24,49 @@ import models.TuyenDi;
 import models.VeXe;
 
 public class VexeDAOImplement implements VexeDAO{
-
+	@Override
+	public ArrayList<VeXe> getAllVe(){
+		Connection connection = null;
+		try {
+			connection = DBConnect.getMySQLConnection();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String sql = "SELECT vexe.IdChuyen,SDT,NgayDi,GioDi,GioDen,DiaDiemDi,DiaDiemDen,MaGhe,khachhang.CMND,HoTen FROM vexe,khachhang,chuyendi,tuyendi where khachhang.CMND=vexe.CMND and chuyendi.id=vexe.IdChuyen and chuyendi.MaTuyen=tuyendi.Id;";
+		ArrayList<VeXe> arr = new ArrayList<>();
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+		
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				VeXe vexe = new VeXe();
+				LocalDate date= LocalDate.parse(rs.getString("NgayDi"));
+				LocalTime time= LocalTime.parse(rs.getString("GioDi"));
+				LocalTime time2= LocalTime.parse(rs.getString("GioDen"));
+				vexe.setGioDi(time);
+				vexe.setGioDen(time2);
+				vexe.setNgayDi(date);
+				vexe.setDiaDiemDen(rs.getString("DiaDiemDen"));
+				vexe.setsDT(rs.getString("SDT"));
+				vexe.setDiaDiemDi(rs.getString("DiaDiemDi"));
+				vexe.setiDChuyen(rs.getInt("IdChuyen"));
+				vexe.setMaGhe(rs.getString("MaGhe"));
+		
+				vexe.setcMND(rs.getString("CMND"));
+				vexe.setHoTen(rs.getString("HoTen"));
+		
+		
+				arr.add(vexe);
+			}
+			connection.close();
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return arr;
+	}
 	@Override
 	public ArrayList<VeXe> getMaghe(Integer idChuyen,  LocalDate ngayDi) {
 		// TODO Auto-generated method stub
@@ -251,44 +293,6 @@ public class VexeDAOImplement implements VexeDAO{
 			e.printStackTrace();
 		}
 		return arr;
-	}
-	public ArrayList<VeXe> getAllVeXe()
-	{
-		ArrayList<VeXe> array =  new ArrayList<>();
-		try {
-			Connection conn = ConnectionUtils.getConnection();
-			String query="SELECT * FROM vexe INNER JOIN chuyendi ON vexe.IdChuyen=chuyendi.id "
-					+ "INNER JOIN tuyendi ON chuyendi.MaTuyen=tuyendi.Id";
-			PreparedStatement ps = conn.prepareStatement(query);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next())
-			{
-				int iDChuyen = rs.getInt("IdChuyen");
-				String cMND = rs.getString("CMND");
-				String diaDiemDi = rs.getString("DiaDiemDi");
-				String diaDiemDen = rs.getString("DiaDiemDen");
-				String hangDoi = rs.getString("HangDoi");
-				String maTuyen = rs.getString("MaTuyen");
-				LocalTime GioDi = LocalTime.parse(rs.getString("GioDi"));
-				LocalTime GioDen = LocalTime.parse(rs.getString("GioDen"));
-				LocalDate ngayDi = LocalDate.parse(rs.getString("NgayDi"));
-//				 DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//				 LocalDateTime ngayGioDi_dat = LocalDateTime.parse((rs.getTimestamp("NgayGioDat")).toString(), inputFormatter);
-//				System.out.println(ngayGioDi_dat);
-				String NgayGioDat = rs.getString("NgayGioDat");
-				String maGhe = rs.getString("MaGhe");
-				BigDecimal donGia = rs.getBigDecimal("DonGia");
-				Boolean status = rs.getBoolean("Status");
-				TuyenDi tuyenDi = new TuyenDi(maTuyen,diaDiemDi,diaDiemDen,hangDoi);
-				ChuyenDi chuyenDi = new ChuyenDi(iDChuyen,GioDi,GioDen,donGia,tuyenDi);
-				VeXe veXe = new VeXe(cMND,ngayDi,maGhe,donGia,status,chuyenDi,NgayGioDat);
-				array.add(veXe);
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return array;
 	}
 
 	

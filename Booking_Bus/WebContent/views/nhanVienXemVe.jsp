@@ -21,26 +21,31 @@
 	<div id=main_top>
 		<div id=main2>
 			<div class=top>
-				<h4>main</h4>
+				<h5>Nhân Viên Quản Lý</h5>
 				<hr class=new4>
+	<div class=right>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/LoadVe">
 
+						<h4>
+							<input type="submit" value="All Vé">
+					</form>
+					</h4>
+				</div>
 				<div class=right>
 					<form method="POST"
 						action="${pageContext.request.contextPath}/DashboardNhanVien">
 
 						<h4>
-							<input type="submit" value="Back Nhân Viên">
+							<input type="submit" value="All Chuyến">
 					</form>
 					</h4>
 				</div>
 				<div class=right2>
-					<form method="POST"
-						action="${pageContext.request.contextPath}/DashboardNhanVien/LoadBangGhe">
-						<input type="hidden" name="idchuyen" value="${idchuyen}"></input>
-									<input type="hidden" name="ngaydi" value="${ngaydi}"></input>
+					
 						<h4>
 							<input type="submit" value="Xem Sơ Đồ Ghế">
-					</form>
+				
 					</h4>
 				</div>
 	
@@ -128,6 +133,8 @@
 									</c:choose></td>
 								<form method="POST"
 									action="${pageContext.request.contextPath}/DashboardNhanVien/XemGhe">
+									
+								<input type="hidden" name="cmnd" value="${ve.cMND}"></input>
 									<input type="hidden" name="cmnd" value="${ve.cMND}"></input> <input
 										type="hidden" name="hoten" value="${ve.hoTen}"></input> <input
 										type="hidden" name="idchuyen" value="${ve.iDChuyen}"></input>
@@ -136,6 +143,7 @@
 									<input type="hidden" name="diemdi" value="${ve.diaDiemDi}">
 									</input> <input type="hidden" name="diemden" value="${ve.diaDiemDen}"></input>
 									<input type="hidden" name="sdt" value="${ve.sDT}"></input>
+											
 									<td><input type="submit" value="xem ghế" style="border-radius:20px"></input></td>
 								</form>
 							</tr>

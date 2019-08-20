@@ -9,6 +9,9 @@ import models.NhanVien;
 import models.TaiKhoan;
 import models.VeXe;;
 public interface VexeDAO {
+	
+	public ArrayList<VeXe> getAllVe();
+	
 	public ArrayList<VeXe> getMaghe(Integer idChuyen, LocalDate ngayDi);
 //	public void Booking_Ve(VeXe veXe, String ghe[]);
 	public ArrayList<VeXe> viewAllTicketCusTom(String cMND);
