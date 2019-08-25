@@ -98,7 +98,8 @@
 														<td>${item.donGia}</td>
 														<td>${item.ngayGioDat}</td>
 														<td><span class="table-remove">
-														<button type="button" id="buttonRe" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span></td>
+														<button type="button" id="buttonRe" class="btn btn-danger btn-rounded btn-sm my-0"
+														>Remove</button></span></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -254,6 +255,7 @@ $(document).ready(function () {
 	 $("tbody", "#example").on("click", "td",function() {
 			if(this.innerText=="REMOVE")
 			{
+				if (confirm('Bạn muốn xóa phiếu đặt chỗ?')){
 				$.ajax({
 		            url: "DeleteTicketbyCustom",//your jsp page name
 		           data: {diemDi:diemDi, diemDen:diemDen, ngayDi:ngayDi, gioDi:gioDi, maGhe:maGhe, hangDoi:hangDoi
@@ -266,7 +268,8 @@ $(document).ready(function () {
 		            error : function(jqXHR, exception) {
 						console.log('Error occured!!');
 					}
-		        });	
+		        });
+				}
 			}
 	 });
 	});

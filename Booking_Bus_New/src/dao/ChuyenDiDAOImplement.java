@@ -5,15 +5,46 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
 import connect.ConnectionUtils;
 import connect.DBConnect;
 import models.ChuyenDi;
+import models.TuyenDi;
 
 public class ChuyenDiDAOImplement implements ChuyenDiDAO{
+	private TuyenDiDAOImplement tuyenDiDao = new TuyenDiDAOImplement();
+	
+	@Override
+	public ArrayList<ChuyenDi> getAllChuyen() {
+		ArrayList<ChuyenDi> allchuyen = new ArrayList<>();
+		Connection connection = null;
+		try {
+			connection = ConnectionUtils.getConnection();
+			String sql = "select * from chuyendi";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				int id = rs.getInt("id");
+				BigDecimal donGia = rs.getBigDecimal("DonGia");
+				LocalTime gioDen = LocalTime.parse(rs.getString("GioDen"));
+				String maTuyen = rs.getString("MaTuyen");
+				LocalTime gioDi = LocalTime.parse(rs.getString("GioDi"));
+				TuyenDi tuyenDi = new TuyenDi();
+				tuyenDi = tuyenDiDao.getTuyenDi(maTuyen);
+				ChuyenDi chuyenDi = new ChuyenDi(id,gioDi,gioDen,donGia,tuyenDi);
+				allchuyen.add(chuyenDi);
+			}
+			connection.close();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return allchuyen;
+	}
 	@Override
 	public ChuyenDi findChuyenDi(String idTuyen, LocalTime gioDi) {
 		// TODO Auto-generated method stub

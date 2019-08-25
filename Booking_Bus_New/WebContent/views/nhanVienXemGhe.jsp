@@ -30,7 +30,7 @@
 						action="${pageContext.request.contextPath}/LoadVe">
 
 						<h4>
-							<input type="submit" value="All Vé">
+							<input type="submit" value="Thông Tin Vé">
 					</form>
 					</h4>
 				</div>
@@ -39,7 +39,15 @@
 						action="${pageContext.request.contextPath}/DashboardNhanVien">
 
 						<h4>
-							<input type="submit" value="All Chuyến">
+							<input type="submit" value="Tình Trạng Vé">
+					</form>
+					</h4>
+				</div>
+					<div class=right2>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/LoadChuyen">
+						<h4>
+							<input type="submit" value="Xem Chuyến">
 					</form>
 					</h4>
 				</div>

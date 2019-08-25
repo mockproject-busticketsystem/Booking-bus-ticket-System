@@ -47,8 +47,7 @@ public class DeleteTicketbyCustom extends HttpServlet {
 		HttpSession session = request.getSession();
 		TaiKhoan taiKhoan = MyConnect.getLoginedUser(session);
 		// show thong tin khach
-		KhachHangDAOImplement khachHangDao = new KhachHangDAOImplement();
-		KhachHang khachHang = khachHangDao.showInfor(taiKhoan);
+		KhachHang khachHang = MyConnect.getLoginedKhachHang(session);
 		String diemDi = request.getParameter("diemDi");
 		String diemDen = request.getParameter("diemDen");
 		String ngayDi = request.getParameter("ngayDi");

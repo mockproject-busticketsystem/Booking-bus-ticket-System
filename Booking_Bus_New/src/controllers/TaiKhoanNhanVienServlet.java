@@ -36,14 +36,8 @@ public class TaiKhoanNhanVienServlet extends HttpServlet{
 
 		ArrayList<String> thuoctinh = new ArrayList<String>();
 		thuoctinh.add("All");
-		thuoctinh.add("Id Chuyen");
-		thuoctinh.add("Ngay Di");
-		thuoctinh.add("Gio Di");
 		thuoctinh.add("Diem Di");
 		thuoctinh.add("Diem Den");
-		thuoctinh.add("Don Gia");
-		thuoctinh.add("Hang Doi");
-
 		req.setAttribute("thuoctinh", thuoctinh);
 
 
@@ -54,21 +48,26 @@ public class TaiKhoanNhanVienServlet extends HttpServlet{
 		String choosevalues2=req.getParameter("choosevalues2");
 
 		if(choosethuoctinh==null)choosethuoctinh="All";
-		if(choosethuoctinh2==null||choosethuoctinh.equals("All"))choosethuoctinh2="All";
-		if(choosevalues==null)choosevalues="filter value";
-		if(choosevalues2==null)choosevalues2="filter value";
+		if(choosethuoctinh2==null||choosethuoctinh.equals("All"))
+		{
+			choosethuoctinh2="All";
+		}
+		if(choosevalues==null)
+			choosevalues="filter value";
+		if(choosevalues2==null)
+			choosevalues2="filter value";
 		req.setAttribute("choosethuoctinh2", choosethuoctinh2);
 		req.setAttribute("choosethuoctinh", choosethuoctinh);
 		req.setAttribute("choosevalues", choosevalues);
 		req.setAttribute("choosevalues2", choosevalues2);
-		
+
 		//distinct  filter values
 
 		String temp="0";
 		String temp2="0";	
 
-		String data[] = {"IdChuyen", "NgayDi", "GioDi","DiaDiemDi","DiaDiemDen","DonGia","HangDoi"};
-		String datachoose[]={"Id Chuyen", "Ngay Di", "Gio Di","Diem Di","Diem Den","Don Gia","Hang Doi"};
+		String data[] = {"DiaDiemDi","DiaDiemDen"};
+		String datachoose[]={"Diem Di","Diem Den"};
 		for(int i=0;i<datachoose.length;i++)
 		{
 			if(choosethuoctinh.equals(datachoose[i]))
@@ -81,24 +80,23 @@ public class TaiKhoanNhanVienServlet extends HttpServlet{
 			}	
 		}
 
-
-
+		System.out.println(choosevalues);
 		List<VeXe> distinct = null;
 		distinct = vexeDao.filterDistinct(choosevalues,temp);
 		req.setAttribute("distinct", distinct);
 		List<VeXe> distinct2 = null;
 		distinct2 = vexeDao.filterDistinct2(choosevalues,temp,choosevalues2,temp2);
 		req.setAttribute("distinct2", distinct2);
-		
+
 		if(choosevalues!=null||choosethuoctinh.equals("All"))
 		{
 
-	if(choosevalues.equals("filter value")) {
-		temp="0";
-	}
-	if(choosevalues2.equals("filter value")) {
-		temp2="0";
-	}
+			if(choosevalues.equals("filter value")) {
+				temp="0";
+			}
+			if(choosevalues2.equals("filter value")) {
+				temp2="0";
+			}
 			ve = vexeDao.getAllInformationVeXe(choosevalues,temp,choosevalues2,temp2);
 			req.setAttribute("AllInfor", ve);
 		}

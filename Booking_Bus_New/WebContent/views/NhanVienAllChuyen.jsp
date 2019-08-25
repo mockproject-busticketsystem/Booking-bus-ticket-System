@@ -93,7 +93,8 @@
 
 				</div>
 			</div>
-			</br></br>
+			</br>
+			</br>
 			<div class="margin"></div>
 			<div id="head">
 
@@ -134,51 +135,41 @@
 					<thead>
 
 						<tr>
-							<th scope="col" style="color: black;">CMND</th>
-							<th scope="col" style="color: black;">Người Đặt</th>
+							<th scope="col" style="color: black;">Id</th>
+							<th scope="col" style="color: black;">Điểm Đi</th>
 
-							<th scope="col" style="color: black;">Ngày Đi</th>
+							<th scope="col" style="color: black;">Điểm Đến</th>
 							<th scope="col" style="color: black;">Giờ Đi</th>
 							<th scope="col" style="color: black;">Giờ Đến</th>
-							<th scope="col" style="color: black;">Điểm Đi</th>
-							<th scope="col" style="color: black;">Điểm Đến</th>
-
-							<th scope="col" style="color: black;">Mã Ghế</th>
-							<th scope="col" style="color: black;">Xem Ghế</th>
-
+							<th scope="col" style="color: black;">Đơn Giá</th>
+							<th scope="col" style="color: black;">Hàng Đợi</th>
+							<th scope="col" style="color: black;">Chuyến Đã Đặt</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${AllVe}" var="ve">
+						<c:forEach items="${AllChuyen}" var="chuyen">
 
 							<tr>
-								<td>${ve.cMND}</td>
-								<td>${ve.hoTen}</td>
-								<td>${ve.ngayDi}</td>
-								<td>${ve.gioDi}</td>
-								<td>${ve.gioDen}</td>
-								<td>${ve.diaDiemDi}</td>
-								<td>${ve.diaDiemDen}</td>
-								<td>${ve.maGhe}</td>
-								</td>
+								<td>${chuyen.iDChuyen}</td>
+								<td>${chuyen.tuyenDi.diaDiemDi}</td>
+								<td>${chuyen.tuyenDi.diaDiemDen}</td>
+								<td>${chuyen.gioDi}</td>
+								<td>${chuyen.gioDen}</td>
+								<td>${chuyen.donGia}</td>
+								<td>${chuyen.tuyenDi.hangDoi}</td>
 								<form method="POST"
-									action="${pageContext.request.contextPath}/DashboardNhanVien/XemGhe">
-									<input type="hidden" name="cmnd" value="${ve.cMND}"></input> <input
-										type="hidden" name="hoten" value="${ve.hoTen}"></input> <input
-										type="hidden" name="idchuyen" value="${ve.iDChuyen}"></input>
-									<input type="hidden" name="ngaydi" value="${ve.ngayDi}"></input>
-									<input type="hidden" name="giodi" value="${ve.gioDi}"></input>
-									<input type="hidden" name="diemdi" value="${ve.diaDiemDi}">
-									</input> <input type="hidden" name="diemden" value="${ve.diaDiemDen}"></input>
-									<input type="hidden" name="sdt" value="${ve.sDT}"></input>
-									<td><input type="submit" value="xem ghế"
-										style="border-radius: 20px"></input></td>
-								</form>
-
-
-
-
-
+									action="${pageContext.request.contextPath}/DashboardNhanVien">
+									<input type="hidden" name="idchuyen" value=${idchuyen}></input>
+									<input type="hidden" name="ngaydi" value=${ngaydi}></input>
+									
+									<input type="hidden" name="choosethuoctinh" value="Diem Di"></input>
+									<input type="hidden" name="choosethuoctinh2" value="Diem Den"></input>
+									<input type="hidden" name="choosevalues" value="${ve.diaDiemDi}"></input>
+									<input type="hidden" name="choosevalues2" value="${ve.diaDiemDen}"></input>
+									
+									
+										<td><input type="submit" value="Tình Trạng Vé" style="border-radious:20px">
+								</td></form>
 							</tr>
 
 						</c:forEach>
@@ -204,10 +195,10 @@
 			type="text/javascript"></script>
 
 		<script type="text/javascript">
-				$(document).ready(function() {
-					$('#mydataTable').DataTable();
-				});
-			</script>
+			$(document).ready(function() {
+				$('#mydataTable').DataTable();
+			});
+		</script>
 </body>
 
 </html>

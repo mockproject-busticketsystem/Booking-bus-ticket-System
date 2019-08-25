@@ -13,4 +13,5 @@ public interface ChuyenDiDAO {
 	public LocalTime getGioDen(String tuyenDi, LocalTime gioDi);
 	public ChuyenDi findChuyenDi(String idTuyen, LocalTime gioDi);
 	public ChuyenDi findChuyenDi(int id);
+	public ArrayList<ChuyenDi> getAllChuyen();
 }

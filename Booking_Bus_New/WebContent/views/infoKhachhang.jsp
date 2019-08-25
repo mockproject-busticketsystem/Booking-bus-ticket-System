@@ -67,7 +67,7 @@ else if(updated == "false")
 											<div class="col-md-4">
 												<div class="form-group">
 													<label class="bmd-label-floating">CMND</label>													
-													 <input type="text" value="${cus.cMND}" class="form-control" 
+													 <input type="text" value="${loginedKhachHang.cMND}" class="form-control" 
 													 disabled style="color: red;background: #202940;">	
 													 <input type="hidden" value="${cus.cMND}"  name = "CMND" >	
 												</div>
@@ -75,7 +75,7 @@ else if(updated == "false")
 												<div class="col-md-3">
 													<div class="form-group">
 													<label class="bmd-label-floating">Email</label> <input
-														type="text"  value = "${cus.email}" class="form-control" 	disabled 
+														type="text"  value = "${loginedKhachHang.email}" class="form-control" 	disabled 
 														style="text-align: center;background: #202940;color: red;">
 												</div>
 											</div>
@@ -85,13 +85,13 @@ else if(updated == "false")
 											<div class="col-md-4">
 												<div class="form-group">
 													<label class="bmd-label-floating">Số điện thoại</label> <input
-														type="text"  value = "${cus.sDT}" class="form-control" name = "SDT" pattern="[0-9]*.{10,11}" required>
+														type="text"  value = "${loginedKhachHang.sDT}" class="form-control" name = "SDT" pattern="[0-9]*.{10,11}" required>
 												</div>
 											</div>
 											<div class="col-md-4">
 												<div class="form-group">
 													<label class="bmd-label-floating">Họ và tên
-													</label> <input type="text" value = "${cus.hoTen}" class="form-control" name = "HoTen" required>
+													</label> <input type="text" value = "${loginedKhachHang.hoTen}" class="form-control" name = "HoTen" required>
 												</div>
 											</div>
 										</div>
@@ -112,18 +112,18 @@ else if(updated == "false")
 							<div class="card card-profile">
 								<div class="card-avatar">
 									<a href="#pablo">
-									<c:if test="${cus.email == 'hang@gmail.com'}">
+									<c:if test="${loginedKhachHang.email == 'hang@gmail.com'}">
 									 <img class="img"
 										src="${pageContext.request.contextPath}/img/dung.jpg" />
 										</c:if>
-										<c:if test="${cus.email == 'trinhnguyen@email.com'}">
+										<c:if test="${loginedKhachHang.email == 'trinhnguyen@email.com'}">
 									 <img class="img"
 										src="${pageContext.request.contextPath}/img/hau.jpg" />
 										</c:if>
 									</a>
 								</div>
 								<div class="card-body">
-									<h4 class="card-title">${cus.hoTen}</h4>
+									<h4 class="card-title">${loginedKhachHang.hoTen}</h4>
 									<a href="#pablo" class="btn btn-primary btn-round">Upload</a>
 								</div>
 							</div>

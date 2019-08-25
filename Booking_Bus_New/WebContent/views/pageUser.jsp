@@ -490,7 +490,7 @@ function checkonsubmit()
     	var curent = new Date();
     	curent.setDate(curent.getDate()+1);
     	var pices =  gio.split(':');
-    	if((dayBook.getDate() == curent.getDate())&& (curent.getHours()>=pices[0]))
+    	if((dayBook.getDate() <= curent.getDate())&& (curent.getHours()>=pices[0]))
     	{
     			alert("Đặt vé trước 24h xe chạy bạn nhé!! Mời bạn nhập lại ngày và giờ cho phù hợp!!!");
     			$.ajax({

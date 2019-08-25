@@ -2,12 +2,9 @@ package controllers;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,9 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.VexeDAOImplement;
+import connect.MyConnect;
 import dao.ChuyenDiDAOImplement;
 import dao.TuyenDiDAOImplement;
+import dao.VexeDAOImplement;
+import models.KhachHang;
 import models.VeXe;
 @WebServlet("/idtuyen")
 public class TuyenDiServlet extends HttpServlet {
@@ -50,7 +49,8 @@ public class TuyenDiServlet extends HttpServlet {
 		BigDecimal donGia = tdDao.getDonGia(idTuyendi, giodi);
 		System.out.println(donGia);
 		HttpSession session = req.getSession();
-		String CMND = (String) session.getAttribute("CMND");
+		KhachHang khachHang = MyConnect.getLoginedKhachHang(session);
+		String CMND = khachHang.getcMND();
 		Integer countGhe = vxDao.CountGheKhach(CMND, ngay_di, idChuyen);
 		System.out.println(CMND);
 		System.out.println(ngaydi);
@@ -68,6 +68,7 @@ public class TuyenDiServlet extends HttpServlet {
 		req.setAttribute("idchuyen", idChuyen);
 		req.setAttribute("diemdi", diemdi);
 		req.setAttribute("diemden", diemden);
+		req.setAttribute("CMND",CMND);
 //		req.setAttribute("gia", donGia);
 		req.getRequestDispatcher("/views/booking_ghe.jsp").forward(req, resp);//forwarding the request
 	}

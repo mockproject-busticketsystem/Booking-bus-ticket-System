@@ -21,14 +21,15 @@
 	<div id=main_top>
 		<div id=main2>
 					<div class=top>
-				<h5>Nhân Viên Quản Lý</h5>
+					<img src="img/icon_nhanvien.jpg"  height="42" width="42">
+				<h1>Nhân Viên Quản Lý</h1>
 				<hr class=new4>
 				<div class=right>
 					<form method="POST"
 						action="${pageContext.request.contextPath}/LoadVe">
 
 						<h4>
-							<input type="submit" value="All Vé">
+							<input type="submit" value="Thông Tin Vé">
 					</form>
 					</h4>
 				</div>
@@ -38,7 +39,15 @@
 						<input type="hidden" name="idchuyen" value=${idchuyen}></input> <input
 							type="hidden" name="ngaydi" value=${ngaydi}></input>
 						<h4>
-							<input type="submit" value="All Chuyến">
+							<input type="submit" value="Tình Trạng Vé">
+					</form>
+					</h4>
+				</div>
+				<div class=right2>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/LoadChuyen">
+						<h4>
+							<input type="submit" value="Xem Chuyến">
 					</form>
 					</h4>
 				</div>
@@ -61,10 +70,10 @@
 			</div>
 
 		</div>
-		<div id="main">
-			<div id=head>
+		<div id="main" style="$">
+			<div id=head style="background-color: #81DAF5; margin-left:-14px;width:100%;">
 				<div class=logo>
-					<p>Xem Tất Cả Chuyến</p>
+					<p>Xem Tất Cả Chuyến Đã Đặt</p>
 				</div>
 
 			</div>
@@ -96,34 +105,8 @@
 							onchange="this.form.submit();">
 								<option>filter value</option>
 								<c:choose>
-									<c:when test="${choosethuoctinh.equals('Id Chuyen')}">
-										<c:forEach items="${distinct}" var="listItem">
-											<option value="${listItem.iDChuyen}"
-												<c:if test="${choosevalues.equals(listItem.iDChuyen.toString())==true}">
-											selected
-										
-									</c:if>>${listItem.iDChuyen}</option>
-										</c:forEach>
-
-									</c:when>
-									<c:when test="${choosethuoctinh.equals('Ngay Di')}">
-										<c:forEach items="${distinct}" var="listItem">
-											<option value="${listItem.ngayDi}"
-												<c:if test="${choosevalues.equals(listItem.ngayDi.toString())==true}">
-											selected
-										
-									</c:if>>${listItem.ngayDi}</option>
-										</c:forEach>
-
-									</c:when>
-									<c:when test="${choosethuoctinh.equals('Gio Di')}">
-										<c:forEach items="${distinct}" var="listItem">
-											<option value="${listItem.gioDi}"
-												<c:if test="${choosevalues.equals(listItem.gioDi.toString())==true}">
-											selected
-									</c:if>>${listItem.gioDi}</option>
-										</c:forEach>
-									</c:when>
+									
+								
 									<c:when test="${choosethuoctinh.equals('Diem Di')}">
 										<c:forEach items="${distinct}" var="listItem">
 											<option value="${listItem.diaDiemDi}"
@@ -142,22 +125,7 @@
 										</c:forEach>
 									</c:when>
 	
-									<c:when test="${choosethuoctinh.equals('Don Gia')}">
-										<c:forEach items="${distinct}" var="listItem">
-											<option value="${listItem.donGia}"
-												<c:if test="${choosevalues.equals(listItem.donGia)==true}">
-											selected
-									</c:if>>${listItem.donGia}</option>
-										</c:forEach>
-									</c:when>
-									<c:when test="${choosethuoctinh.equals('Hang Doi')}">
-										<c:forEach items="${distinct}" var="listItem">
-											<option value="${listItem.hangDoi}"
-												<c:if test="${choosevalues.equals(listItem.hangDoi)==true}">
-											selected
-									</c:if>>${listItem.hangDoi}</option>
-										</c:forEach>
-									</c:when>
+									
 
 								</c:choose>
 
@@ -188,34 +156,7 @@
 						
 								<option>filter value</option>
 								<c:choose>
-									<c:when test="${choosethuoctinh2.equals('Id Chuyen')}">
-										<c:forEach items="${distinct2}" var="listItem">
-											<option value="${listItem.iDChuyen}"
-												<c:if test="${choosevalues2.equals(listItem.iDChuyen.toString())==true}">
-											selected
-										
-									</c:if>>${listItem.iDChuyen}</option>
-										</c:forEach>
-
-									</c:when>
-									<c:when test="${choosethuoctinh2.equals('Ngay Di')}">
-										<c:forEach items="${distinct2}" var="listItem">
-											<option value="${listItem.ngayDi}"
-												<c:if test="${choosevalues2.equals(listItem.ngayDi.toString())==true}">
-											selected
-										
-									</c:if>>${listItem.ngayDi}</option>
-										</c:forEach>
-
-									</c:when>
-									<c:when test="${choosethuoctinh2.equals('Gio Di')}">
-										<c:forEach items="${distinct2}" var="listItem">
-											<option value="${listItem.gioDi}"
-												<c:if test="${choosevalues2.equals(listItem.gioDi.toString())==true}">
-											selected
-									</c:if>>${listItem.gioDi}</option>
-										</c:forEach>
-									</c:when>
+								
 									<c:when test="${choosethuoctinh2.equals('Diem Di')}">
 										<c:forEach items="${distinct2}" var="listItem">
 											<option value="${listItem.diaDiemDi}"
@@ -223,6 +164,7 @@
 											selected
 									</c:if>>${listItem.diaDiemDi}</option>
 										</c:forEach>
+										
 									</c:when>
 
 									<c:when test="${choosethuoctinh2.equals('Diem Den')}">
@@ -231,23 +173,6 @@
 												<c:if test="${choosevalues2.equals(listItem.diaDiemDen)==true}">
 											selected
 									</c:if>>${listItem.diaDiemDen}</option>
-										</c:forEach>
-									</c:when>
-
-									<c:when test="${choosethuoctinh2.equals('Don Gia')}">
-										<c:forEach items="${distinct2}" var="listItem">
-											<option value="${listItem.donGia}"
-												<c:if test="${choosevalues2.equals(listItem.donGia)==true}">
-											selected
-									</c:if>>${listItem.donGia}</option>
-										</c:forEach>
-									</c:when>
-									<c:when test="${choosethuoctinh2.equals('Hang Doi')}">
-										<c:forEach items="${distinct2}" var="listItem">
-											<option value="${listItem.hangDoi}"
-												<c:if test="${choosevalues2.equals(listItem.hangDoi)==true}">
-											selected
-									</c:if>>${listItem.hangDoi}</option>
 										</c:forEach>
 									</c:when>
 
