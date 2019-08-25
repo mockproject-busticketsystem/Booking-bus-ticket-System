@@ -50,16 +50,10 @@ public class InfoUserLogin extends HttpServlet {
 			request.setAttribute("user", loginedUser);
 			String role = loginedUser.getRole();
 			String email = loginedUser.getEmail();
-			session.setAttribute("role",role);	
-			session.setAttribute("email",email);
 			if(role.equals("KhachHang")) {
-				String hoTen = "";
-				hoTen = tkDao.getHoten(role, loginedUser.getEmail());
-				session.setAttribute("hoTen", hoTen);
-				KhachHang khachHang = null;
+				KhachHang khachHang=new KhachHang();
 				khachHang = khachHangDao.showInfor(loginedUser);
-				String CMND = khachHang.getcMND();
-				session.setAttribute("CMND",CMND);
+				MyConnect.storedLoginedCustom(session, khachHang);
 				request.getRequestDispatcher("/pageUser").forward(request, response);
 			}
 			else if(role.equals("Admin")) {

@@ -16,6 +16,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
      <!--  <script>
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
@@ -30,21 +31,72 @@
 #head img{
    margin-right: 650px;
 }
-.animate {
-    margin-bottom: -20px;
-    width: 250px;
-    height: 100px;
-    bottom: -2px;
-    background:url("https://storage.googleapis.com/fe-production/images/Route/mascot-vxr.png") no-repeat 0 0;
+.animate {	
+    width:350px;
+    height: 150px;
+    bottom: -35px;
+    background:url("../img/bus_animated.gif") no-repeat 0 0;
     background-size: 80%;
      position: absolute;
     animation: moveImage 10s linear infinite;
     margin-bottom: -30px;
 }
+/*== Preloader Area CSS Start ==*/
+
+body.loader-active {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	overflow: hidden;
+}
+
+.preloader {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-color: #fff;
+	z-index: 9999;
+}
+
+.preloader-spinner {
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	position: absolute;
+}
+
+.loader-content {
+	width: 150px;
+}
 
 </style>
+<script type="text/javascript">
+$(document).ready(function(){
+	   $('.preloader').fadeOut('slow');
+	        $('.preloader-spinner').delay(5000).fadeOut('slow');
+	     
+	        $('body').removeClass('loader-active');
+	
+	});
+
+</script>
 </head>
-<body>
+<body class="loader-active">
+  <!--== Preloader Area Start ==-->
+    <div class="preloader">
+        <div class="preloader-spinner">
+            <div class="loader-content">
+                <img src="${pageContext.request.contextPath}/img/bus-truning.gif" alt="JSOFT">
+            </div>
+        </div>
+    </div>
+    <!--== Preloader Area End ==-->
   <div id="main"> 
  	 <jsp:include page="header.jsp"></jsp:include>
         <div id="head" style="background-image: url('${pageContext.request.contextPath}/img/back.jpg');">

@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import connect.ConnectionUtils;
 import dao.KhachHangDAOImplement;
 import models.KhachHang;
 @WebServlet("/InsertKhachHang")
@@ -31,11 +33,8 @@ public class InsertInfoKhachHang extends HttpServlet{
 		String sdt = req.getParameter("SDT");
 		String CMND = req.getParameter("CMND");
 		String email = req.getParameter("email");
-		System.out.println(hoten);
-		System.out.println(sdt);
-		System.out.println(CMND);
-		System.out.println(email);
 		try {
+			Connection conn = ConnectionUtils.getConnection();
 			KhachHang khachHang = new KhachHang();
 			khachHang.setHoTen(hoten);
 			khachHang.setsDT(sdt);

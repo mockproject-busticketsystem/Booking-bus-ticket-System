@@ -206,6 +206,7 @@ $(document).ready(function () {
 </head>
 
 <body class="dark-edition" style="background: #F6F8FA;	width: 100%;;">
+
 	<div class="wrapper">
 		<div class="sidebar" data-color="purple" data-background-color="black" style="border-color: transparent;width: 250px;">
 			<div class="logo">
@@ -288,7 +289,7 @@ $(document).ready(function () {
                 </div>
               </li>-->
 
-							<c:if test="${role == 'Admin'}">
+							<c:if test="${taikhoan.role == 'Admin'}">
 								<li class="nav-item" style="float: right;"><a style="color: #24292E;"
 									class="nav-link"> <strong>${admin.hoTen}</strong> <i class="material-icons">person</i>
 										<p class="d-lg-none d-md-block"></p>
@@ -304,7 +305,7 @@ $(document).ready(function () {
 			</nav>
 			<!-- End Navbar -->
 			<!-- ListUser -->
-			<c:if test="${role == 'Admin'}">
+			<c:if test="${taikhoan.role == 'Admin'}">
 				<div id="users">
 				<div class = "loc_insert">
 				<div class="container" style="max-height: 80px;" >

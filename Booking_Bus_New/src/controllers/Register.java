@@ -64,7 +64,7 @@ public class Register extends HttpServlet {
 					}
 					if(success==false)
 					{
-						errorString = "Opss.... Something was wrong!!! CMND or Email not available :( :(";
+						errorString = "Có thể CMND hoặc Email đã được đăng ký!:(";
 					}
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block

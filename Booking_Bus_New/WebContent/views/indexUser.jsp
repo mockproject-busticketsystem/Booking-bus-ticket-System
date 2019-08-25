@@ -31,11 +31,10 @@
    margin-right: 650px;
 }
 .animate {
-    margin-bottom: -20px;
-    width: 250px;
-    height: 100px;
-    bottom: -2px;
-    background:url("https://storage.googleapis.com/fe-production/images/Route/mascot-vxr.png") no-repeat 0 0;
+    width:350px;
+    height: 110px;
+    bottom: -40px;
+     background:url("../img/bus_animated.gif") no-repeat 0 0;
     background-size: 80%;
      position: absolute;
     animation: moveImage 10s linear infinite;

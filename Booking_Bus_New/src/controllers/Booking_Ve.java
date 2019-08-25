@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.servlet.ServletException;
@@ -9,13 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import connect.MyConnect;
 import dao.ChuyenDiDAOImplement;
 import dao.VexeDAOImplement;
 import models.ChuyenDi;
 import models.KhachHang;
-import models.NhanVien;
-import models.TaiKhoan;
 import models.VeXe;
 @WebServlet("/booking")
 public class Booking_Ve extends HttpServlet{
@@ -35,8 +34,9 @@ public class Booking_Ve extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		String CMND = req.getParameter("CMND");
+		HttpSession session = req.getSession();
+		KhachHang khachHang = MyConnect.getLoginedKhachHang(session);
+		String CMND = khachHang.getcMND();
 		Integer idchuyen = Integer.valueOf(req.getParameter("idchuyen"));
 		
 		LocalDate ngaydi = LocalDate.parse(req.getParameter("ngaydi"));

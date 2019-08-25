@@ -254,6 +254,8 @@ $(document).ready(function () {
 	 $("tbody", "#example").on("click", "td",function() {
 			if(this.innerText=="REMOVE")
 			{
+				if(confirm('Bạn muốn xóa phiếu đã đặt chỗ?'))
+				{
 				$.ajax({
 		            url: "DeleteTicketbyCustom",//your jsp page name
 		           data: {diemDi:diemDi, diemDen:diemDen, ngayDi:ngayDi, gioDi:gioDi, maGhe:maGhe, hangDoi:hangDoi
@@ -266,7 +268,8 @@ $(document).ready(function () {
 		            error : function(jqXHR, exception) {
 						console.log('Error occured!!');
 					}
-		        });	
+		        });
+				}
 			}
 	 });
 	});

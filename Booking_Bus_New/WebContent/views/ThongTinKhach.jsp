@@ -101,7 +101,7 @@ else if(success == "false")
 												<div class="form-group label-floating">
 													<label class="control-label">CMND</label> <input
 														name="CMND" type="text" class="form-control"
-														value="${khachHang.cMND}" readonly>
+														value="${loginedKhachHang.cMND}" readonly>
 												</div>
 											</div>
 										</div>
@@ -114,7 +114,7 @@ else if(success == "false")
 											<div class="form-group label-floating">
 												<label class="control-label">Email</label> <input
 													name="Email" type="text" class="form-control"
-													value="${khachHang.email}" readonly>
+													value="${loginedKhachHang.email}" readonly>
 											</div>
 										</div>
 										</div>
@@ -127,7 +127,7 @@ else if(success == "false")
 												<div class="form-group label-floating">
 													<label class="control-label">Họ Tên</label> <input
 														name="Hoten" type="text" class="form-control"
-														value="${khachHang.hoTen}" readonly>
+														value="${loginedKhachHang.hoTen}" readonly>
 												</div>
 											</div>
 										</div>
@@ -139,7 +139,7 @@ else if(success == "false")
 											</span>
 											<div class="form-group label-floating">
 												<label class="control-label">SĐT</label> <input name="SDT"
-													type="text" class="form-control" value="${khachHang.sDT}"
+													type="text" class="form-control" value="${loginedKhachHang.sDT}"
 													readonly>
 											</div>
 										</div>
@@ -158,7 +158,7 @@ else if(success == "false")
 												<div class="form-group label-floating">
 													<label class="control-label">CMND</label> <input
 														name="CMND" type="text" class="form-control"
-														value="${khachHang.cMND}" readonly>
+														value="${loginedKhachHang.cMND}" readonly>
 												</div>
 											</div>
 										</div>
@@ -171,7 +171,7 @@ else if(success == "false")
 											<div class="form-group label-floating">
 												<label class="control-label">Email</label> <input
 													name="Email" type="text" class="form-control"
-													value="${khachHang.email}" readonly>
+													value="${loginedKhachHang.email}" readonly>
 											</div>
 										</div>
 										</div>
@@ -184,7 +184,7 @@ else if(success == "false")
 												<div class="form-group label-floating">
 													<label class="control-label">Họ Tên</label> <input
 														name="hoTen" type="text" class="form-control"
-														value="${khachHang.hoTen}" required>
+														value="${loginedKhachHang.hoTen}" required>
 												</div>
 											</div>
 										</div>
@@ -196,14 +196,14 @@ else if(success == "false")
 											</span>
 											<div class="form-group label-floating">
 												<label class="control-label">SĐT</label> <input name="SDT"
-													type="text" class="form-control" value="${khachHang.sDT}" pattern="[0-9]*.{10,11}" required>
+													type="text" class="form-control" value="${loginedKhachHang.sDT}" pattern="[0-9]*.{10,11}" required>
 											</div>
 										</div>
 										</div>
 										<div class="pull-right">
 											<input type='submit'
 												class='btn btn-next btn-fill btn-success btn-wd'
-												name='submit' value='Submit' />
+												name='submit' value='Submit' onclick="return confirm('Are you sure you want to Update Your Information ?')"/>
 										</div>
 									</form>
 								</div>

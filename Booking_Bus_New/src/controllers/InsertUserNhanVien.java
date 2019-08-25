@@ -24,8 +24,8 @@ public class InsertUserNhanVien extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private TaiKhoanDAOImplement taiKhoanDao = new TaiKhoanDAOImplement();
 	private KhachHangDAOImplement khachHangDao = new KhachHangDAOImplement();
+	private TaiKhoanDAOImplement taiKhoanDao = new TaiKhoanDAOImplement();
 	private NhanVienDAOImplement nhanVienDao = new NhanVienDAOImplement();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -101,7 +101,5 @@ public class InsertUserNhanVien extends HttpServlet{
 		req.setAttribute("success", success);
 		req.setAttribute("errorString",errorString);
 		req.getServletContext().getRequestDispatcher("/DashboardAdmin").forward(req, resp);
-
-	}
-
+}
 }
