@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import connect.MyConnect;
 import dao.KhachHangDAOImplement;
 import models.KhachHang;
 import models.TaiKhoan;
@@ -37,9 +36,10 @@ public class showInfoCustom extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		// show thong tin khach hang
-		TaiKhoan taiKhoan = MyConnect.getLoginedUser(session);
+		TaiKhoan taiKhoan = (TaiKhoan)session.getAttribute("loginedUser");
+		KhachHangDAOImplement khachHangDao = new KhachHangDAOImplement();
 		KhachHang khachHang = null;
-		khachHang = MyConnect.getLoginedKhachHang(session);
+		khachHang = khachHangDao.showInfor(taiKhoan);
 		request.setAttribute("khachHang", khachHang);
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/views/loginView.jsp");
 		dispatcher.forward(request, response);

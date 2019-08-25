@@ -18,10 +18,11 @@ private KhachHangDAOImplement khDao = new KhachHangDAOImplement();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<KhachHang> cus = null;
+		KhachHang cus = null;
         String email = req.getParameter("email");
         cus = khDao.getKH(email);
-        req.setAttribute("customer", cus);
+        req.setAttribute("email", email);
+        req.setAttribute("cus", cus);
         req.getRequestDispatcher("/views/infoKhachhang.jsp").forward(req, resp);//forwarding the request
 	}
 
@@ -31,15 +32,20 @@ private KhachHangDAOImplement khDao = new KhachHangDAOImplement();
 		String hoten = req.getParameter("HoTen");
 		String sdt = req.getParameter("SDT");
 		String CMND = req.getParameter("CMND");
+		String email = req.getParameter("email");
 		System.out.println(hoten);
 		System.out.println(sdt);
+		System.out.println(CMND);
+		System.out.println(email);
 		try {
 			KhachHang khachHang = new KhachHang();
 			khachHang.setHoTen(hoten);
 			khachHang.setsDT(sdt);
 			khachHang.setcMND(CMND);
+			khachHang.setEmail(email);
 			boolean updated = khDao.UpdateKhachHang(khachHang);
 			if(updated == true) {
+				req.setAttribute("updated", updated);
 				req.getServletContext().getRequestDispatcher("/DashboardAdmin").forward(req, resp);
 			}	
 			else {

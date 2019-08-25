@@ -1,9 +1,14 @@
 
-
+#margin{
+	margin-top:-88px;
+}
 #main {
 	width: 84%;
 	padding: 0;
 	float: right;
+}
+input:hover { 
+  background-color: yellow;
 }
 
 #main2 {
@@ -11,21 +16,33 @@
 	min-height: 100%;
 	float: left;
 	position: fixed;
-	background-color: #9095A2;
+	background-color:#00FFFF;
 	background-image: url("../assets/img/sidebar-3.jpg");
 	background-repeat: no-repeat;
 	 background-size: cover;
 	  background-position: center;
 	background-blend-mode: multiply;
 }
-
+#main_head{
+		width: 85%;
+	padding: 0;
+	float: right;
+	 	background-color:#00FFFF;
+	background-image: url("../assets/img/sidebar-331.jpg");
+	background-repeat: no-repeat;
+	 background-size: cover;
+	   background-position: center center;
+	   background-blend-mode: multiply;
+	  
+	
+}
 #main2 .top {
 	margin-top: 20px;
 	text-align: center;
 	text-color:white;
 	color:white;
-
 }
+
 hr.new4 {
   border: 1px solid #CC3366;
   width:180px;
@@ -48,7 +65,7 @@ td{
 
 
 #head1 {
-	height: auto;
+		height: 80px;
 	width: 100%;
 }
 
@@ -78,13 +95,14 @@ td{
 	margin-top: -80px;
 }
 
-#head1 .logo {
-	width: 96%;
+#head1 .logo1 {
+width: 96%;
 	floaf: left;
 	background: url("../img/logo1.png");
 	background-repeat: no-repeat;
-	margin-top: 20px;
-	margin-left: 20px;
+	position:relative;
+	top:0px;
+left:-70px;
 }
 
 #head2 {
@@ -101,13 +119,14 @@ td{
 	
 }
 
-#head1 .logo p {
+#head1 .logo1 p {
 	font-family: TimeNewRoman;
 	color: blue;
 	position: relative;
 	font-weight: bold;
 	font-size: 48px;
 	text-align: center;
+	left:80px;
 }
 
 #head2 .left1 {
@@ -115,7 +134,7 @@ td{
 	height: 100%;
 	float: left;
 	margin-top:5px;
-	margin-left: 80px;
+	margin-left: 95px;
 }
 
 #head2 .left2 {
@@ -135,6 +154,7 @@ color :red;
 }
 
 #content {
+	margin-top :200px;
 	width: 98%;
 	height: auto;
 	margin-bottom: 5px;

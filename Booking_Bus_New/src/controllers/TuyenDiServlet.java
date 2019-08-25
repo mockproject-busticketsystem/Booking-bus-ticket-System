@@ -2,9 +2,12 @@ package controllers;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,11 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import connect.MyConnect;
+import dao.VexeDAOImplement;
 import dao.ChuyenDiDAOImplement;
 import dao.TuyenDiDAOImplement;
-import dao.VexeDAOImplement;
-import models.KhachHang;
+import models.ChuyenDi;
 import models.VeXe;
 @WebServlet("/idtuyen")
 public class TuyenDiServlet extends HttpServlet {
@@ -47,10 +49,10 @@ public class TuyenDiServlet extends HttpServlet {
 		String idTuyendi = tdDao.getIdTuyen(diemdi, diemden);
 		Integer idChuyen = cdDao.getIdChuyen(idTuyendi,giodi);
 		BigDecimal donGia = tdDao.getDonGia(idTuyendi, giodi);
+		ChuyenDi chuyenDi = tdDao.getChuyenDi(idChuyen);
 		System.out.println(donGia);
 		HttpSession session = req.getSession();
-		KhachHang khachHang = MyConnect.getLoginedKhachHang(session);
-		String CMND = khachHang.getcMND();
+		String CMND = (String) session.getAttribute("CMND");
 		Integer countGhe = vxDao.CountGheKhach(CMND, ngay_di, idChuyen);
 		System.out.println(CMND);
 		System.out.println(ngaydi);
@@ -60,6 +62,7 @@ public class TuyenDiServlet extends HttpServlet {
 		vexe = vxDao.getMaghe(idChuyen,ngay_di);
 		req.setAttribute("countGhe", countGhe);
 		/*req.setAttribute("HangDoi", HangDoi);*/
+		req.setAttribute("chuyendi", chuyenDi);
 		req.setAttribute("ngaydi", ngay_di);
 	    req.setAttribute("giodi", giodi);
 	    req.setAttribute("maghe", vexe);
@@ -68,7 +71,6 @@ public class TuyenDiServlet extends HttpServlet {
 		req.setAttribute("idchuyen", idChuyen);
 		req.setAttribute("diemdi", diemdi);
 		req.setAttribute("diemden", diemden);
-		req.setAttribute("CMND",CMND);
 //		req.setAttribute("gia", donGia);
 		req.getRequestDispatcher("/views/booking_ghe.jsp").forward(req, resp);//forwarding the request
 	}

@@ -21,11 +21,11 @@
 
 	<div id=main_top>
 		<div id=main2>
-
 			<div class=top>
-				<h5>Nhân Viên Quản Lý</h5>
+				<img src="../img/icon_nhanvien.png" height="62" width="62">
+				<h1>Nhân Viên Quản Lý</h1>
 				<hr class=new4>
-					<div class=right>
+				<div class=right>
 					<form method="POST"
 						action="${pageContext.request.contextPath}/LoadVe">
 
@@ -43,7 +43,7 @@
 					</form>
 					</h4>
 				</div>
-					<div class=right2>
+				<div class=right2>
 					<form method="POST"
 						action="${pageContext.request.contextPath}/LoadChuyen">
 						<h4>
@@ -51,28 +51,28 @@
 					</form>
 					</h4>
 				</div>
-						<div class=right2>
+				<div class=right2>
 					<form method="POST"
 						action="${pageContext.request.contextPath}/LoadBangGhe">
 						<h4>
 							<input type="submit" value="Xem Sơ Đồ Ghế">
-				</form>
+					</form>
 					</h4>
 				</div>
-			
-	
+
+
 				<div class=right2>
 					<form method="POST"
 						action="${pageContext.request.contextPath}/DashboardNhanVien/XemVe">
 						<input type="hidden" name="idchuyen" value=${idchuyen}></input> <input
 							type="hidden" name="ngaydi" value=${ngaydi}></input>
 						<h4>
-							<input type="submit" value="Back Chuyến" >
+							<input type="submit" value="Back Chuyến">
 					</form>
 					</h4>
 				</div>
-		<div class=right2>
-						<form method="POST"
+				<div class=right2>
+					<form method="POST"
 						action="${pageContext.request.contextPath}/DangXuat">
 						<h4>
 							<input type="submit" value="Đăng Xuất">
@@ -87,17 +87,14 @@
 
 
 		</div>
-		<div id="main">
-			<div id=head>
+				<div id="main_head" ><div id=head >
 				<div class=logo>
 					<p>Thanh Toán</p>
 				</div>
 
-
-
-			</div>
-
-
+			</div></div>
+		<div id="main">
+	
 			<div id="head1">
 				<h4>
 					<div class="left1" style="margin-left: 30px">Id Chuyến &nbsp</div>
@@ -139,7 +136,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						
+
 							<c:forEach items="${ghe}" var="chongoi">
 
 
@@ -168,16 +165,23 @@
 											type="hidden" name="diemden" value="${diemden}"></input> <input
 											type="hidden" name="maghe" value="${chongoi.maGhe}"></input><input
 											type="hidden" name="statuschoose" value="${chongoi.status}"></input>
-										
+<input
+											type="hidden" name="hoten" value="${hoten}"></input>
+											<input
+											type="hidden" name="sdt" value="${sdt}"></input>
 										<td><c:if test="${chongoi.status==((false))}">
 												<input type="submit" name="update" value="Update"
+													
 													style="border-radius: 20px">
 											</c:if></td>
 
-										<td><c:if test="${checkDelete==(true)}"><input type="submit" name="delete" value="Delete"
-											style="border-radius: 20px"></c:if></td>
+										<td><c:if test="${checkDelete==(true)}">
+												<input type="submit" name="delete" value="Delete"
+												
+													style="border-radius: 20px">
+											</c:if></td>
 									</form>
-									
+
 								</tr>
 							</c:forEach>
 						</tbody>

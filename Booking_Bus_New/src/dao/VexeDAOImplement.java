@@ -25,6 +25,79 @@ import models.VeXe;
 
 public class VexeDAOImplement implements VexeDAO{
 	@Override
+	public ArrayList<VeXe> getAllVe(String diemdi,String diemden,String search){
+		Connection connection = null;
+		try {
+			connection = DBConnect.getMySQLConnection();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		String sql = "SELECT vexe.IdChuyen,SDT,NgayDi,GioDi,GioDen,DiaDiemDi,DiaDiemDen,MaGhe,khachhang.CMND,HoTen FROM vexe,khachhang,chuyendi,tuyendi where khachhang.CMND=vexe.CMND and chuyendi.id=vexe.IdChuyen and chuyendi.MaTuyen=tuyendi.Id";
+		if(diemdi!=null)
+		{
+			if(diemdi.equals("0")==false)
+				sql=sql+" and DiaDiemDi = '"+diemdi+"'";
+		}
+
+		if(diemden!=null)
+		{
+			if(diemden.equals("filter value")==false)
+				sql=sql+" and DiaDiemDen = '"+diemden+"'";
+		}
+		if(search!=null ) 
+			if(search.equals("-999")==false) {
+				sql=sql+" and (vexe.IdChuyen ='"+search+"' or SDT='"
+						+search+"' or NgayDi='"
+						+search+"' or GioDi ='"
+						+search+"' or GioDen='"
+						+search+"' or DiaDiemDi='"
+						+search+"' or DiaDiemDen='"
+						+search+"' or MaGhe='"
+						+search+"' or khachhang.CMND='"
+						+search+"' or HoTen='"
+						+search+"')\r\n" + 
+						"		";
+			}
+
+
+		
+		ArrayList<VeXe> arr = new ArrayList<>();
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				VeXe vexe = new VeXe();
+				LocalDate date= LocalDate.parse(rs.getString("NgayDi"));
+				LocalTime time= LocalTime.parse(rs.getString("GioDi"));
+				LocalTime time2= LocalTime.parse(rs.getString("GioDen"));
+				vexe.setGioDi(time);
+				vexe.setGioDen(time2);
+				vexe.setNgayDi(date);
+				vexe.setDiaDiemDen(rs.getString("DiaDiemDen"));
+				vexe.setsDT(rs.getString("SDT"));
+				vexe.setDiaDiemDi(rs.getString("DiaDiemDi"));
+				vexe.setiDChuyen(rs.getInt("IdChuyen"));
+				vexe.setMaGhe(rs.getString("MaGhe"));
+
+				vexe.setcMND(rs.getString("CMND"));
+				vexe.setHoTen(rs.getString("HoTen"));
+
+
+				arr.add(vexe);
+			}
+			connection.close();
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return arr;
+	}
+
+	@Override
 	public ArrayList<VeXe> getAllVe(){
 		Connection connection = null;
 		try {

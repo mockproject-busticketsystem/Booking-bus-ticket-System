@@ -101,7 +101,7 @@ else if(success == "false")
 												<div class="form-group label-floating">
 													<label class="control-label">CMND</label> <input
 														name="CMND" type="text" class="form-control"
-														value="${loginedKhachHang.cMND}" readonly>
+														value="${khachHang.cMND}" readonly>
 												</div>
 											</div>
 										</div>
@@ -114,7 +114,7 @@ else if(success == "false")
 											<div class="form-group label-floating">
 												<label class="control-label">Email</label> <input
 													name="Email" type="text" class="form-control"
-													value="${loginedKhachHang.email}" readonly>
+													value="${khachHang.email}" readonly>
 											</div>
 										</div>
 										</div>
@@ -127,7 +127,7 @@ else if(success == "false")
 												<div class="form-group label-floating">
 													<label class="control-label">Họ Tên</label> <input
 														name="Hoten" type="text" class="form-control"
-														value="${loginedKhachHang.hoTen}" readonly>
+														value="${khachHang.hoTen}" readonly>
 												</div>
 											</div>
 										</div>
@@ -139,7 +139,7 @@ else if(success == "false")
 											</span>
 											<div class="form-group label-floating">
 												<label class="control-label">SĐT</label> <input name="SDT"
-													type="text" class="form-control" value="${loginedKhachHang.sDT}"
+													type="text" class="form-control" value="${khachHang.sDT}"
 													readonly>
 											</div>
 										</div>
@@ -149,7 +149,7 @@ else if(success == "false")
 								<!--Buoc Chinh sua Thông Tin-->
 
 								<div class="tab-pane" id="account">
-									<form action="${pageContext.request.contextPath}/ChangeInfoCustom" onsubmit="return confirm('Bạn muốn cập nhập thông tin?');" method="Post">
+									<form action="${pageContext.request.contextPath}/ChangeInfoCustom" method="Post">
 										<div class="col-sm-6">
 											<div class="input-group">
 												<span class="input-group-addon"> <i
@@ -158,7 +158,7 @@ else if(success == "false")
 												<div class="form-group label-floating">
 													<label class="control-label">CMND</label> <input
 														name="CMND" type="text" class="form-control"
-														value="${loginedKhachHang.cMND}" readonly>
+														value="${khachHang.cMND}" readonly>
 												</div>
 											</div>
 										</div>
@@ -171,7 +171,7 @@ else if(success == "false")
 											<div class="form-group label-floating">
 												<label class="control-label">Email</label> <input
 													name="Email" type="text" class="form-control"
-													value="${loginedKhachHang.email}" readonly>
+													value="${khachHang.email}" readonly>
 											</div>
 										</div>
 										</div>
@@ -184,7 +184,7 @@ else if(success == "false")
 												<div class="form-group label-floating">
 													<label class="control-label">Họ Tên</label> <input
 														name="hoTen" type="text" class="form-control"
-														value="${loginedKhachHang.hoTen}" required>
+														value="${khachHang.hoTen}" required>
 												</div>
 											</div>
 										</div>
@@ -196,21 +196,21 @@ else if(success == "false")
 											</span>
 											<div class="form-group label-floating">
 												<label class="control-label">SĐT</label> <input name="SDT"
-													type="text" class="form-control" value="${loginedKhachHang.sDT}" pattern="[0-9]*.{10,11}" required>
+													type="text" class="form-control" value="${khachHang.sDT}" pattern="[0-9]*.{10,11}" required>
 											</div>
 										</div>
 										</div>
 										<div class="pull-right">
 											<input type='submit'
 												class='btn btn-next btn-fill btn-success btn-wd'
-												name='submit' value='Submit'/>
+												name='submit' value='Submit' />
 										</div>
 									</form>
 								</div>
 
 								<!--Cap Nhap Mat Khau-->
 								<div class="tab-pane" id="address">
-									<form action="${pageContext.request.contextPath}/ThayDoiMatKhau" onsubmit="return validatePassword(); confirm('Bạn muốn cập nhập mật khẩu?');" method="Post">
+									<form action="${pageContext.request.contextPath}/ThayDoiMatKhau" onsubmit="return validatePassword();" method="Post">
 										<div class="row">
 											<div class="col-sm-7 col-sm-offset-1">
 												<div class="form-group label-floating">

@@ -20,8 +20,9 @@
 <body>
 	<div id=main_top>
 		<div id=main2>
-					<div class=top>
-					<img src="img/icon_nhanvien.jpg"  height="42" width="42">
+			<div class=top>
+				<img src="${pageContext.request.contextPath}/img/icon_nhanvien.png"
+					height="62" width="62">
 				<h1>Nhân Viên Quản Lý</h1>
 				<hr class=new4>
 				<div class=right>
@@ -51,8 +52,8 @@
 					</form>
 					</h4>
 				</div>
-					<div class=right2>
-						<form method="POST"
+				<div class=right2>
+					<form method="POST"
 						action="${pageContext.request.contextPath}/LoadBangGhe">
 						<h4>
 							<input type="submit" value="Xem Sơ Đồ Ghế">
@@ -60,7 +61,7 @@
 					</h4>
 				</div>
 				<div class=right2>
-						<form method="POST"
+					<form method="POST"
 						action="${pageContext.request.contextPath}/DangXuat">
 						<h4>
 							<input type="submit" value="Đăng Xuất">
@@ -70,13 +71,16 @@
 			</div>
 
 		</div>
-		<div id="main" style="$">
-			<div id=head style="background-color: #81DAF5; margin-left:-14px;width:100%;">
+		<div id="main_head">
+			<div id=head>
 				<div class=logo>
 					<p>Xem Tất Cả Chuyến Đã Đặt</p>
 				</div>
 
 			</div>
+		</div>
+		<div id="main">
+
 
 
 			<div id="head">
@@ -100,13 +104,14 @@
 								</select>
 						</th>
 
-						<th scope="col">Chọn giá trị <select name="choosevalues"
-							class="txtFrm" id="choosevalues" required="required "
-							onchange="this.form.submit();">
+						<th scope="col">Chọn giá trị <input type="hidden"
+							name="ktchondiemdi" value="${choosevalues}"></input><select
+							name="choosevalues" class="txtFrm" id="choosevalues"
+							required="required " onchange="this.form.submit();">
 								<option>filter value</option>
 								<c:choose>
-									
-								
+
+
 									<c:when test="${choosethuoctinh.equals('Diem Di')}">
 										<c:forEach items="${distinct}" var="listItem">
 											<option value="${listItem.diaDiemDi}"
@@ -124,11 +129,11 @@
 									</c:if>>${listItem.diaDiemDen}</option>
 										</c:forEach>
 									</c:when>
-	
-									
-
 								</c:choose>
 
+								<c:if test="${tempCD.equals('1')}">
+									<option value="${choosevalues}" selected>${choosevalues}</option>
+								</c:if>
 
 						</select>
 
@@ -138,25 +143,27 @@
 								Chọn thuộc tính muốn lọc <select name="choosethuoctinh2"
 									class="txtFrm" id="choosethuoctinh2" required="required "
 									onchange="this.form.submit();">
-										
+
 									<c:forEach items="${thuoctinh}" var="listItem">
-								<c:if test="${choosethuoctinh.equals('All')==false && choosevalues.equals('filter value')==false}">
-										<c:if test="${listItem.equals(choosethuoctinh)==false }">
-											<option value="${listItem}"
-												<c:if test="${listItem.equals(choosethuoctinh2)==true}">
+										<c:if
+											test="${choosethuoctinh.equals('All')==false && choosevalues.equals('filter value')==false}">
+											<c:if test="${listItem.equals(choosethuoctinh)==false }">
+												<option value="${listItem}"
+													<c:if test="${listItem.equals(choosethuoctinh2)==true}">
 											selected
 									</c:if>>${listItem}</option>
-										</c:if></c:if>
+											</c:if>
+										</c:if>
 									</c:forEach>
 								</select>
 						</th>
 						<th scope="col">Chọn giá trị <select name="choosevalues2"
 							class="txtFrm" id="choosevalues2" required="required "
 							onchange="this.form.submit();">
-						
+
 								<option>filter value</option>
 								<c:choose>
-								
+
 									<c:when test="${choosethuoctinh2.equals('Diem Di')}">
 										<c:forEach items="${distinct2}" var="listItem">
 											<option value="${listItem.diaDiemDi}"
@@ -164,7 +171,7 @@
 											selected
 									</c:if>>${listItem.diaDiemDi}</option>
 										</c:forEach>
-										
+
 									</c:when>
 
 									<c:when test="${choosethuoctinh2.equals('Diem Den')}">
@@ -177,7 +184,9 @@
 									</c:when>
 
 								</c:choose>
-
+								<c:if test="${tempCD.equals('1')}">
+									<option value="${choosevalues2}" selected>${choosevalues2}</option>
+								</c:if>
 
 						</select>
 							</h5></th>
@@ -223,21 +232,23 @@
 								<td>${ve.hangDoi}</td>
 								<td>${ve.soLuong}</td>
 								<td>${ve.soLuong*ve.donGia}</td>
-									<td>	<c:choose>
-									<c:when test="${ve.soLuong==ve.statuscount}">
-								<img  src="${pageContext.request.contextPath}/img/accept.png"  height="22" width="22">
-									
-									</c:when>
-									<c:when test="${ve.soLuong!=ve.statuscount}">
-										<img src="${pageContext.request.contextPath}/img/x.png"  height="22" width="22">
-									
-									</c:when>
+								<td><c:choose>
+										<c:when test="${ve.soLuong==ve.statuscount}">
+											<img src="${pageContext.request.contextPath}/img/accept.png"
+												height="22" width="22">
+
+										</c:when>
+										<c:when test="${ve.soLuong!=ve.statuscount}">
+											<img src="${pageContext.request.contextPath}/img/x.png"
+												height="22" width="22">
+
+										</c:when>
 									</c:choose></td>
 								<form method="POST"
 									action="${pageContext.request.contextPath}/DashboardNhanVien/XemVe">
 									<input type="hidden" name="idchuyen" value=${ve.iDChuyen}></input>
 									<input type="hidden" name="ngaydi" value=${ve.ngayDi}></input>
-									<td><input type="submit" value="xem vé" style="width:80px"></td>
+								<td><input type="submit" value="xem vé" style="width: 80px"></td>
 
 								</form>
 							</tr>
@@ -265,10 +276,10 @@
 			type="text/javascript"></script>
 
 		<script type="text/javascript">
-        $(document).ready( function () {
-    $('#mydataTable').DataTable();
-} );
-    </script>
+			$(document).ready(function() {
+				$('#mydataTable').DataTable();
+			});
+		</script>
 </body>
 
 </html>

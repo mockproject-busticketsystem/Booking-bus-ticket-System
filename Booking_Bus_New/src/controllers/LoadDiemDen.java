@@ -38,7 +38,11 @@ public class LoadDiemDen extends HttpServlet {
 		TuyenDiDAOImplement tuyenDiDao = new TuyenDiDAOImplement();
 		ArrayList<String> arrayDiemDen;
 		String diemDi = request.getParameter("diemdi");
+		/*String diemDi ="Ho Chi Minh";*/
 		arrayDiemDen = tuyenDiDao.getDiaDiemDenTheoDDD(diemDi);
+		/*request.setAttribute("arrayDiemDen", arrayDiemDen);
+		RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/views/showDiemDen.jsp");
+				dispatcher.forward(request, response);*/
 		out.println("<select name=\"diemden\" class=\"txtFrm\" id=\"diemden\" required=\"required \">\r\n" + 
 				"		<option value=\"0\">Chon Diem Den</option>\r\n");
 				for(int i=0;i<arrayDiemDen.size();i++)

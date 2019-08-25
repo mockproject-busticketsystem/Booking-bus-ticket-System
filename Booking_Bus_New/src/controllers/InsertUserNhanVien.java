@@ -55,7 +55,7 @@ public class InsertUserNhanVien extends HttpServlet{
 			if(role.equals("NhanVien"))
 			{
 				NhanVien nhanVien = new NhanVien(cmnd,hoten,sdt,email,chucvu);
-				success = nhanVienDao.InsertUserNhanVien(conn, nhanVien);
+				success = nhanVienDao.InsertNhanVien(nhanVien);
 				if(success == true)
 				{
 					taiKhoan.setRole("NhanVien");
@@ -74,10 +74,10 @@ public class InsertUserNhanVien extends HttpServlet{
 			else if(role.equals("KhachHang"))
 			{
 				KhachHang khachHang = new KhachHang(cmnd,hoten,sdt,email);
-				success = khachHangDao.InsertKhachHang(conn,khachHang);
+				success = khachHangDao.InsertKhachHang(khachHang);
 				if(success == true)
 				{
-					taiKhoan.setRole("khachhang");
+					taiKhoan.setRole("KhachHang");
 					success = taiKhoanDao.InsertUserCustom(conn, taiKhoan);
 					if(success == true)
 					{

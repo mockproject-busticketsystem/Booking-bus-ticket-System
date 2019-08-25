@@ -96,6 +96,9 @@
 	margin-left: 11.38%;
 	margin-top: -12px;
 }
+#datepicker:hover{
+ 	background: white;
+}
 </style>
 
 <script type="text/javascript">
@@ -109,55 +112,67 @@ jQuery(document).ready(function ($) {
 </script>
 <body>
 
-	<div id="main2" style="margin-top:-10px;">
-		<div class=top>
-			<h4>Nhân Viên Quản Lý</h4>
+	<div id=main2>
+					<div class=top>
+					<img src="img/icon_nhanvien.png"  height="62" width="62">
+				<h1 style="margin-top:0px;font-size:40px;font-weight:550;">Nhân Viên Quản Lý</h1>
 			<hr class=new4>
-			<div class=right>
-				<form method="POST"
-					action="${pageContext.request.contextPath}/LoadVe">
+		
+		<div class=right>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/LoadVe">
 
-					<h4>
-						<input type="submit" value="All Vé">
-				</form>
-				</h4>
-			</div>
-			<div class=right2>
-				<form method="POST"
-					action="${pageContext.request.contextPath}/DashboardNhanVien">
-					<input type="hidden" name="idchuyen" value=${idchuyen}></input> <input
-						type="hidden" name="ngaydi" value=${ngaydi}></input>
-					<h4>
-						<input type="submit" value="All Chuyến">
-				</form>
-				</h4>
-			</div>
-			<div class=right2>
-				<form method="POST"
-					action="${pageContext.request.contextPath}/LoadBangGhe">
-					<h4>
-						<input type="submit" value="Xem Sơ Đồ Ghế">
-				</form>
-				</h4>
-			</div>
-			<div class=right2>
-				<form method="POST"
-					action="${pageContext.request.contextPath}/DangXuat">
-					<h4>
-						<input type="submit" value="Đăng Xuất">
-				</form>
-				</h4>
-			</div>
+						<h4>
+							<input type="submit" value="Thông Tin Vé">
+					</form>
+					</h4>
+				</div>
+				<div class=right2>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/DashboardNhanVien">
+						<input type="hidden" name="idchuyen" value=${idchuyen}></input> <input
+							type="hidden" name="ngaydi" value=${ngaydi}></input>
+						<h4>
+							<input type="submit" value="Tình Trạng Vé">
+					</form>
+					</h4>
+				</div>
+				<div class=right2>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/LoadChuyen">
+						<h4>
+							<input type="submit" value="Xem Chuyến">
+					</form>
+					</h4>
+				</div>
+				<div class=right2>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/LoadBangGhe">
+						<h4>
+							<input type="submit" value="Xem Sơ Đồ Ghế">
+					</form>
+					</h4>
+				</div>
+				<div class=right2>
+					<form method="POST"
+						action="${pageContext.request.contextPath}/DangXuat">
+						<h4>
+							<input type="submit" value="Đăng Xuất">
+					</form>
+					</h4>
+				</div>
 		</div>
 
 	</div>
-	<div id="main_xemghe">
-		<div id=head1>
-			<div class=logo1>
-				<p>Nhân viên quản lý</p>
-			</div>
 
-		</div>
+	<div id="main_head" ><div id=head1 >
+				<div class=logo1>
+						<p>Nhân viên quản lý</p>
+				</div>
+</div></div>
+
+	<div id="main_xemghe">
+	<div id="margin"></div>
 		<div id="content"
 			style="height: 600px; margin-left: 50px;">
 			<div id="datve" class="clearfix" data-selected="true"
@@ -214,7 +229,7 @@ jQuery(document).ready(function ($) {
 							</div>
 							<br> <br>
 							<div class="item_dv">
-								<input type="submit" id="btnDatVe"
+								<input type="submit" id="btnXemGhe"
 									class="btn btn-danger btn-block" value="Xem Ghế"
 									style="margin-left: 100px; margin-top: 25px;">
 							</div>
@@ -436,7 +451,6 @@ $(document).ready(function () {
             });
     });
 });
-
 $(document).ready(function () {
 	var submitSuccess;
 	$("#frmDatVe").submit(function(e) {
@@ -478,12 +492,8 @@ $(document).ready(function () {
 
 	});
 });
-
 </script>
 
-<script type="text/javascript">
-
-</script>
 </body>
 
 </html>

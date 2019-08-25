@@ -49,7 +49,7 @@ public class ViewAllTicketCustom extends HttpServlet {
 		else
 		{
 			// lay khach hang
-			KhachHang khach = MyConnect.getLoginedKhachHang(session);
+			KhachHang khach = khachHangDao.showInfor(taiKhoan);
 			// lay cac ve da dduoc thanh toan
 			ArrayList<VeXe> listVeStatusTrue = new ArrayList<>();
 			listVeStatusTrue = veXeDao.viewAllTicketCusTomNotChanage(khach.getcMND());
@@ -64,8 +64,6 @@ public class ViewAllTicketCustom extends HttpServlet {
 		}
 		/*request.getRequestDispatcher("/info-user").forward(request, response);//forwarding the request
 		 */		
-
-
 	}
 
 	/**

@@ -51,7 +51,7 @@ public class Register extends HttpServlet {
 				try {
 					conn = ConnectionUtils.getConnection();
 					conn.setAutoCommit(false);
-					success = khachHangDao.InsertKhachHang(conn,khachHang);
+					success = khachHangDao.InsertKhachHang(khachHang);
 					if(success == true)
 					{
 					taiKhoan.setRole("khachhang");

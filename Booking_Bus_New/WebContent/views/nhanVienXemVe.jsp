@@ -20,8 +20,9 @@
 <body>
 	<div id=main_top>
 		<div id=main2>
-			<div class=top>
-				<h5>Nhân Viên Quản Lý</h5>
+					<div class=top>
+					<img src="../img/icon_nhanvien.png"  height="62" width="62">
+				<h1>Nhân Viên Quản Lý</h1>
 				<hr class=new4>
 	<div class=right>
 					<form method="POST"
@@ -68,16 +69,14 @@
 
 			</div>
 		</div>
-		<div id="main">
-			<div id=head>
+				<div id="main_head" ><div id=head >
 				<div class=logo>
-					<p>Thông Tin Chuyến Đi</p>
+						<p>Thông Tin Chuyến Đi</p>
 				</div>
 
-
-
-			</div>
-
+			</div></div>
+		<div id="main">
+	
 
 			<c:set var="a" value="0" />
 

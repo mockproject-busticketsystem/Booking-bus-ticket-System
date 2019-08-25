@@ -173,7 +173,12 @@ img {
 	margin-left: 25px;
 	
 }
+	#table_filter{
+	display: none;
+	}
+	#table{
 
+	}
 </style>
 <script>
 $(document).ready(function () {
@@ -200,8 +205,7 @@ $(document).ready(function () {
 
 </head>
 
-<body class="dark-edition" style="background: #F6F8FA;">
-
+<body class="dark-edition" style="background: #F6F8FA;	width: 100%;;">
 	<div class="wrapper">
 		<div class="sidebar" data-color="purple" data-background-color="black" style="border-color: transparent;width: 250px;">
 			<div class="logo">
@@ -291,7 +295,7 @@ $(document).ready(function () {
 								</a></li>
 							</c:if>
 							<li><div class="navigation">
-							<a class="button" href="${pageContext.request.contextPath}/login"><img src="${pageContext.request.contextPath}/img/tuan.jpg">
+							<a class="button" href="${pageContext.request.contextPath}/DangXuat"><img src="${pageContext.request.contextPath}/img/tuan.jpg">
   							<div class="logout">LOGOUT</div></a>
 							</div> </li>
 						</ul>
@@ -364,7 +368,7 @@ $(document).ready(function () {
 												style="color: black; text-decoration: none; font-size: 15px; font-size: 20px;"
 												onclick="document.getElementById('modform').style.display='block';addRowHandlers();"
 												style="width:auto;"></a></td> -->
-
+												
 											<td><c:if test="${taikhoan.role == 'NhanVien'}">
 													<a href="infoNhanvien?email=${taikhoan.email}"
 														class="btn btn-info">Detail</a>
@@ -460,7 +464,7 @@ $(document).ready(function () {
 										<!-- 	<button type="submit" class="btn btn-primary pull-right">Update
 											Profile</button> -->
 										<div class="clearfix"></div>
-										<button type="submit" onclick="return confirm('Are you sure you want to Update Information Admin?')" style=" border-radius: 30px;background: #8A34A0;">Update</button>
+										<button type="submit" onclick="return confirm('Are you sure you want to Update Information Admin?')" style="background: #8A34A0;">Update</button>
 									</form>
 								</div>
 
@@ -478,7 +482,7 @@ $(document).ready(function () {
 									<h5 class="card-category">CEO</h5>
 									<h4 class="card-title">${admin.hoTen}</h4>
 									
-									<a href="https://www.facebook.com/thai.tuan1803" class="btn btn-primary btn-round">Follow</a>
+										
 								</div>
 							</div>
 						</div>

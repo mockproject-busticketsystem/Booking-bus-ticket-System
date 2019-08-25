@@ -46,15 +46,7 @@
 								<tr>
 									<td>${tkSearch.email}</td>
 									<input type="hidden" value="${tkSearch.email}" name="email">
-									<td>${tkSearch.role}</td>
-									<!-- <td><a class="fa fa-pencil" id="select"
-										style="color: white; text-decoration: none; font-size: 15px; font-size: 20px;"
-										onclick="document.getElementById('modform').style.display='block';addRowHandlers();"
-										style="width:auto;"></a></td> -->
-									<%-- 								<td>&nbsp&nbsp&nbsp<a class="material-icons"
-									style="color: white; text-decoration: none; 
-									text-align: center;" href="http://localhost:8080/Booking_Bus/DeleteUserServlet?email_delete=${taikhoan.email}">&#xE872;</a>
-								</td> --%>
+									<td>${tkSearch.role}</td>		
 									<td><c:if test="${tkSearch.role == 'NhanVien'}">
 											<a href="infoNhanvien?email=${tkSearch.email}"
 												class="btn btn-info">Detail</a>

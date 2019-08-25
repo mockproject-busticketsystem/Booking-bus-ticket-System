@@ -177,39 +177,6 @@ public class TaiKhoanDAOImplement implements TaiKhoanDAO{
 		}
 		return arr;
 	}
-	@Override
-	public ArrayList<NhanVien> getInfoNhanVien(String email) {
-		// TODO Auto-generated method stub
-		Connection connection = null;
-		try {
-			connection = DBConnect.getMySQLConnection();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		String sql = "SELECT * FROM nhanvien where Email = ?";
-		ArrayList<NhanVien> arr = new ArrayList<>();
-		try {
-			PreparedStatement ps = connection.prepareStatement(sql);
-			ps.setString(1, email);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next())
-			{
-				NhanVien nv = new NhanVien();
-				nv.setcMND(rs.getString("CMND"));
-				nv.setHoTen(rs.getString("HoTen"));
-				nv.setsDT(rs.getString("SDT"));
-				nv.setEmail(rs.getString("Email"));
-				nv.setChucVu(rs.getString("Chucvu"));
-				arr.add(nv);
-			}
-			connection.close();
-		}catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return arr;
-	}
 	
 	@Override
 	public ArrayList<TaiKhoan> getTaiKhoanFilter(String role) {

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import models.ChuyenDi;
 import models.TuyenDi;
 
 public interface TuyenDiDAO {
@@ -18,4 +19,5 @@ public interface TuyenDiDAO {
 	public ArrayList<String> getDiaDiemDenTheoDDD(String diaDiemDi);
 	public String getHangdoi(String DiemDi, String DiemDen);
 	public TuyenDi getTuyenDi(String maTuyen);
+	public ChuyenDi getChuyenDi(Integer IdChuyen);
 }

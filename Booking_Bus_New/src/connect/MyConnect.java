@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import models.KhachHang;
 import models.TaiKhoan;
 
 public class MyConnect {
@@ -33,15 +32,6 @@ public class MyConnect {
         TaiKhoan loginedUser = (TaiKhoan) session.getAttribute("loginedUser");
         return loginedUser;
     }
-    public static void storedLoginedCustom(HttpSession session, KhachHang khachHang)
-    {
-    	session.setAttribute("loginedKhachHang",khachHang );
-    }
-    public static KhachHang getLoginedKhachHang(HttpSession session) {
-        KhachHang loginedUser = (KhachHang) session.getAttribute("loginedKhachHang");
-        return loginedUser;
-    }
- 
  
     public static void storeUserCookie(HttpServletResponse response, TaiKhoan user) {
         System.out.println("Store user cookie");

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import connect.ConnectionUtils;
 import connect.DBConnect;
+import models.ChuyenDi;
 import models.TuyenDi;
 
 public class TuyenDiDAOImplement implements TuyenDiDAO {
@@ -276,5 +277,34 @@ public class TuyenDiDAOImplement implements TuyenDiDAO {
 			e.printStackTrace();
 		}
 		return HangDoi;
+	}
+	@Override
+	public ChuyenDi getChuyenDi(Integer IdChuyen) {
+		// TODO Auto-generated method stub
+		ChuyenDi chuyenDi = null;
+		Connection conn= null;
+		try {
+			conn = ConnectionUtils.getConnection();
+			String sql = "Select * from chuyendi where id= ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, IdChuyen);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				chuyenDi = new ChuyenDi();
+				chuyenDi.setMaTuyen(rs.getString("MaTuyen"));
+				LocalTime giodi = LocalTime.parse(rs.getString("GioDi"));
+				chuyenDi.setGioDi(giodi);
+				chuyenDi.setDonGia(rs.getBigDecimal("DonGia"));
+				LocalTime gioden = LocalTime.parse(rs.getString("GioDen"));
+				chuyenDi.setGioDen(gioden);
+			}
+			conn.close();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return chuyenDi;
 	}
 }

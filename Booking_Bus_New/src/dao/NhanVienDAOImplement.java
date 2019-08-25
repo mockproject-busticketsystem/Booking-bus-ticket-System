@@ -2,9 +2,12 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import connect.ConnectionUtils;
+import connect.DBConnect;
 import models.NhanVien;
 import models.TaiKhoan;
 
@@ -31,7 +34,11 @@ public class NhanVienDAOImplement implements NhanVienDAO{
 		}
 		return false;
 	}
-	public boolean InsertUserNhanVien(Connection conn, NhanVien nhanVien) {
+
+	@Override
+	public boolean InsertNhanVien(NhanVien nhanVien) {
+		// TODO Auto-generated method stub
+		Connection conn = null;
 		try {
 			conn =  ConnectionUtils.getConnection();
 			String sql = "Insert into nhanvien values(?,?,?,?,?)";
@@ -55,5 +62,40 @@ public class NhanVienDAOImplement implements NhanVienDAO{
 			return false;
 		}
 	}
+	@Override
+	public NhanVien getInfoNhanVien(String email) {
+		// TODO Auto-generated method stub
+		Connection connection = null;
+		NhanVien nv = null;
+		try {
+			connection = DBConnect.getMySQLConnection();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String sql = "SELECT * FROM nhanvien where Email = ?";
+		ArrayList<NhanVien> arr = new ArrayList<>();
+		try {
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				nv = new NhanVien();
+				nv.setcMND(rs.getString("CMND"));
+				nv.setHoTen(rs.getString("HoTen"));
+				nv.setsDT(rs.getString("SDT"));
+				nv.setEmail(rs.getString("Email"));
+				nv.setChucVu(rs.getString("Chucvu"));
+				arr.add(nv);
+			}
+			connection.close();
+		}catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return nv;
+	}
+	
 
 }

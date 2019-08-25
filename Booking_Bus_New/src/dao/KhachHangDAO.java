@@ -8,8 +8,8 @@ import models.KhachHang;
 import models.TaiKhoan;
 
 public interface KhachHangDAO {
-	public ArrayList<KhachHang> getKH(String email);
-	public boolean InsertKhachHang(Connection conn, KhachHang khachhang);
+	public KhachHang getKH(String email);
+	public boolean InsertKhachHang(KhachHang khachhang);
 	public boolean UpdateKhachHang(KhachHang khachhang);
 	public KhachHang showInfor(TaiKhoan taiKhoan);
 }

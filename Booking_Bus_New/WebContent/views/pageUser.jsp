@@ -128,12 +128,15 @@ jQuery(document).ready(function ($) {
 							</div>
 							<!-- Het Time -->
 							<!-- Ngay Di -->
+							
 							<div class="item_dv datefm">
 
-								<label>Ngày đi</label> <input class="txtFrm form_date"
+								<label>Ngày đi</label> 
+								
+								<input class="txtFrm form_date"
 									data-date="" data-date-format="dd/mm/yyyy" size="16"
 									type="text" name="ngaydi" value="" required="" id="datepicker"
-									class="hasDatepicker"> <span><i
+									class="hasDatepicker" readonly> <span><i
 									class="fa fa-calendar"
 									style="font-size: 30px; margin-top: 3px;"></i></span>
 							</div>
@@ -490,7 +493,7 @@ function checkonsubmit()
     	var curent = new Date();
     	curent.setDate(curent.getDate()+1);
     	var pices =  gio.split(':');
-    	if((dayBook.getDate() <= curent.getDate())&& (curent.getHours()>=pices[0]))
+    	if((dayBook.getDate() == curent.getDate())&& (curent.getHours()>=pices[0]))
     	{
     			alert("Đặt vé trước 24h xe chạy bạn nhé!! Mời bạn nhập lại ngày và giờ cho phù hợp!!!");
     			$.ajax({

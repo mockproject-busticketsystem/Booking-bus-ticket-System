@@ -42,8 +42,11 @@ public class LoadThoiGian extends HttpServlet {
 		String diaDiemDi = request.getParameter("diemdi");
 		String diaDiemDen = request.getParameter("diemden");
 		String maTuyen = tuyenDiDao.getIdTuyen(diaDiemDi,diaDiemDen);
+		/*String maTuyen = tuyenDiDao.getIdTuyen("Ho Chi Minh","Ha Noi");*/
 		ArrayList<ChuyenDi> arr = chuyenDiDao.loadGioDi(maTuyen);
 		request.setAttribute("arrayChuyenDi", arr);
+		/*RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/views/showDiemDen.jsp");
+		dispatcher.forward(request, response);*/
 		out.println("<select name=\"giodi\" id=\"giodi\" class=\"txtFrm\" required=\"required\" data-date-format=\"hh:ii\">");
 		for(int i=0;i<arr.size();i++)
 		{

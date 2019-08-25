@@ -85,7 +85,7 @@ public class NhanVienXemGhe extends HttpServlet {
 	    		checkDelete = false;
 	    	}
 	    }
-	    System.out.println("checkDelete"+checkDelete);
+	   
 	    
 	    req.setAttribute("checkDelete",checkDelete );
 

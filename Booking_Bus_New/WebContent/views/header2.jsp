@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
    <style>
@@ -87,7 +87,7 @@
                             <li class="left" id = "lichsu"><a href="${pageContext.request.contextPath}/ViewAllTicketCustom">Lịch sử booking</a></li>
                             <li class="left"><a href="<%=request.getContextPath()%>/pageUser">Booking Vé</a></li>
                             <li id = "dangxuat"><a href="${pageContext.request.contextPath}/DangXuat">Đăng xuất</a></li>                     
-                           <li id = "hoten"><a>Welcome ${loginedKhachHang.hoTen}</a></li>  
+                           <li id = "hoten"><a>Welcome ${hoTen}</a></li>  
                         </ul>  
 
          </div>                

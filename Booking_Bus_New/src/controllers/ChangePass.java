@@ -45,6 +45,9 @@ public class ChangePass extends HttpServlet {
 		String err ="";
 		String oldPass = request.getParameter("curPass");
 		TaiKhoan taiKhoan = MyConnect.getLoginedUser(session);
+		System.out.println(taiKhoan+"l2222");
+		System.out.println(taiKhoan.getPass());
+		System.out.println(oldPass);
 		if(taiKhoan.getPass().equals(oldPass))
 		{
 			String newPass = request.getParameter("newPass");
@@ -54,13 +57,15 @@ public class ChangePass extends HttpServlet {
 		if(success == true)
 		{
 			MyConnect.storeLoginedUser(session, taiKhoan);
+			err="Cập Nhập Thành Công";
 		}
 		else
 		{
-			err="Opps... cập nhập thất bại!";
+			err="Mật khẩu hiện tại không đúng";
 		}
-		KhachHang khachHang = MyConnect.getLoginedKhachHang(session);
+		KhachHang khachHang = khachHangDao.showInfor(taiKhoan);
 		request.setAttribute("success", success);
+		request.setAttribute("khachHang",khachHang);
 		request.setAttribute("err", err);
 		RequestDispatcher dispatcher 
 		= this.getServletContext().getRequestDispatcher("/views/ThongTinKhach.jsp");

@@ -8,17 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.NhanVienDAOImplement;
-import models.NhanVien;
-import models.TaiKhoan;
-@WebServlet("/UpdateNhanVienServlet")
-public class UpdateNhanVienServlet extends HttpServlet{
+import dao.KhachHangDAOImplement;
+import models.KhachHang;
+@WebServlet("/InsertKhachHang")
+public class InsertInfoKhachHang extends HttpServlet{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private NhanVienDAOImplement nvDao = new NhanVienDAOImplement();
+	private KhachHangDAOImplement khDao = new KhachHangDAOImplement();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -30,19 +29,21 @@ public class UpdateNhanVienServlet extends HttpServlet{
 		// TODO Auto-generated method stub
 		String hoten = req.getParameter("HoTen");
 		String sdt = req.getParameter("SDT");
-		String chucvu = req.getParameter("Chucvu");
 		String CMND = req.getParameter("CMND");
+		String email = req.getParameter("email");
 		System.out.println(hoten);
 		System.out.println(sdt);
+		System.out.println(CMND);
+		System.out.println(email);
 		try {
-			NhanVien nhanVien = new NhanVien();
-			nhanVien.setHoTen(hoten);
-			nhanVien.setsDT(sdt);
-			nhanVien.setChucVu(chucvu);
-			nhanVien.setcMND(CMND);
-			boolean updated = nvDao.UpdateNhanVien(nhanVien);
-			if(updated == true) {
-				req.setAttribute("updated", updated);
+			KhachHang khachHang = new KhachHang();
+			khachHang.setHoTen(hoten);
+			khachHang.setsDT(sdt);
+			khachHang.setcMND(CMND);
+			khachHang.setEmail(email);
+			boolean inserted = khDao.InsertKhachHang(khachHang);
+			if(inserted == true) {
+				System.out.println("insert success!");
 				req.getServletContext().getRequestDispatcher("/DashboardAdmin").forward(req, resp);
 			}	
 			else {
@@ -52,8 +53,7 @@ public class UpdateNhanVienServlet extends HttpServlet{
 		catch (Exception e)
 		{
 			e.printStackTrace();
-		}	
-		
+		}
 	}
 
 }

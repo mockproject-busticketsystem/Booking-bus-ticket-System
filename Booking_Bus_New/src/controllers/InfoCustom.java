@@ -38,14 +38,15 @@ public class InfoCustom extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		TaiKhoan taiKhoan = MyConnect.getLoginedUser(session);
-		KhachHang khachHang = MyConnect.getLoginedKhachHang(session);
 		if(taiKhoan==null)
 		{
 			response.sendRedirect(request.getContextPath()+"/views/loginView.jsp");
 		}
 		else
 		{
-		/*request.setAttribute("khachHang",khachHang);*/
+		
+		KhachHang khachHang = khachHangDao.showInfor(taiKhoan);
+		request.setAttribute("khachHang",khachHang);
 		RequestDispatcher dispatcher //
 		= this.getServletContext().getRequestDispatcher("/views/ThongTinKhach.jsp");
 		dispatcher.forward(request, response);

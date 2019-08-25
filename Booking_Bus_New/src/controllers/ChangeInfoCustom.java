@@ -38,20 +38,15 @@ public class ChangeInfoCustom extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		// lay session
-		KhachHang khachHang = new KhachHang();
-		khachHang = MyConnect.getLoginedKhachHang(session);
+		TaiKhoan taiKhoan = MyConnect.getLoginedUser(session);
+		KhachHang khachHang = khachHangDao.showInfor(taiKhoan);
 		String name = request.getParameter("hoTen");
 		String SDT = request.getParameter("SDT");
 		khachHang.setHoTen(name);
 		khachHang.setsDT(SDT);
 		Boolean success = khachHangDao.UpdateKhachHang(khachHang);
-		if(success == true)
-		{
-			MyConnect.storedLoginedCustom(session, khachHang);
-			System.out.println(MyConnect.getLoginedKhachHang(session).getHoTen());
-		}
 		request.setAttribute("success", success);
-		/*request.setAttribute("khachHang",khachHang);*/
+		request.setAttribute("khachHang",khachHang);
 		RequestDispatcher dispatcher //
 		= this.getServletContext().getRequestDispatcher("/views/ThongTinKhach.jsp");
 		dispatcher.forward(request, response);

@@ -43,6 +43,8 @@ var dongia = <%=request.getAttribute("dongia")%>;
 $(document).ready(function () {
 var increment2 = 0;
   $('.checkbox').on('click', function() { 
+	   var countGhe = <%= request.getAttribute("countGhe") %>;
+		
        if (this.checked) {
                 increment2++;                 
             } else {
@@ -52,7 +54,13 @@ var increment2 = 0;
         	        $(this).prop('checked', false)
         	        alert("Bạn chỉ có thể đặt tối đa 5 ghế trong 1 lần đặt!");
         	        increment2--;
-        	   }else{
+        	   }else  if((Number(countGhe) + increment2) > 5){
+        		  	 $(this).prop('checked', false)
+        		/* 	alert(Number(countGhe) + increment2); */
+   					alert("Bạn đã đặt " +countGhe+" ghế trước đó! Bạn chỉ có thể đặt tối đa 5 ghế! Số ghế tối đa bạn có thể đặt lúc này là --> "+(5 - countGhe)+" ghế!");
+   				  	increment2--;
+        	   }
+        	   else {
         		   var array = [];
                    $.each($("input[name='check']:checked"), function(){            
                        array.push($(this).val()); 
@@ -88,7 +96,7 @@ $("#frm_info").submit(function(e) {
 </script>
 <script type="text/javascript">
 $(document).ready(function () {
-	$("#frm_info").submit(function(e) {
+	<%-- $("#frm_info").submit(function(e) {
 	var countGhe = <%=request.getAttribute("countGhe")%>;
 	var soghedat = $('#count_ghe').val();
 /* 	alert(Number(countGhe) + Number(soghedat)); */
@@ -97,7 +105,7 @@ $(document).ready(function () {
 			return false;
 			}
 		return true;
-	});
+	}); --%>
 });
 </script>
 </head>
@@ -175,7 +183,7 @@ if(countGhe >= 5){
           <div class="ghechuachon">
           <div class="ml5"
             style="display: inline-block; width: 30px; height: 15px;
-             border: 1px solid #A9A9A9; background-color: white; margin-right: 5px;"></div>
+             border: 1px solid #A9A9A9; background-color: white; margin-left: 150px;"></div>
           <span>Ghế chưa chọn</span>
       	</div>
         </ul>
@@ -383,8 +391,13 @@ if(countGhe >= 5){
 								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								&nbsp&nbsp
 								<input class="hidden" type="text" name="giodi" value = "${giodi}">
-								<span class="form-label" id = "count" style="font-size: 17px;">Số Ghế Đặt: &nbsp 0</span>
+								
+								<span class="form-label" id = "count" style="font-size: 17px;">Số Ghế Đặt:  0</span>
 								<input type="hidden" id = "count_ghe" name = "count_ghe"/>
+							</div>
+							<div class="form-group">
+									<span class="form-label" id = "gioden" style="font-size: 17px;">Thời gian đến (dự kiến):  ${chuyendi.gioDen}</span>
+								<input type="hidden" id = "gioden" name = "gioden"/>
 							</div>
 							<div class="form-group">
 								<span class="form-label" id="mang_ghe" style="font-size: 17px;">Thông tin ghế đặt</span>

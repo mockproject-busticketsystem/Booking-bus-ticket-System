@@ -138,15 +138,15 @@
 </style>
 
 <div id="menu">
- <a href="index.jsp">
+ <a href="${pageContext.request.contextPath}/views/index.jsp">
 	<img src="${pageContext.request.contextPath}/img/logo_bus.png">
 	</a>
 	<ul>
 		<li class="right"><a href="${pageContext.request.contextPath}/login">Đăng nhập</a></li>
 		<li class="right"><a data-toggle="modal" href="#myModal">Đăng ký</a></li>
 		<li class="right" ><a href="#myModal2" data-toggle="modal">Liên hệ</a></li>
-		<li class="right"><a href="http://localhost:8080/Booking_Bus/views/gioithieu.jsp">Giới thiệu</a></li>
-		<li class="right"><a href="http://localhost:8080/Booking_Bus/views/index.jsp">Trang chủ</a></li>
+		<li class="right"><a href="${pageContext.request.contextPath}/views/gioithieu.jsp">Giới thiệu</a></li>
+		<li class="right"><a href="${pageContext.request.contextPath}/views/index.jsp">Trang chủ</a></li>
 
 		<!--  <li class="right"><a href="">   <img src="img/facebook_icon.png">  </a></li>
                             <li class="right"><a href=""><img src="img/zalo_icon.png"> </a></li> -->

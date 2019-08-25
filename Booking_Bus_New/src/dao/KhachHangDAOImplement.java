@@ -12,50 +12,49 @@ import models.NhanVien;
 import models.TaiKhoan;
 
 public class KhachHangDAOImplement implements KhachHangDAO{
-	KhachHang customer = new KhachHang();
+	
 	@Override
-	public ArrayList<KhachHang> getKH(String email)  {
+	public KhachHang getKH(String email)  {
 		// TODO Auto-generated method stub
 		Connection connection = null;
+		KhachHang khachHang = null;
 		try {
 			connection = DBConnect.getMySQLConnection();
 		} catch (ClassNotFoundException | SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-		String sql = "SELECT * FROM khachhang WHERE Email = ? ";
-		ArrayList<KhachHang> arr = new ArrayList<>();
+		}	
+	
 		try {
+			String sql = "SELECT * FROM khachhang WHERE Email = ? ";
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
-				customer.setcMND(rs.getString("CMND"));
-				customer.setHoTen(rs.getString("HoTen"));
-				customer.setsDT(rs.getString("SDT"));
-				customer.setEmail(rs.getString("Email"));
-				arr.add(customer);
+				khachHang = new KhachHang();
+				khachHang.setcMND(rs.getString("CMND"));
+				khachHang.setHoTen(rs.getString("HoTen"));
+				khachHang.setsDT(rs.getString("SDT"));
+				khachHang.setEmail(rs.getString("Email"));
 			}
 			connection.close();
 		}catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-		return arr;
+		return khachHang;
 	}
 	@Override
-	public boolean InsertKhachHang(Connection conn, KhachHang khachhang) {
+	public boolean InsertKhachHang( KhachHang khachhang) {
+		Connection conn = null;
 		// TODO Auto-generated method stub
-		if(conn!= null)
-		{
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		try {
+			conn = DBConnect.getMySQLConnection();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}	
 		try {
 			conn =  ConnectionUtils.getConnection();
 			String sql = "Insert into KhachHang values(?,?,?,?)";

@@ -50,10 +50,16 @@ public class InfoUserLogin extends HttpServlet {
 			request.setAttribute("user", loginedUser);
 			String role = loginedUser.getRole();
 			String email = loginedUser.getEmail();
+			session.setAttribute("role",role);	
+			session.setAttribute("email",email);
 			if(role.equals("KhachHang")) {
-				KhachHang khachHang=new KhachHang();
+				String hoTen = "";
+				hoTen = tkDao.getHoten(role, loginedUser.getEmail());
+				session.setAttribute("hoTen", hoTen);
+				KhachHang khachHang = null;
 				khachHang = khachHangDao.showInfor(loginedUser);
-				MyConnect.storedLoginedCustom(session, khachHang);
+				String CMND = khachHang.getcMND();
+				session.setAttribute("CMND",CMND);
 				request.getRequestDispatcher("/pageUser").forward(request, response);
 			}
 			else if(role.equals("Admin")) {
@@ -64,7 +70,7 @@ public class InfoUserLogin extends HttpServlet {
 				String hoTen = "";
 				hoTen = tkDao.getHoten(role,loginedUser.getEmail());
 				request.setAttribute("hoTen", hoTen);
-				request.getRequestDispatcher("/LoadVe").forward(request, response);
+				request.getRequestDispatcher("/DashboardNhanVien").forward(request, response);
 			}
 		}
 	}

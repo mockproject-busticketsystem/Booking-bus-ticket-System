@@ -30,5 +30,5 @@ public interface VexeDAO {
 	public Integer CountGheKhach(String CMND, LocalDate ngayDi, Integer idChuyen);
 	public ArrayList<VeXe> getAllVeXe();
 
-	
+	public ArrayList<VeXe> getAllVe(String diemdi,String diemden,String search);
 }

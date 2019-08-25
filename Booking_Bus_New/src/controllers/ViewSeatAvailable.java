@@ -10,13 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dao.ChuyenDiDAOImplement;
 import dao.TuyenDiDAOImplement;
 import dao.VexeDAOImplement;
 import models.VeXe;
-@WebServlet("/viewSeatAvailable")
+@WebServlet("/ViewSeatAvailable")
 public class ViewSeatAvailable extends HttpServlet{
 
 	/**
@@ -35,10 +34,10 @@ public class ViewSeatAvailable extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*HttpSession session = req.getSession();*/
 		String diemdi = req.getParameter("diemdi");
 		String diemden = req.getParameter("diemden");
 		String giodi = req.getParameter("giodi");
+		System.out.println(giodi);
 		String ngaydi = req.getParameter("ngaydi");
 		LocalDate ngay_di = LocalDate.parse(ngaydi.toString());
 		String idTuyendi = tdDao.getIdTuyen(diemdi, diemden);
@@ -46,7 +45,6 @@ public class ViewSeatAvailable extends HttpServlet{
 		String HangDoi = tdDao.getHangdoi(diemdi, diemden);
 		List<VeXe> vexe = null; 
 		vexe = vxDao.getMaghe(idChuyen,ngay_di);
-	/*	session.setAttribute("maghe", vexe);*/
 		 req.setAttribute("maghe", vexe);
 		 req.setAttribute("ngaydi", ngay_di);
 		 req.setAttribute("giodi", giodi);
@@ -54,10 +52,8 @@ public class ViewSeatAvailable extends HttpServlet{
 		 req.setAttribute("diemdi", diemdi);
 		 req.setAttribute("diemden", diemden);
 		 req.setAttribute("HangDoi", HangDoi);
- RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/views/NhanVienXemSoDoGhe.jsp");
-		dispatcher.forward(req, resp);
-		/* RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/views/DashboardNhanVien_GheAvailable.jsp");
-			dispatcher.forward(req, resp);*/
-}
+		 RequestDispatcher dispatcher=getServletContext().getRequestDispatcher("/views/NhanVienXemSoDoGhe.jsp");
+			dispatcher.forward(req, resp);
+	}
 
 }

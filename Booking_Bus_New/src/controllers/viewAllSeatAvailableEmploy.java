@@ -58,8 +58,6 @@ public class viewAllSeatAvailableEmploy extends HttpServlet {
 		 String json = new Gson().toJson(vexe);
 		request.setAttribute("maghe", vexe);
 		response.getWriter().write(json);
-		
-		
 	}
 
 	/**

@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.NhanVienDAOImplement;
+import models.KhachHang;
 import models.NhanVien;
-import models.TaiKhoan;
-@WebServlet("/UpdateNhanVienServlet")
-public class UpdateNhanVienServlet extends HttpServlet{
+@WebServlet("/InsertNhanVien")
+public class InsertInfoNhanVien extends HttpServlet{
 
 	/**
 	 * 
@@ -28,21 +28,25 @@ public class UpdateNhanVienServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String hoten = req.getParameter("HoTen");
+		String hoTen = req.getParameter("HoTen");
 		String sdt = req.getParameter("SDT");
-		String chucvu = req.getParameter("Chucvu");
 		String CMND = req.getParameter("CMND");
-		System.out.println(hoten);
+		String email = req.getParameter("email");
+		String chucVu = req.getParameter("Chucvu");
+		System.out.println(hoTen);
 		System.out.println(sdt);
+		System.out.println(CMND);
+		System.out.println(email);
 		try {
 			NhanVien nhanVien = new NhanVien();
-			nhanVien.setHoTen(hoten);
+			nhanVien.setHoTen(hoTen);
 			nhanVien.setsDT(sdt);
-			nhanVien.setChucVu(chucvu);
 			nhanVien.setcMND(CMND);
-			boolean updated = nvDao.UpdateNhanVien(nhanVien);
-			if(updated == true) {
-				req.setAttribute("updated", updated);
+			nhanVien.setEmail(email);
+			nhanVien.setChucVu(chucVu);
+			boolean inserted = nvDao.InsertNhanVien(nhanVien);
+			if(inserted == true) {
+				System.out.println("insert success!");
 				req.getServletContext().getRequestDispatcher("/DashboardAdmin").forward(req, resp);
 			}	
 			else {
@@ -52,8 +56,7 @@ public class UpdateNhanVienServlet extends HttpServlet{
 		catch (Exception e)
 		{
 			e.printStackTrace();
-		}	
-		
+		}
 	}
 
 }

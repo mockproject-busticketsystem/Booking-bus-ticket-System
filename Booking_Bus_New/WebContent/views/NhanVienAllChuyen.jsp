@@ -17,11 +17,17 @@
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
 	type="text/css">
+		<style type="text/css">
+	#mydataTable_filter{
+	display: none;
+	}
+	</style>
 <body>
 	<div id=main_top>
-		<div id=main2>
-			<div class=top>
-				<h5>Nhân Viên Quản Lý</h5>
+			<div id=main2>
+					<div class=top>
+					<img src="img/icon_nhanvien.png"  height="62" width="62">
+				<h1>Nhân Viên Quản Lý</h1>
 				<hr class=new4>
 				<div class=right>
 					<form method="POST"
@@ -67,28 +73,26 @@
 					</h4>
 				</div>
 
-
-
-
 			</div>
-
-
-
-
-
 		</div>
+		
+			<div id="main_head" ><div id=head >
+				<div class=logo>
+					<p>Xem Tất Cả Chuyến</p>
+				</div>
+
+			</div></div>
 		<div id="main">
 			<div id=head>
-				<div class=logo>
-					<p>Xem Tất Cả Vé</p>
+<div class=margin2></div>
 
-				</div>
 				<div class=filterright>
 					<h5>
-						<form method="POST"
-							action="${pageContext.request.contextPath}/DashboardNhanVien">
-							<th scope="col">Search<input type="text" name=""></input></th>
-						</form>
+					<form method="POST"
+							action="${pageContext.request.contextPath}/LoadChuyen">
+							<th scope="col"><input type="text" name="search"></input>
+							<input type="submit" onclick="this.form.submit();" value =search name ="search" style="width:90px;"></input></th>
+					
 					</h5>
 
 				</div>
@@ -100,26 +104,36 @@
 
 				<div class=filterleft style="margin-left: 23%;">
 					<h5>
-						<form method="POST"
-							action="${pageContext.request.contextPath}/DashboardNhanVien">
-							<th scope="col">Chọn Điểm Đi <select name="choosethuoctinh"
-								class="txtFrm" id="choosethuoctinh" required="required "
+					
+							<th scope="col">Chọn Điểm Đi  <input type="hidden" name="ktchondiemdi" value="${chondiemdi}"></input><select name="chondiemdi"
+								class="txtFrm" id="chondiemdi" required="required "
 								onchange="this.form.submit();">
-									<option value="0">selected</option>
+
+									<option value="0">All</option>
+									<c:forEach items="${loaddiemdi}" var="listItem">
+										<option value="${listItem.diaDiemDi}"
+											<c:if test="${listItem.diaDiemDi.equals(chondiemdi)}">
+											selected
+									</c:if>>${listItem.diaDiemDi}</option>
+									</c:forEach>
 							</select>
-						</form>
+					
 						</th>
 					</h5>
 				</div>
 				<div class=filterleft>
 					<h5>
-						<form method="POST"
-							action="${pageContext.request.contextPath}/DashboardNhanVien">
-							<th scope="col">Chọn Điểm Đến <select name="choosevalues"
-								class="txtFrm" id="choosevalues" required="required "
+					
+							<th scope="col">Chọn Điểm Đến <select name="chondiemden"
+								class="txtFrm" id="chondiemden" required="required "
 								onchange="this.form.submit();">
-									<option>filter value</option>
-
+									<option values="0">filter value</option>
+									<c:forEach items="${loaddiemden}" var="listItem">
+										<option value="${listItem.diaDiemDen}"
+											<c:if test="${listItem.diaDiemDen.equals(chondiemden)}">
+											selected
+									</c:if>>${listItem.diaDiemDen}</option>
+									</c:forEach>
 							</select>
 							</th>
 						</form>
@@ -127,7 +141,7 @@
 				</div>
 			</div>
 			<div id="content">
-
+<div class=margin></div>
 
 				<table id="mydataTable" class="table table-striped table-bordered"
 					style="width: 100%">
@@ -147,21 +161,22 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${AllChuyen}" var="chuyen">
+						<c:forEach items="${AllChuyen}" var="ve">
 
 							<tr>
-								<td>${chuyen.iDChuyen}</td>
-								<td>${chuyen.tuyenDi.diaDiemDi}</td>
-								<td>${chuyen.tuyenDi.diaDiemDen}</td>
-								<td>${chuyen.gioDi}</td>
-								<td>${chuyen.gioDen}</td>
-								<td>${chuyen.donGia}</td>
-								<td>${chuyen.tuyenDi.hangDoi}</td>
+								<td>${ve.iDChuyen}</td>
+								<td>${ve.diaDiemDi}</td>
+								<td>${ve.diaDiemDen}</td>
+								<td>${ve.gioDi}</td>
+								<td>${ve.gioDen}</td>
+								<td>${ve.donGia}</td>
+								<td>${ve.hangDoi}</td>
 								<form method="POST"
 									action="${pageContext.request.contextPath}/DashboardNhanVien">
 									<input type="hidden" name="idchuyen" value=${idchuyen}></input>
 									<input type="hidden" name="ngaydi" value=${ngaydi}></input>
 									
+									<input type="hidden" name="tempCD" value="1"></input>
 									<input type="hidden" name="choosethuoctinh" value="Diem Di"></input>
 									<input type="hidden" name="choosethuoctinh2" value="Diem Den"></input>
 									<input type="hidden" name="choosevalues" value="${ve.diaDiemDi}"></input>
