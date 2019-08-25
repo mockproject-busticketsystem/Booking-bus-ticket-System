@@ -1,0 +1,59 @@
+/*--------------------------------------------------------------
+# footer area
+--------------------------------------------------------------*/
+#footer{ background-color: #28292E; padding-top: 20px; padding-bottom: 20px; margin-top:-20px;width: 100%;height: 350px; }
+
+.logo_footer { width: 100px; height: 72px; }
+
+.footer_title{
+    font-size: 24px; font-weight: 700; color: #fff; margin-top: 0;
+    font-family: "Times New Roman" }
+.footer_linklists{
+    padding: 0; margin: 0; }
+
+.footer_linklists li a{
+    color: #fff; line-height: 20px; font-family: "Times New Roman", sans-serif; }
+
+.hotline_footer p,.address_footer p{ color: #fff; line-height: 20px; margin: 0;}
+
+.address_footer{margin-top: 30px; }
+
+.copyright_footer { border-top: 1px solid #fff; margin-top: 30px; padding: 20px 0 0; }
+
+.copyright_footer .copyright_col{ color: #fff; }
+
+.copyright_text{ -ms-flex: 3 1 0; -webkit-flex: 3 1 0; flex: 3 1 0; }
+
+.copyright_menu{ -ms-flex: 3 1 0; -webkit-flex: 3 1 0; flex: 3 1 0; }
+
+.copyright_menu ul{ padding: 0; margin: 0; }
+
+.copyright_menu ul li{
+    display: inline-block; padding-right: 15px; margin-right: 15px; border-right: 1px solid #fff; }
+
+.copyright_menu ul li:last-child{ border-right: 0; }
+
+.copyright_menu ul li a{
+    color: #fff; font-family: "Times New Roman";
+    font-size: 18px; font-weight: 700; }
+
+.copyright_language{
+    color: #fff; font-family: "Times New Roman";
+    font-size: 18px; font-weight: 700;
+    -ms-flex: 1 1 0; -webkit-flex: 1 1 0; flex: 1 1 0; text-align: right; }
+
+.copyright_language a{
+    color: #fff; font-family: "Times New Roman";
+    font-size: 18px; font-weight: 700; }
+
+.copyright_language a:last-child{ border-right: 0; }
+#img{
+    margin-top: 50px;
+}
+#icon_pay{
+    float: right;
+    margin-left: 50px;
+}
+/* End Footer */
+
+}
