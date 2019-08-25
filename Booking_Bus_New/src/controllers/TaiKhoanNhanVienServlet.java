@@ -48,6 +48,20 @@ public class TaiKhoanNhanVienServlet extends HttpServlet{
 		String choosevalues=req.getParameter("choosevalues");
 		String choosevalues2=req.getParameter("choosevalues2");
 
+		//kiem tra chon diem di
+				String ktchondiemdi="0";
+				 ktchondiemdi=req.getParameter("ktchondiemdi");
+				req.setAttribute("ktchondiemdi", ktchondiemdi);
+
+
+				
+				if(choosevalues2!=null && choosevalues!=null && ktchondiemdi!=null)
+				if(ktchondiemdi.equals(choosevalues)==false)
+					choosevalues2="filter value";
+				
+		//end kiem tra chon diem di
+		
+		
 		if(choosethuoctinh==null)choosethuoctinh="All";
 		if(choosethuoctinh2==null||choosethuoctinh.equals("All"))choosethuoctinh2="All";
 		if(choosevalues==null)choosevalues="filter value";
@@ -56,6 +70,8 @@ public class TaiKhoanNhanVienServlet extends HttpServlet{
 		req.setAttribute("choosethuoctinh", choosethuoctinh);
 		req.setAttribute("choosevalues", choosevalues);
 		req.setAttribute("choosevalues2", choosevalues2);
+
+	
 		
 		//distinct  filter values
 
@@ -77,7 +93,7 @@ public class TaiKhoanNhanVienServlet extends HttpServlet{
 		}
 
 
-System.out.println(choosevalues);
+
 		List<VeXe> distinct = null;
 		distinct = vexeDao.filterDistinct(choosevalues,temp);
 		req.setAttribute("distinct", distinct);
@@ -96,8 +112,13 @@ System.out.println(choosevalues);
 	}
 			ve = vexeDao.getAllInformationVeXe(choosevalues,temp,choosevalues2,temp2);
 			req.setAttribute("AllInfor", ve);
-		}
+		}	
 
+		 	// get cờ từ chuyến đi all 
+		String tempCD=req.getParameter("tempCD");
+		if(tempCD==null)tempCD="0";
+		req.setAttribute("tempCD", tempCD);
+		System.out.println(tempCD);
 		req.getRequestDispatcher("/views/DashboardNhanVien.jsp").forward(req, resp);//forwarding the request
 	}
 }
